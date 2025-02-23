@@ -1,0 +1,40 @@
+[versions]
+activityKtx = "1.10.0"
+agp = "8.8.1"
+appcompat = "1.7.0"
+fragmentKtx = "1.8.6"
+hawk = "2.0.1"
+kotlin = "2.1.0"
+coreKtx = "1.15.0"
+chucker = "4.0.0"
+lifecycleRuntimeKtx = "2.8.7"
+material = "1.12.0"
+picasso = "2.71828"
+tapsellPlusSdkAndroid = "2.2.8"
+retrofit = "2.11.0"
+room = "2.6.1"
+
+[libraries]
+androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activityKtx" }
+androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragmentKtx" }
+androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleRuntimeKtx" }
+converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
+hawk = { module = "com.orhanobut:hawk", version.ref = "hawk" }
+androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
+chucker = { module = "com.github.chuckerteam.chucker:library", version.ref = "chucker" }
+chucker-no-op = { module = "com.github.chuckerteam.chucker:library-no-op", version.ref = "chucker" }
+material = { module = "com.google.android.material:material", version.ref = "material" }
+picasso = { module = "com.squareup.picasso:picasso", version.ref = "picasso" }
+tapsell-plus-sdk-android = { module = "ir.tapsell.plus:tapsell-plus-sdk-android", version.ref = "tapsellPlusSdkAndroid" }
+androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
+retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+
