@@ -1,0 +1,10 @@
+<resources>
+    <declare-styleable name="MyProgressBar">
+        <attr name="backgroundColor" format="color" />
+        <attr name="cornerRadius" format="dimension" />
+        <attr name="max" format="integer" />
+        <attr name="progress" format="integer" />
+        <attr name="progressColor" format="color" />
+        <attr name="stroke" format="dimension" />
+    </declare-styleable>
+</resources>
