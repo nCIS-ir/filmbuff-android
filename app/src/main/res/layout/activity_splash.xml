@@ -24,12 +24,13 @@
     <custom_views.MyProgressBar
         android:id="@+id/pbLoading"
         style="@android:style/Widget.ProgressBar.Horizontal"
-        android:layout_width="156dp"
-        android:layout_height="64dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="128dp"
+        android:layout_height="12dp"
+        android:layout_marginTop="32dp"
         app:backgroundColor="@color/green_600"
+        app:cornerRadius="1000dp"
         app:max="100"
-        app:progress="75"
+        app:progress="25"
         app:progressColor="@color/green_400"
-        app:stroke="0dp" />
+        app:stroke="1dp" />
 </LinearLayout>
