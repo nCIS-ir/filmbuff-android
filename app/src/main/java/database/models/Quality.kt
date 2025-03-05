@@ -1,5 +1,6 @@
 package database.models
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -8,6 +9,7 @@ data class Quality(
     @PrimaryKey
     val id: String,
     val slug: String,
-    var isVip: Boolean,
+    @ColumnInfo(name = "is_vip")
+    val isVip: Boolean,
     val title: String,
 )
