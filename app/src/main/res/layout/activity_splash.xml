@@ -30,7 +30,7 @@
         app:backgroundColor="@color/green_600"
         app:cornerRadius="1000dp"
         app:max="100"
-        app:progress="25"
+        app:progress="50"
         app:progressColor="@color/green_400"
         app:stroke="1dp" />
 </LinearLayout>
