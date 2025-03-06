@@ -10,4 +10,5 @@ data class User(
     val username: String,
     val email: String,
     val coins: Int,
+    val subscription: Int,
 )
