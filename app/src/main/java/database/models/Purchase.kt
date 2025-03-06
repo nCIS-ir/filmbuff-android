@@ -12,6 +12,7 @@ data class Purchase(
     val userId: String,
     @ColumnInfo(name = "pack_id")
     val packId: String,
+    val coins: Int,
     val authority: String,
     val reference: String,
     @ColumnInfo(name = "paid_at")
