@@ -19,7 +19,7 @@
             android:layout_weight="1"
             android:fontFamily="@font/regular"
             android:gravity="left"
-            android:text="@string/english"
+            android:text="@string/language_english"
             android:textColor="@color/white"
             android:textSize="16sp"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -31,7 +31,7 @@
             android:layout_weight="1"
             android:fontFamily="@font/regular"
             android:gravity="right"
-            android:text="@string/persian"
+            android:text="@string/language_persian"
             android:textColor="@color/blue_400"
             android:textSize="16sp"
             app:layout_constraintRight_toRightOf="parent"
@@ -56,7 +56,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="12dp"
             android:fontFamily="@font/bold"
-            android:text="@string/film_buff"
+            android:text="@string/app_name"
             android:textColor="@color/white"
             android:textSize="24sp" />
 
@@ -187,7 +187,7 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/regular"
                 android:gravity="center"
-                android:text="@string/don_t_have_an_account"
+                android:text="@string/no_account"
                 android:textColor="@color/white"
                 android:textSize="16sp" />
 
