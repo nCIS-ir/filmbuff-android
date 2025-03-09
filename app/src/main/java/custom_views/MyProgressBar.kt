@@ -15,7 +15,13 @@ class MyProgressBar @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     private val defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
-    private val b: MyProgressBarBinding = MyProgressBarBinding.inflate(LayoutInflater.from(context))
+    private val b = MyProgressBarBinding.inflate(LayoutInflater.from(context))
+
+    var progress: Int
+        get() = b.progressBar.progress
+        set(value) {
+            b.progressBar.progress = value
+        }
 
     init {
         initializeAttributes(attrs)
@@ -48,10 +54,6 @@ class MyProgressBar @JvmOverloads constructor(
         } finally {
             typedArray.recycle()
         }
-    }
-
-    fun setProgress(value: Int) {
-        b.progressBar.progress = value
     }
 
     fun setProgressColor(color: Int) {
