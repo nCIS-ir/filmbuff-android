@@ -11,4 +11,5 @@
     <string name="tapsell_interstitial">67cb3efdfb36b54b43f2cb7c</string>
     <string name="tapsell_rewarded">67cb3edbc1914d5fb3eec60e</string>
     <string name="username">Username</string>
+    <string name="forgot_password">Forgot Password</string>
 </resources>
