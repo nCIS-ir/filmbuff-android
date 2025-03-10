@@ -1,15 +1,23 @@
 <resources>
-    <string name="app_name">Film Buff</string>
-    <string name="invalid_credentials">Invalid credentials</string>
-    <string name="language_english">English</string>
-    <string name="language_persian">فارسی</string>
-    <string name="password">Password</string>
-    <string name="login">Login</string>
-    <string name="no_account">Don\'t have an account?</string>
-    <string name="register">Register</string>
+    <string name="app_name_en">Film Buff</string>
+    <string name="app_name_fa">خوره فیلم</string>
+    <string name="forgot_password_en">Forgot Password</string>
+    <string name="forgot_password_fa">فراموشی رمز عبور</string>
+    <string name="invalid_credentials_en">Invalid credentials</string>
+    <string name="invalid_credentials_fa">اطلاعات وارد شده اشتباه است!</string>
+    <string name="language_en">English</string>
+    <string name="language_fa">فارسی</string>
+    <string name="login_en">Login</string>
+    <string name="login_fa">ورود</string>
+    <string name="no_account_en">Don\'t have an account?</string>
+    <string name="no_account_fa">حساب کاربری ندارید؟</string>
+    <string name="password_en">Password</string>
+    <string name="password_fa">رمز عبور</string>
+    <string name="register_en">Register</string>
+    <string name="register_fa">ثبت نام کنید</string>
     <string name="tapsell_app">djfbetfbatdbjibsrmtahmarjsqhlcnncnmlscqmsolnfqmbssilrtkrffthddierfbjjb</string>
     <string name="tapsell_interstitial">67cb3efdfb36b54b43f2cb7c</string>
     <string name="tapsell_rewarded">67cb3edbc1914d5fb3eec60e</string>
-    <string name="username">Username</string>
-    <string name="forgot_password">Forgot Password</string>
+    <string name="username_en">Username</string>
+    <string name="username_fa">نام کاربری</string>
 </resources>
