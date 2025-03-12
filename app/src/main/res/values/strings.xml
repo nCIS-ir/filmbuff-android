@@ -1,6 +1,12 @@
 <resources>
+    <string name="admin_film_buff_ir_en">admin@film-buff.ir</string>
+    <string name="already_have_an_account_en">Already have an account?</string>
+    <string name="already_have_an_account_fa">از قبل حساب کاربری دارید؟</string>
     <string name="app_name_en">Film Buff</string>
     <string name="app_name_fa">خوره فیلم</string>
+    <string name="email_en">Email</string>
+    <string name="email_fa">پست الکترونیکی</string>
+    <string name="enter">وارد شوید</string>
     <string name="forgot_password_en">Forgot Password</string>
     <string name="forgot_password_fa">فراموشی رمز عبور</string>
     <string name="invalid_credentials_en">Invalid credentials</string>
@@ -14,10 +20,13 @@
     <string name="password_en">Password</string>
     <string name="password_fa">رمز عبور</string>
     <string name="register_en">Register</string>
-    <string name="register_fa">ثبت نام کنید</string>
+    <string name="register_fa">ثبت نام</string>
+    <string name="registration">ثبت نام کنید</string>
     <string name="tapsell_app">djfbetfbatdbjibsrmtahmarjsqhlcnncnmlscqmsolnfqmbssilrtkrffthddierfbjjb</string>
     <string name="tapsell_interstitial">67cb3efdfb36b54b43f2cb7c</string>
     <string name="tapsell_rewarded">67cb3edbc1914d5fb3eec60e</string>
     <string name="username_en">Username</string>
     <string name="username_fa">نام کاربری</string>
+    <string name="username_already_taken_en">Username already taken!</string>
+    <string name="username_already_taken_fa">نام کاربری قبلا گرفته شده است!</string>
 </resources>
