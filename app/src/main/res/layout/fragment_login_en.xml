@@ -125,9 +125,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:padding="8dp"
         android:layout_marginRight="40dp"
         android:fontFamily="@font/regular"
+        android:padding="8dp"
         android:text="@string/forgot_password_en"
         android:textColor="@color/blue_100"
         android:textSize="12sp"
@@ -139,10 +139,10 @@
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginTop="-12dp"
-        app:layout_constraintRight_toRightOf="@+id/tvForgotPassword"
+        android:layout_marginRight="8dp"
         app:layout_constraintLeft_toLeftOf="@+id/tvForgotPassword"
+        app:layout_constraintRight_toRightOf="@+id/tvForgotPassword"
         app:layout_constraintTop_toBottomOf="@+id/tvForgotPassword"
         app:srcCompat="@color/blue_100" />
 
@@ -198,7 +198,7 @@
             android:fontFamily="@font/bold"
             android:gravity="center"
             android:padding="8dp"
-            android:text="@string/register_en"
+            android:text="@string/registration_en"
             android:textColor="@color/blue_100" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
