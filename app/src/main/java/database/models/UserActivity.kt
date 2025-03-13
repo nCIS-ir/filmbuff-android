@@ -8,8 +8,6 @@ import androidx.room.PrimaryKey
 data class UserActivity(
     @PrimaryKey
     val id: String,
-    @ColumnInfo(name = "user_id")
-    val userId: String,
     @ColumnInfo(name = "activity_id")
     val activityId: String,
     val coins: Int,
