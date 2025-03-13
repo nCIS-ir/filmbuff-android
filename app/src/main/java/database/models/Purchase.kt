@@ -8,8 +8,6 @@ import androidx.room.PrimaryKey
 data class Purchase(
     @PrimaryKey
     val id: String,
-    @ColumnInfo(name = "user_id")
-    val userId: String,
     @ColumnInfo(name = "pack_id")
     val packId: String,
     val coins: Int,
