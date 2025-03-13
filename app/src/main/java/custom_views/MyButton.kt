@@ -4,11 +4,11 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.Typeface
 import android.util.AttributeSet
-import android.util.TypedValue
 import android.view.LayoutInflater
 import android.widget.FrameLayout
 import ir.ncis.filmbuff.R
 import ir.ncis.filmbuff.databinding.MyButtonBinding
+import androidx.core.view.isVisible
 
 class MyButton @JvmOverloads constructor(
     context: Context,
@@ -17,10 +17,10 @@ class MyButton @JvmOverloads constructor(
 ) : FrameLayout(context, attrs, defStyleAttr) {
     private val b = MyButtonBinding.inflate(LayoutInflater.from(context))
 
-    var typeFace: Typeface?
-        get() = b.tvTitle.typeface
+    var showBackground: Boolean
+        get() = b.ivBackground.isVisible
         set(value) {
-            b.tvTitle.typeface = value
+            b.ivBackground.visibility = if (value) VISIBLE else INVISIBLE
         }
 
     var text: CharSequence
@@ -41,6 +41,12 @@ class MyButton @JvmOverloads constructor(
             b.tvTitle.textSize = value
         }
 
+    var typeFace: Typeface?
+        get() = b.tvTitle.typeface
+        set(value) {
+            b.tvTitle.typeface = value
+        }
+
     init {
         initializeAttributes(attrs)
         addView(b.root)
@@ -53,11 +59,13 @@ class MyButton @JvmOverloads constructor(
         val typedArray = context.obtainStyledAttributes(attrs, R.styleable.MyButton, defStyleAttr, 0)
         try {
             val fontFamily = typedArray.getFont(R.styleable.MyButton_font)
+            val showBackground = typedArray.getBoolean(R.styleable.MyButton_showBackground, true)
             val text = typedArray.getText(R.styleable.MyButton_text)
             val textColor = typedArray.getColor(R.styleable.MyButton_textColor, Color.WHITE)
             val textSize = typedArray.getDimension(R.styleable.MyButton_textSize, 16f)
-            val textSizeInPixels = typedArray.getDimension(R.styleable.MyButton_textSize, 16f) / context.resources.displayMetrics.density
+            val textSizeInPixels = textSize / context.resources.displayMetrics.density
 
+            b.ivBackground.visibility = if (showBackground) VISIBLE else INVISIBLE
             b.tvTitle.typeface = fontFamily
             b.tvTitle.text = text
             b.tvTitle.setTextColor(textColor)
