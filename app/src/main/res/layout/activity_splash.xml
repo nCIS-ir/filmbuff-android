@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
         android:fontFamily="@font/bold"
-        android:text="@string/app_name_en"
+        android:text="@string/app_name"
         android:textColor="@color/white"
         android:textSize="32sp" />
 
@@ -27,6 +27,7 @@
         android:layout_width="128dp"
         android:layout_height="12dp"
         android:layout_marginTop="32dp"
+        android:layoutDirection="ltr"
         app:backgroundColor="@color/green_600"
         app:cornerRadius="1000dp"
         app:max="100"

@@ -12,7 +12,7 @@ material = "1.12.0"
 picasso = "2.71828"
 retrofit = "2.11.0"
 room = "2.6.1"
-tapsellPlusSdkAndroid = "2.2.8"
+tapsellPlusSdkAndroid = "2.3.2"
 
 [libraries]
 androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activityKtx" }
