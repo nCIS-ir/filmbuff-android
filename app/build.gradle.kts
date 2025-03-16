@@ -52,4 +52,5 @@ dependencies {
     implementation(libs.tapsell.plus.sdk.android)
     ksp(libs.androidx.room.compiler)
     releaseImplementation(libs.chucker.no.op)
+    implementation(libs.androidx.viewpager)
 }

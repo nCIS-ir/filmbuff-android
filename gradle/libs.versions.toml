@@ -13,6 +13,7 @@ picasso = "2.71828"
 retrofit = "2.11.0"
 room = "2.6.1"
 tapsellPlusSdkAndroid = "2.3.2"
+viewpager = "1.1.0"
 
 [libraries]
 androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activityKtx" }
@@ -24,6 +25,7 @@ androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-view
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
+androidx-viewpager = { module = "androidx.viewpager:viewpager", version.ref = "viewpager" }
 chucker = { module = "com.github.chuckerteam.chucker:library", version.ref = "chucker" }
 chucker-no-op = { module = "com.github.chuckerteam.chucker:library-no-op", version.ref = "chucker" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
