@@ -8,8 +8,6 @@ import androidx.room.PrimaryKey
 data class Subscription(
     @PrimaryKey
     val id: String,
-    @ColumnInfo(name = "user_id")
-    val userId: String,
     @ColumnInfo(name = "plan_id")
     val planId: String,
     val price: Int,
