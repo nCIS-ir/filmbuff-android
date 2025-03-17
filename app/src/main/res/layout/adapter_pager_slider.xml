@@ -9,6 +9,7 @@
     tools:layout_marginStart="16dp">
 
     <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivSlider"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:srcCompat="@mipmap/slider" />
