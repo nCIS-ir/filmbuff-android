@@ -8,6 +8,7 @@ import ir.ncis.filmbuff.databinding.ActivitySplashBinding
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : ActivityEnhanced() {
     private lateinit var b: ActivitySplashBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         b = ActivitySplashBinding.inflate(layoutInflater)

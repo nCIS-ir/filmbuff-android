@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="admin_email">admin@film-buff.ir</string>
     <string name="already_have_an_account">از قبل حساب کاربری دارید؟</string>
     <string name="app_name">خوره فیلم</string>
     <string name="change">تغییر دهید</string>

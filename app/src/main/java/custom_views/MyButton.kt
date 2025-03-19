@@ -6,15 +6,11 @@ import android.graphics.Typeface
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
+import androidx.core.view.isVisible
 import ir.ncis.filmbuff.R
 import ir.ncis.filmbuff.databinding.MyButtonBinding
-import androidx.core.view.isVisible
 
-class MyButton @JvmOverloads constructor(
-    context: Context,
-    attrs: AttributeSet? = null,
-    private val defStyleAttr: Int = 0
-) : FrameLayout(context, attrs, defStyleAttr) {
+class MyButton @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, private val defStyleAttr: Int = 0) : FrameLayout(context, attrs, defStyleAttr) {
     private val b = MyButtonBinding.inflate(LayoutInflater.from(context))
 
     var showBackground: Boolean

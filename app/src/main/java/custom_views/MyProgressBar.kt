@@ -10,11 +10,7 @@ import android.widget.FrameLayout
 import ir.ncis.filmbuff.R
 import ir.ncis.filmbuff.databinding.MyProgressBarBinding
 
-class MyProgressBar @JvmOverloads constructor(
-    context: Context,
-    attrs: AttributeSet? = null,
-    private val defStyleAttr: Int = 0
-) : FrameLayout(context, attrs, defStyleAttr) {
+class MyProgressBar @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, private val defStyleAttr: Int = 0) : FrameLayout(context, attrs, defStyleAttr) {
     private val b = MyProgressBarBinding.inflate(LayoutInflater.from(context))
 
     var progress: Int

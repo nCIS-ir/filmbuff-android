@@ -16,7 +16,10 @@ android {
         versionName = "1.0"
     }
 
-    buildFeatures.viewBinding = true
+    buildFeatures {
+        buildConfig = true
+        viewBinding = true
+    }
 
     buildTypes {
         release {
@@ -44,6 +47,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.viewpager)
     implementation(libs.converter.gson)
     implementation(libs.hawk)
     implementation(libs.material)
@@ -52,5 +56,4 @@ dependencies {
     implementation(libs.tapsell.plus.sdk.android)
     ksp(libs.androidx.room.compiler)
     releaseImplementation(libs.chucker.no.op)
-    implementation(libs.androidx.viewpager)
 }
