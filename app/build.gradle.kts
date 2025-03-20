@@ -47,7 +47,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
-    implementation(libs.androidx.viewpager)
+    implementation(libs.androidx.viewpager2)
     implementation(libs.converter.gson)
     implementation(libs.hawk)
     implementation(libs.material)
