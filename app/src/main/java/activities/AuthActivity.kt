@@ -1,12 +1,12 @@
 package activities
 
-import android.annotation.SuppressLint
 import android.os.Bundle
+import androidx.fragment.app.Fragment
+import fragments.AuthLoginFragment
 import ir.ncis.filmbuff.ActivityEnhanced
 import ir.ncis.filmbuff.databinding.ActivityAuthBinding
 
 
-@SuppressLint("CustomSplashScreen")
 class AuthActivity : ActivityEnhanced() {
     private lateinit var b: ActivityAuthBinding
 
@@ -14,5 +14,14 @@ class AuthActivity : ActivityEnhanced() {
         super.onCreate(savedInstanceState)
         b = ActivityAuthBinding.inflate(layoutInflater)
         setContentView(b.root)
+
+        showFragment(AuthLoginFragment())
+    }
+
+    fun showFragment(fragment: Fragment) {
+        supportFragmentManager
+            .beginTransaction()
+            .replace(b.fragment.id, fragment)
+            .commit()
     }
 }

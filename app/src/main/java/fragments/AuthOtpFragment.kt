@@ -5,13 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import ir.ncis.filmbuff.databinding.FragmentAuthRegisterBinding
+import ir.ncis.filmbuff.databinding.FragmentAuthOtpBinding
 
-class RegisterFragment() : Fragment() {
-    private lateinit var b: FragmentAuthRegisterBinding
+class AuthOtpFragment() : Fragment() {
+    private lateinit var b: FragmentAuthOtpBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        b = FragmentAuthRegisterBinding.inflate(inflater, container, false)
+        b = FragmentAuthOtpBinding.inflate(inflater, container, false)
         return b.root
     }
 
