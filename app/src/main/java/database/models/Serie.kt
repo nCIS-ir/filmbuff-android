@@ -28,6 +28,6 @@ data class Serie(
     val isFavorite: Boolean,
     val title: String,
     val description: String,
-    val genres: ArrayList<String>,
-    val casts: ArrayList<SerieCast>,
+    val genres: String,
+    val casts: String,
 )

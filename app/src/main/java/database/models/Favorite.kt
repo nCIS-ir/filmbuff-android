@@ -1,5 +1,6 @@
 package database.models
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -7,6 +8,8 @@ import androidx.room.PrimaryKey
 data class Favorite(
     @PrimaryKey
     val id: String,
-    val movie: Movie?,
-    val serie: Serie?,
+    @ColumnInfo(name = "movie_id")
+    val movieId: String?,
+    @ColumnInfo(name = "serie_id")
+    val serieId: String?,
 )

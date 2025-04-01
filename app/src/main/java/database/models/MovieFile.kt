@@ -13,6 +13,6 @@ data class MovieFile(
     @ColumnInfo(name = "quality_id")
     val qualityId: String,
     val path: String,
-    val audios:  ArrayList<String>,
-    val subtitles: ArrayList<String>,
+    val audios:  String,
+    val subtitles: String,
 )

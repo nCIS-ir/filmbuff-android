@@ -16,13 +16,13 @@ open class ActivityEnhanced : AppCompatActivity() {
         App.ACTIVITY = this
     }
 
-    fun runActivity(targetActivity: Class<*>, bundle: Bundle?, finish: Boolean = false) {
+    fun runActivity(targetActivity: Class<*>, bundle: Bundle? = null, shouldFinishCurrentActivity: Boolean = false) {
         val intent = Intent(this, targetActivity)
         if (bundle != null) {
             intent.putExtras(bundle)
         }
         startActivity(intent)
-        if (finish) {
+        if (shouldFinishCurrentActivity) {
             finish()
         }
     }

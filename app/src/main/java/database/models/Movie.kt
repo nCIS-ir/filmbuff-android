@@ -26,6 +26,6 @@ data class Movie(
     val isFavorite: Boolean,
     val title: String,
     val description: String,
-    val genres: ArrayList<String>,
-    val casts: ArrayList<MovieCast>,
+    val genres: String,
+    val casts: String,
 )

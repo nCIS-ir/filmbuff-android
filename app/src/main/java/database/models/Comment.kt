@@ -8,7 +8,8 @@ import androidx.room.PrimaryKey
 data class Comment(
     @PrimaryKey
     val id: String,
-    val user: User,
+    @ColumnInfo(name = "user_id")
+    val userId: String,
     @ColumnInfo(name = "movie_id")
     val movieId: String?,
     @ColumnInfo(name = "serie_id")

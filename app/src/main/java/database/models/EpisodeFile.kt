@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "episode_files")
-data class EpisodFile(
+data class EpisodeFile(
     @PrimaryKey
     val id: String,
     @ColumnInfo(name = "episode_id")
@@ -13,6 +13,6 @@ data class EpisodFile(
     @ColumnInfo(name = "quality_id")
     val qualityId: String,
     val path: String,
-    val audios: ArrayList<String>,
-    val subtitles: ArrayList<String>,
+    val audios: String,
+    val subtitles: String,
 )

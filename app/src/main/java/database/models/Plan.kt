@@ -2,6 +2,7 @@ package database.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import retrofit.models.BasePlan
 
 @Entity(tableName = "plans")
 data class Plan(
@@ -11,4 +12,22 @@ data class Plan(
     val duration: Int,
     val price: Int,
     val title: String,
-)
+) {
+    companion object {
+        fun from(item: BasePlan): Plan {
+            return Plan(
+                id = item.id,
+                slug = item.slug,
+                duration = item.duration,
+                price = item.price,
+                title = item.title,
+            )
+        }
+
+        fun from(items: List<BasePlan>): List<Plan> {
+            val result = mutableListOf<Plan>()
+            items.forEach { item -> result.add(from(item)) }
+            return result.toList()
+        }
+    }
+}

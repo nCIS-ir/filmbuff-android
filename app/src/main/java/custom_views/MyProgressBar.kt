@@ -13,6 +13,12 @@ import ir.ncis.filmbuff.databinding.MyProgressBarBinding
 class MyProgressBar @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, private val defStyleAttr: Int = 0) : FrameLayout(context, attrs, defStyleAttr) {
     private val b = MyProgressBarBinding.inflate(LayoutInflater.from(context))
 
+    var max: Int
+        get() = b.progressBar.max
+        set(value) {
+            b.progressBar.max = value
+        }
+
     var progress: Int
         get() = b.progressBar.progress
         set(value) {

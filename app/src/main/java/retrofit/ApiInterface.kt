@@ -1,5 +1,6 @@
 package retrofit
 
+import retrofit.models.AuthInfo
 import retrofit.models.AuthLogin
 import retrofit.models.BaseActivity
 import retrofit.models.BaseArtist
@@ -19,6 +20,10 @@ import retrofit2.http.POST
 
 interface ApiInterface {
     //region Auth
+    @POST("auth/info")
+    @FormUrlEncoded
+    suspend fun authInfo(): Response<ResponseWrapper<AuthInfo>>
+
     @POST("auth/login")
     @FormUrlEncoded
     suspend fun authLogin(@Field("username") username: String, @Field("password") password: String): Response<ResponseWrapper<AuthLogin>>
