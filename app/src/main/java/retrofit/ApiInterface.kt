@@ -27,6 +27,10 @@ interface ApiInterface {
     @POST("auth/login")
     @FormUrlEncoded
     suspend fun authLogin(@Field("username") username: String, @Field("password") password: String): Response<ResponseWrapper<AuthLogin>>
+
+    @POST("auth/refresh")
+    @FormUrlEncoded
+    suspend fun authRefresh(): Response<ResponseWrapper<AuthLogin>>
     //endregion
 
     //region Base

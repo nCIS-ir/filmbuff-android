@@ -29,7 +29,8 @@ object Base {
                     Result.failure(Exception(response.message()))
                 }
             } else {
-                Result.failure(Exception(response.errorBody()?.string() ?: App.CONTEXT.getString(R.string.unknown_error)))
+                val errorMessage = response.errorBody()?.string() ?: App.CONTEXT.getString(R.string.unknown_error)
+                Result.failure(Exception("HTTP ${response.code()}: $errorMessage"))
             }
         } catch (e: Exception) {
             Result.failure(e)
@@ -51,7 +52,8 @@ object Base {
                     Result.failure(Exception(response.message()))
                 }
             } else {
-                Result.failure(Exception(response.errorBody()?.string() ?: App.CONTEXT.getString(R.string.unknown_error)))
+                val errorMessage = response.errorBody()?.string() ?: App.CONTEXT.getString(R.string.unknown_error)
+                Result.failure(Exception("HTTP ${response.code()}: $errorMessage"))
             }
         } catch (e: Exception) {
             Result.failure(e)
@@ -73,7 +75,8 @@ object Base {
                     Result.failure(Exception(response.message()))
                 }
             } else {
-                Result.failure(Exception(response.errorBody()?.string() ?: App.CONTEXT.getString(R.string.unknown_error)))
+                val errorMessage = response.errorBody()?.string() ?: App.CONTEXT.getString(R.string.unknown_error)
+                Result.failure(Exception("HTTP ${response.code()}: $errorMessage"))
             }
         } catch (e: Exception) {
             Result.failure(e)
@@ -95,7 +98,8 @@ object Base {
                     Result.failure(Exception(response.message()))
                 }
             } else {
-                Result.failure(Exception(response.errorBody()?.string() ?: App.CONTEXT.getString(R.string.unknown_error)))
+                val errorMessage = response.errorBody()?.string() ?: App.CONTEXT.getString(R.string.unknown_error)
+                Result.failure(Exception("HTTP ${response.code()}: $errorMessage"))
             }
         } catch (e: Exception) {
             Result.failure(e)
@@ -117,7 +121,8 @@ object Base {
                     Result.failure(Exception(response.message()))
                 }
             } else {
-                Result.failure(Exception(response.errorBody()?.string() ?: App.CONTEXT.getString(R.string.unknown_error)))
+                val errorMessage = response.errorBody()?.string() ?: App.CONTEXT.getString(R.string.unknown_error)
+                Result.failure(Exception("HTTP ${response.code()}: $errorMessage"))
             }
         } catch (e: Exception) {
             Result.failure(e)
@@ -139,7 +144,8 @@ object Base {
                     Result.failure(Exception(response.message()))
                 }
             } else {
-                Result.failure(Exception(response.errorBody()?.string() ?: App.CONTEXT.getString(R.string.unknown_error)))
+                val errorMessage = response.errorBody()?.string() ?: App.CONTEXT.getString(R.string.unknown_error)
+                Result.failure(Exception("HTTP ${response.code()}: $errorMessage"))
             }
         } catch (e: Exception) {
             Result.failure(e)
@@ -161,7 +167,8 @@ object Base {
                     Result.failure(Exception(response.message()))
                 }
             } else {
-                Result.failure(Exception(response.errorBody()?.string() ?: App.CONTEXT.getString(R.string.unknown_error)))
+                val errorMessage = response.errorBody()?.string() ?: App.CONTEXT.getString(R.string.unknown_error)
+                Result.failure(Exception("HTTP ${response.code()}: $errorMessage"))
             }
         } catch (e: Exception) {
             Result.failure(e)
@@ -183,7 +190,8 @@ object Base {
                     Result.failure(Exception(response.message()))
                 }
             } else {
-                Result.failure(Exception(response.errorBody()?.string() ?: App.CONTEXT.getString(R.string.unknown_error)))
+                val errorMessage = response.errorBody()?.string() ?: App.CONTEXT.getString(R.string.unknown_error)
+                Result.failure(Exception("HTTP ${response.code()}: $errorMessage"))
             }
         } catch (e: Exception) {
             Result.failure(e)
@@ -205,7 +213,8 @@ object Base {
                     Result.failure(Exception(response.message()))
                 }
             } else {
-                Result.failure(Exception(response.errorBody()?.string() ?: App.CONTEXT.getString(R.string.unknown_error)))
+                val errorMessage = response.errorBody()?.string() ?: App.CONTEXT.getString(R.string.unknown_error)
+                Result.failure(Exception("HTTP ${response.code()}: $errorMessage"))
             }
         } catch (e: Exception) {
             Result.failure(e)

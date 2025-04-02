@@ -13,6 +13,8 @@ import database.models.Pack
 import database.models.Plan
 import database.models.Quality
 import database.models.Role
+import database.models.User
+import helpers.ContextHelper
 import helpers.KeyString
 import ir.ncis.filmbuff.ActivityEnhanced
 import ir.ncis.filmbuff.App
@@ -20,6 +22,7 @@ import ir.ncis.filmbuff.databinding.ActivitySplashBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
+import retrofit.calls.Auth
 import retrofit.calls.Base
 
 @SuppressLint("CustomSplashScreen")
@@ -33,17 +36,13 @@ class SplashActivity : ActivityEnhanced() {
         b = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(b.root)
 
-        lifecycleScope.launch { App.DB.clearAllTables() }
-
-        nextActivity = MainActivity::class.java
-        if (!Hawk.contains(KeyString.TOKEN)) {
-            nextActivity = AuthActivity::class.java
-        } else {
-            refreshToken()
-        }
-
         lifecycleScope.launch {
             val apiCalls = listOf<suspend () -> Unit>(
+                //region Clear DB
+                {
+                    App.DB.clearAllTables()
+                },
+                //endregion
                 //region Load Activities
                 {
                     var shouldStop = false
@@ -215,6 +214,15 @@ class SplashActivity : ActivityEnhanced() {
                     }
                 },
                 //endregion
+                //region Load User
+                {
+                    if (!Hawk.contains(KeyString.TOKEN)) {
+                        nextActivity = AuthActivity::class.java
+                    } else {
+                        getUserInfo()
+                    }
+                },
+                //endregion
             )
             b.pbLoading.max = apiCalls.size
             b.pbLoading.progress = 0
@@ -223,7 +231,44 @@ class SplashActivity : ActivityEnhanced() {
         }
     }
 
-    private fun refreshToken() {
-        TODO("Not yet implemented")
+    private suspend fun getUserInfo() {
+        Auth.info()
+            .onSuccess {
+                App.DB.userDao().insert(
+                    User(
+                        id = it.id,
+                        username = it.username,
+                        email = it.email,
+                        coins = it.coins,
+                        subscription = it.subscription,
+                    )
+                )
+                nextActivity = MainActivity::class.java
+            }
+            .onFailure {
+                val statusCode = ContextHelper.getHttpStatus(it)
+                if (statusCode != null) {
+                    if (statusCode == 401) {
+                        refreshToken()
+                    } else if (statusCode == 403) {
+                        nextActivity = AuthActivity::class.java
+                    } else {
+                        App.exit()
+                    }
+                }
+            }
+    }
+
+    private suspend fun refreshToken() {
+        Hawk.put(KeyString.TOKEN, Hawk.get(KeyString.REFRESH, ""))
+        Auth.refresh()
+            .onSuccess {
+                Hawk.put(KeyString.TOKEN, it.token)
+                Hawk.put(KeyString.REFRESH, it.refresh)
+                getUserInfo()
+            }
+            .onFailure {
+                App.exit()
+            }
     }
 }
