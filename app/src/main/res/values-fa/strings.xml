@@ -13,6 +13,7 @@
     <string name="no_account">حساب کاربری ندارید؟</string>
     <string name="otp_sent">رمز یکبار مصرف ارسال شده است به:</string>
     <string name="password">رمز عبور</string>
+    <string name="recently_viewed">بازدیدهای اخیر</string>
     <string name="register">ثبت نام کنید</string>
     <string name="registration">ثبت نام</string>
     <string name="resend_code">ارسال مجدد کد</string>

@@ -118,5 +118,70 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="@+id/cvSlider"
         app:layout_constraintStart_toStartOf="@+id/cvSlider"
-        app:layout_constraintTop_toBottomOf="@+id/cvSlider" />
+        app:layout_constraintTop_toBottomOf="@+id/cvSlider">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="12dp"
+            android:layout_height="4dp"
+            app:cardBackgroundColor="@color/blue_100"
+            app:cardCornerRadius="2dp" />
+
+        <Space
+            android:layout_width="4dp"
+            android:layout_height="0dp" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="4dp"
+            android:layout_height="4dp"
+            app:cardBackgroundColor="@color/blue_100"
+            app:cardCornerRadius="2dp" />
+
+        <Space
+            android:layout_width="4dp"
+            android:layout_height="0dp" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="4dp"
+            android:layout_height="4dp"
+            app:cardBackgroundColor="@color/blue_100"
+            app:cardCornerRadius="2dp" />
+
+        <Space
+            android:layout_width="4dp"
+            android:layout_height="0dp" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="4dp"
+            android:layout_height="4dp"
+            app:cardBackgroundColor="@color/blue_100"
+            app:cardCornerRadius="2dp" />
+
+        <Space
+            android:layout_width="4dp"
+            android:layout_height="0dp" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="4dp"
+            android:layout_height="4dp"
+            app:cardBackgroundColor="@color/blue_100"
+            app:cardCornerRadius="2dp" />
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvRecentlyViewed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/bold"
+        android:text="@string/recently_viewed"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vgIndicators" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/tvRecentlyViewed" />
 </androidx.constraintlayout.widget.ConstraintLayout>

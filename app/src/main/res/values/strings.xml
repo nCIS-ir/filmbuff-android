@@ -15,6 +15,7 @@
     <string name="no_account">Don\'t have an account?</string>
     <string name="otp_sent">OTP code has been sent to:</string>
     <string name="password">Password</string>
+    <string name="recently_viewed">Recently Viewed</string>
     <string name="register">Register</string>
     <string name="registration">Register</string>
     <string name="resend_code">Resend Code</string>
