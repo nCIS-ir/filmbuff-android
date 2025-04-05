@@ -6,8 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import ir.ncis.filmbuff.App
+import ir.ncis.filmbuff.R
 import ir.ncis.filmbuff.databinding.FragmentAuthRegisterBinding
+import kotlinx.coroutines.launch
+import retrofit.calls.Auth
 
 class AuthRegisterFragment() : Fragment() {
     private lateinit var b: FragmentAuthRegisterBinding
@@ -21,6 +25,27 @@ class AuthRegisterFragment() : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         b.tvLogin.setOnClickListener {
             (App.ACTIVITY as AuthActivity).showFragment(AuthLoginFragment())
+        }
+        b.btRegister.setOnClickListener {
+            b.tvError.visibility = View.INVISIBLE
+            val username = b.etUsername.editableText.toString()
+            val password = b.etPassword.editableText.toString()
+            val email = b.etEmail.editableText.toString()
+            if (username.isEmpty() || password.isEmpty() || email.isEmpty()) {
+                b.tvError.text = getString(R.string.required)
+                b.tvError.visibility = View.VISIBLE
+            } else {
+                lifecycleScope.launch {
+                    Auth.register(username, password, email)
+                        .onSuccess {
+                            (App.ACTIVITY as AuthActivity).showFragment(AuthOtpFragment(email))
+                        }
+                        .onFailure {
+                            b.tvError.text = it.message
+                            b.tvError.visibility = View.VISIBLE
+                        }
+                }
+            }
         }
     }
 }

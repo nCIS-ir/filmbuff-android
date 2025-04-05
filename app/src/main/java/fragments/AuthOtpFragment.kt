@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import ir.ncis.filmbuff.databinding.FragmentAuthOtpBinding
 
-class AuthOtpFragment() : Fragment() {
+class AuthOtpFragment(private val email: String) : Fragment() {
     private lateinit var b: FragmentAuthOtpBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
