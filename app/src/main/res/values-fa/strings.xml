@@ -16,6 +16,7 @@
     <string name="recently_viewed">بازدیدهای اخیر</string>
     <string name="register">ثبت نام کنید</string>
     <string name="registration">ثبت نام</string>
+    <string name="required">فیلدهای اجباری را پر کنید.</string>
     <string name="resend_code">ارسال مجدد کد</string>
     <string name="unknown_error">خطای ناشناخته</string>
     <string name="username">نام کاربری</string>

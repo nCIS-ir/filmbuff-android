@@ -75,4 +75,27 @@ object Auth {
             Result.failure(e)
         }
     }
+
+    suspend fun register(username: String, password: String, email: String): Result<String?> {
+        return try {
+            val response = ApiClient.API.authRegister(username, password, email)
+            if (response.isSuccessful) {
+                val body = response.body()
+                if (body != null) {
+                    if (body.result != null) {
+                        Result.success(body.result)
+                    } else {
+                        Result.failure(Exception(body.message))
+                    }
+                } else {
+                    Result.failure(Exception(response.message()))
+                }
+            } else {
+                val errorMessage = response.errorBody()?.string() ?: App.CONTEXT.getString(R.string.unknown_error)
+                Result.failure(Exception("HTTP ${response.code()}: $errorMessage"))
+            }
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
 }

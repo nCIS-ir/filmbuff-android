@@ -18,6 +18,7 @@
     <string name="recently_viewed">Recently Viewed</string>
     <string name="register">Register</string>
     <string name="registration">Register</string>
+    <string name="required">Fill required fields.</string>
     <string name="resend_code">Resend Code</string>
     <string name="tapsell_app" translatable="false">djfbetfbatdbjibsrmtahmarjsqhlcnncnmlscqmsolnfqmbssilrtkrffthddierfbjjb</string>
     <string name="tapsell_interstitial" translatable="false">67cb3efdfb36b54b43f2cb7c</string>
