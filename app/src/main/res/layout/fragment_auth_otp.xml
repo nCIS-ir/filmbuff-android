@@ -88,13 +88,17 @@
             app:strokeColor="@color/blue_400"
             app:strokeWidth="2dp">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etPin1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/bold"
                 android:gravity="center"
+                android:inputType="number"
+                android:maxLength="1"
+                android:singleLine="true"
                 android:textColor="@color/white"
-                android:textSize="32sp" />
+                android:textSize="24sp" />
         </com.google.android.material.card.MaterialCardView>
 
         <Space
@@ -111,13 +115,17 @@
             app:strokeColor="@color/blue_400"
             app:strokeWidth="2dp">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etPin2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/bold"
                 android:gravity="center"
+                android:inputType="number"
+                android:maxLength="1"
+                android:singleLine="true"
                 android:textColor="@color/white"
-                android:textSize="32sp" />
+                android:textSize="24sp" />
         </com.google.android.material.card.MaterialCardView>
 
         <Space
@@ -134,13 +142,18 @@
             app:strokeColor="@color/blue_400"
             app:strokeWidth="2dp">
 
-            <androidx.appcompat.widget.AppCompatTextView
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etPin3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/bold"
                 android:gravity="center"
+                android:inputType="number"
+                android:maxLength="1"
+                android:singleLine="true"
                 android:textColor="@color/white"
-                android:textSize="32sp" />
+                android:textSize="24sp" />
         </com.google.android.material.card.MaterialCardView>
 
         <Space
@@ -157,13 +170,17 @@
             app:strokeColor="@color/blue_400"
             app:strokeWidth="2dp">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etPin4"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/bold"
                 android:gravity="center"
+                android:inputType="number"
+                android:maxLength="1"
+                android:singleLine="true"
                 android:textColor="@color/white"
-                android:textSize="32sp" />
+                android:textSize="24sp" />
         </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
 
@@ -196,7 +213,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvResendCode" />
 
     <custom_views.MyButton
-        android:id="@+id/btLogin"
+        android:id="@+id/btVerify"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginStart="72dp"
@@ -215,7 +232,7 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btLogin">
+        app:layout_constraintTop_toBottomOf="@+id/btVerify">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="0dp"
@@ -228,7 +245,7 @@
             android:textSize="16sp" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvRegister"
+            android:id="@+id/tvChange"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/bold"

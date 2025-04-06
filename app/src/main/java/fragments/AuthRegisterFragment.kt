@@ -2,6 +2,7 @@ package fragments
 
 import activities.AuthActivity
 import android.os.Bundle
+import android.text.InputType
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +16,7 @@ import retrofit.calls.Auth
 
 class AuthRegisterFragment() : Fragment() {
     private lateinit var b: FragmentAuthRegisterBinding
+    private var isPasswordVisible = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         b = FragmentAuthRegisterBinding.inflate(inflater, container, false)
@@ -23,9 +25,13 @@ class AuthRegisterFragment() : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        b.tvError.visibility = View.INVISIBLE
+
         b.tvLogin.setOnClickListener {
             (App.ACTIVITY as AuthActivity).showFragment(AuthLoginFragment())
         }
+
         b.btRegister.setOnClickListener {
             b.tvError.visibility = View.INVISIBLE
             val username = b.etUsername.editableText.toString()
@@ -38,7 +44,7 @@ class AuthRegisterFragment() : Fragment() {
                 lifecycleScope.launch {
                     Auth.register(username, password, email)
                         .onSuccess {
-                            (App.ACTIVITY as AuthActivity).showFragment(AuthOtpFragment(email))
+                            (App.ACTIVITY as AuthActivity).showFragment(AuthOtpFragment(username, email))
                         }
                         .onFailure {
                             b.tvError.text = it.message
@@ -46,6 +52,12 @@ class AuthRegisterFragment() : Fragment() {
                         }
                 }
             }
+        }
+
+        b.ivTogglePassword.setOnClickListener {
+            isPasswordVisible = !isPasswordVisible
+            b.ivTogglePassword.setImageResource(if (isPasswordVisible) R.drawable.ic_eye_close else R.drawable.ic_eye_open)
+            b.etPassword.inputType = InputType.TYPE_CLASS_TEXT or if (isPasswordVisible) InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD else InputType.TYPE_TEXT_VARIATION_PASSWORD
         }
     }
 }
