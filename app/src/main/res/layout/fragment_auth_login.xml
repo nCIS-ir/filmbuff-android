@@ -55,6 +55,7 @@
         app:strokeWidth="2dp">
 
         <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/etUsername"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@null"
@@ -99,6 +100,7 @@
             android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etPassword"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -113,6 +115,7 @@
                 android:textColorHint="@color/blue_800" />
 
             <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivTogglePassword"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:padding="12dp"
