@@ -6,12 +6,14 @@
     <string name="email">Email</string>
     <string name="enter">Login</string>
     <string name="enter_otp">Enter OTP</string>
+    <string name="fantasy">Fantasy</string>
     <string name="forgot_password">Forgot Password</string>
     <string name="incorrect_code">Incorrect code, please try again!</string>
     <string name="invalid_credentials">Invalid credentials</string>
     <string name="language_en" translatable="false">English</string>
     <string name="language_fa" translatable="false">فارسی</string>
     <string name="login">Login</string>
+    <string name="movies">Movies</string>
     <string name="no_account">Don\'t have an account?</string>
     <string name="otp_sent">OTP code has been sent to:</string>
     <string name="password">Password</string>
@@ -20,6 +22,8 @@
     <string name="registration">Register</string>
     <string name="required">Fill required fields.</string>
     <string name="resend_code">Resend Code</string>
+    <string name="sci_fi">Sci-Fi</string>
+    <string name="series">Series</string>
     <string name="tapsell_app" translatable="false">djfbetfbatdbjibsrmtahmarjsqhlcnncnmlscqmsolnfqmbssilrtkrffthddierfbjjb</string>
     <string name="tapsell_interstitial" translatable="false">67cb3efdfb36b54b43f2cb7c</string>
     <string name="tapsell_rewarded" translatable="false">67cb3edbc1914d5fb3eec60e</string>
