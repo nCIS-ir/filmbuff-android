@@ -6,10 +6,12 @@
     <string name="email">پست الکترونیکی</string>
     <string name="enter">وارد شوید</string>
     <string name="enter_otp">رمز یکبار مصرف را وارد کنید</string>
+    <string name="fantasy">فانتزی</string>
     <string name="forgot_password">فراموشی رمز عبور</string>
     <string name="incorrect_code">کد اشتباه است، لطفا دوباره تلاش کنید!</string>
     <string name="invalid_credentials">اطلاعات وارد شده اشتباه است!</string>
     <string name="login">ورود</string>
+    <string name="movies">فیلم ها</string>
     <string name="no_account">حساب کاربری ندارید؟</string>
     <string name="otp_sent">رمز یکبار مصرف ارسال شده است به:</string>
     <string name="password">رمز عبور</string>
@@ -18,6 +20,8 @@
     <string name="registration">ثبت نام</string>
     <string name="required">فیلدهای اجباری را پر کنید.</string>
     <string name="resend_code">ارسال مجدد کد</string>
+    <string name="sci_fi">علمی تخیلی</string>
+    <string name="series">سریال ها</string>
     <string name="unknown_error">خطای ناشناخته</string>
     <string name="username">نام کاربری</string>
     <string name="username_already_taken">نام کاربری قبلا گرفته شده است!</string>
