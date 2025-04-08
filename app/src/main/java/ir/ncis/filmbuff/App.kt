@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import androidx.room.Room
 import com.orhanobut.hawk.Hawk
 import database.AppDatabase
+import retrofit.models.User
 import kotlin.system.exitProcess
 
 @SuppressLint("StaticFieldLeak")
@@ -20,6 +21,7 @@ class App : Application() {
         lateinit var INFLATER: LayoutInflater
         lateinit var CONTEXT: Context
         lateinit var DB: AppDatabase
+        lateinit var USER: User
 
         fun exit() {
             for ((key) in Thread.getAllStackTraces()) {

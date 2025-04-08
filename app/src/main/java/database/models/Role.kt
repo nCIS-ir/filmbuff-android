@@ -2,7 +2,7 @@ package database.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import retrofit.models.BaseRole
+import retrofit.models.Role as WebRole
 
 @Entity(tableName = "roles")
 data class Role(
@@ -12,7 +12,7 @@ data class Role(
     val title: String,
 ) {
     companion object {
-        fun from(item: BaseRole): Role {
+        fun from(item: WebRole): Role {
             return Role(
                 id = item.id,
                 slug = item.slug,
@@ -20,7 +20,7 @@ data class Role(
             )
         }
 
-        fun from(items: List<BaseRole>): List<Role> {
+        fun from(items: List<WebRole>): List<Role> {
             val result = mutableListOf<Role>()
             items.forEach { item -> result.add(from(item)) }
             return result.toList()

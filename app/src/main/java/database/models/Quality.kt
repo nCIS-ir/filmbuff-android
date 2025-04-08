@@ -3,7 +3,7 @@ package database.models
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import retrofit.models.BaseQuality
+import retrofit.models.Quality as WebQuality
 
 @Entity(tableName = "qualities")
 data class Quality(
@@ -15,7 +15,7 @@ data class Quality(
     val isVip: Boolean,
 ) {
     companion object {
-        fun from(item: BaseQuality): Quality {
+        fun from(item: WebQuality): Quality {
             return Quality(
                 id = item.id,
                 slug = item.slug,
@@ -24,7 +24,7 @@ data class Quality(
             )
         }
 
-        fun from(items: List<BaseQuality>): List<Quality> {
+        fun from(items: List<WebQuality>): List<Quality> {
             val result = mutableListOf<Quality>()
             items.forEach { item -> result.add(from(item)) }
             return result.toList()

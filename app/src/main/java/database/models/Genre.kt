@@ -2,7 +2,7 @@ package database.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import retrofit.models.BaseGenre
+import retrofit.models.Genre as WebGenre
 
 @Entity(tableName = "genres")
 data class Genre(
@@ -12,7 +12,7 @@ data class Genre(
     val title: String,
 ) {
     companion object {
-        fun from(item: BaseGenre): Genre {
+        fun from(item: WebGenre): Genre {
             return Genre(
                 id = item.id,
                 slug = item.slug,
@@ -20,7 +20,7 @@ data class Genre(
             )
         }
 
-        fun from(items: List<BaseGenre>): List<Genre> {
+        fun from(items: List<WebGenre>): List<Genre> {
             val result = mutableListOf<Genre>()
             items.forEach { item -> result.add(from(item)) }
             return result.toList()

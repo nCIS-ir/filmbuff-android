@@ -3,18 +3,18 @@ package retrofit.calls
 import ir.ncis.filmbuff.App
 import ir.ncis.filmbuff.R
 import retrofit.ApiClient
-import retrofit.models.BaseActivity
-import retrofit.models.BaseArtist
-import retrofit.models.BaseCountry
-import retrofit.models.BaseGenre
-import retrofit.models.BaseLanguage
-import retrofit.models.BasePack
-import retrofit.models.BasePlan
-import retrofit.models.BaseQuality
-import retrofit.models.BaseRole
+import retrofit.models.Activity
+import retrofit.models.Artist
+import retrofit.models.Country
+import retrofit.models.Genre
+import retrofit.models.Language
+import retrofit.models.Pack
+import retrofit.models.Plan
+import retrofit.models.Quality
+import retrofit.models.Role
 
 object Base {
-    suspend fun activities(): Result<List<BaseActivity>> {
+    suspend fun activities(): Result<List<Activity>> {
         return try {
             val response = ApiClient.API.baseActivities()
             if (response.isSuccessful) {
@@ -37,7 +37,7 @@ object Base {
         }
     }
 
-    suspend fun artists(): Result<List<BaseArtist>> {
+    suspend fun artists(): Result<List<Artist>> {
         return try {
             val response = ApiClient.API.baseArtists()
             if (response.isSuccessful) {
@@ -60,7 +60,7 @@ object Base {
         }
     }
 
-    suspend fun countries(): Result<List<BaseCountry>> {
+    suspend fun countries(): Result<List<Country>> {
         return try {
             val response = ApiClient.API.baseCountries()
             if (response.isSuccessful) {
@@ -83,7 +83,7 @@ object Base {
         }
     }
 
-    suspend fun genres(): Result<List<BaseGenre>> {
+    suspend fun genres(): Result<List<Genre>> {
         return try {
             val response = ApiClient.API.baseGenres()
             if (response.isSuccessful) {
@@ -106,7 +106,7 @@ object Base {
         }
     }
 
-    suspend fun languages(): Result<List<BaseLanguage>> {
+    suspend fun languages(): Result<List<Language>> {
         return try {
             val response = ApiClient.API.baseLanguages()
             if (response.isSuccessful) {
@@ -129,7 +129,7 @@ object Base {
         }
     }
 
-    suspend fun packs(): Result<List<BasePack>> {
+    suspend fun packs(): Result<List<Pack>> {
         return try {
             val response = ApiClient.API.basePacks()
             if (response.isSuccessful) {
@@ -152,7 +152,7 @@ object Base {
         }
     }
 
-    suspend fun plans(): Result<List<BasePlan>> {
+    suspend fun plans(): Result<List<Plan>> {
         return try {
             val response = ApiClient.API.basePlans()
             if (response.isSuccessful) {
@@ -175,7 +175,7 @@ object Base {
         }
     }
 
-    suspend fun qualities(): Result<List<BaseQuality>> {
+    suspend fun qualities(): Result<List<Quality>> {
         return try {
             val response = ApiClient.API.baseQualities()
             if (response.isSuccessful) {
@@ -198,7 +198,7 @@ object Base {
         }
     }
 
-    suspend fun roles(): Result<List<BaseRole>> {
+    suspend fun roles(): Result<List<Role>> {
         return try {
             val response = ApiClient.API.baseRoles()
             if (response.isSuccessful) {

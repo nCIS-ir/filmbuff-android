@@ -1,7 +1,8 @@
 package retrofit.models
 
-data class BaseGenre(
+data class Country(
     val id: String,
     val slug: String,
     val title: String,
 )
+

@@ -2,7 +2,7 @@ package database.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import retrofit.models.BaseLanguage
+import retrofit.models.Language as WebLanguage
 
 @Entity(tableName = "languages")
 data class Language(
@@ -12,7 +12,7 @@ data class Language(
     val name: String,
 ) {
     companion object {
-        fun from(item: BaseLanguage): Language {
+        fun from(item: WebLanguage): Language {
             return Language(
                 id = item.id,
                 code = item.code,
@@ -20,7 +20,7 @@ data class Language(
             )
         }
 
-        fun from(items: List<BaseLanguage>): List<Language> {
+        fun from(items: List<WebLanguage>): List<Language> {
             val result = mutableListOf<Language>()
             items.forEach { item -> result.add(from(item)) }
             return result.toList()

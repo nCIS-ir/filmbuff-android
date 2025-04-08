@@ -1,6 +1,6 @@
 package retrofit.models
 
-data class BaseActivity(
+data class Activity(
     val id : String,
     val slug: String,
     val coins: Int,

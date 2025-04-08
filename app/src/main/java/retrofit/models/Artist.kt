@@ -2,19 +2,19 @@ package retrofit.models
 
 import com.google.gson.annotations.SerializedName
 
-data class BaseArtist(
+data class Artist(
     val id: String,
-    @SerializedName(value = "role_id")
+    @SerializedName("role_id")
     val roleId: String,
-    @SerializedName(value = "country_id")
+    @SerializedName("country_id")
     val countryId: String,
     val slug: String,
     val photo: String,
-    @SerializedName(value = "born_at")
+    @SerializedName("born_at")
     val bornAt: String,
-    @SerializedName(value = "died_at")
+    @SerializedName("died_at")
     val diedAt: String,
-    @SerializedName(value = "full_name")
+    @SerializedName("full_name")
     val fullName: String,
     val biograghy: String,
 )

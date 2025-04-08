@@ -4,8 +4,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager.widget.PagerAdapter
-import database.models.Movie
 import ir.ncis.filmbuff.databinding.AdapterPagerSliderBinding
+import retrofit.models.Movie
 
 class AdapterPagerSlider(private val images: List<Movie>) : PagerAdapter() {
     override fun getCount(): Int = images.size

@@ -2,7 +2,7 @@ package database.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import retrofit.models.BaseActivity
+import retrofit.models.Activity as WebActivity
 
 @Entity(tableName = "activities")
 data class Activity(
@@ -14,7 +14,7 @@ data class Activity(
     val description: String,
 ) {
     companion object {
-        fun from(item: BaseActivity): Activity {
+        fun from(item: WebActivity): Activity {
             return Activity(
                 id = item.id,
                 slug = item.slug,
@@ -24,7 +24,7 @@ data class Activity(
             )
         }
 
-        fun from(items: List<BaseActivity>): List<Activity> {
+        fun from(items: List<WebActivity>): List<Activity> {
             val result = mutableListOf<Activity>()
             items.forEach { item -> result.add(from(item)) }
             return result.toList()

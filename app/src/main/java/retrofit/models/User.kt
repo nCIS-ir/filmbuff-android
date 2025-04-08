@@ -1,6 +1,6 @@
 package retrofit.models
 
-data class AuthInfo(
+data class User(
     val id: String,
     val username: String,
     val coins: Int,

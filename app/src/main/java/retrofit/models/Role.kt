@@ -1,9 +1,7 @@
 package retrofit.models
 
-data class BasePack(
+data class Role(
     val id: String,
     val slug: String,
-    val coins: Int,
-    val price: Int,
     val title: String,
 )

@@ -2,14 +2,12 @@ package retrofit.calls
 
 import ir.ncis.filmbuff.App
 import ir.ncis.filmbuff.R
-import okhttp3.Response
 import retrofit.ApiClient
-import retrofit.models.AuthInfo
-import retrofit.models.AuthLogin
-import retrofit.models.ResponseWrapper
+import retrofit.models.User
+import retrofit.models.Session
 
 object Auth {
-    suspend fun info(): Result<AuthInfo> {
+    suspend fun info(): Result<User> {
         return try {
             val response = ApiClient.API.authInfo()
             if (response.isSuccessful) {
@@ -32,7 +30,7 @@ object Auth {
         }
     }
 
-    suspend fun login(username: String, password: String): Result<AuthLogin> {
+    suspend fun login(username: String, password: String): Result<Session> {
         return try {
             val response = ApiClient.API.authLogin(username, password)
             if (response.isSuccessful) {
@@ -69,7 +67,7 @@ object Auth {
         }
     }
 
-    suspend fun refresh(): Result<AuthLogin> {
+    suspend fun refresh(): Result<Session> {
         return try {
             val response = ApiClient.API.authRefresh()
             if (response.isSuccessful) {
@@ -120,7 +118,7 @@ object Auth {
         }
     }
 
-    suspend fun verify(username: String, otp: Int): Result<AuthLogin> {
+    suspend fun verify(username: String, otp: Int): Result<Session> {
         return try {
             val response = ApiClient.API.authVerify(username, otp)
             if (response.isSuccessful) {

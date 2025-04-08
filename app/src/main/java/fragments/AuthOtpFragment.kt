@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.orhanobut.hawk.Hawk
-import database.models.User
 import helpers.KeyString
 import ir.ncis.filmbuff.App
 import ir.ncis.filmbuff.R
@@ -25,7 +24,7 @@ class AuthOtpFragment(private val username: String, private val email: String) :
     private var canClickResend = false
     private var otp = 0
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         b = FragmentAuthOtpBinding.inflate(inflater, container, false)
         return b.root
     }
@@ -60,19 +59,11 @@ class AuthOtpFragment(private val username: String, private val email: String) :
                         Hawk.put(KeyString.REFRESH, it.refresh)
                         Auth.info()
                             .onSuccess { user ->
-                                App.DB.userDao().insert(
-                                    User(
-                                        user.id,
-                                        user.username,
-                                        user.email,
-                                        user.coins,
-                                        user.subscription
-                                    )
-                                )
+                                App.USER = user
                                 App.ACTIVITY.runActivity(MainActivity::class.java, shouldFinishCurrentActivity = true)
                             }
-                            .onFailure {
-                                b.tvError.text = it.message
+                            .onFailure { exception ->
+                                b.tvError.text = exception.message
                                 b.tvError.visibility = View.VISIBLE
                             }
                     }

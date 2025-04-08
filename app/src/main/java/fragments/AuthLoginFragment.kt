@@ -1,7 +1,6 @@
 package fragments
 
 import activities.AuthActivity
-import activities.MainActivity
 import android.os.Bundle
 import android.text.InputType
 import android.view.LayoutInflater
@@ -10,7 +9,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.orhanobut.hawk.Hawk
-import database.models.User
 import helpers.KeyString
 import ir.ncis.filmbuff.App
 import ir.ncis.filmbuff.R
@@ -49,18 +47,7 @@ class AuthLoginFragment() : Fragment() {
                             Hawk.put(KeyString.TOKEN, it.token)
                             Hawk.put(KeyString.REFRESH, it.refresh)
                             Auth.info()
-                                .onSuccess { user ->
-                                    App.DB.userDao().insert(
-                                        User(
-                                            user.id,
-                                            user.username,
-                                            user.email,
-                                            user.coins,
-                                            user.subscription
-                                        )
-                                    )
-                                    App.ACTIVITY.runActivity(MainActivity::class.java, shouldFinishCurrentActivity = true)
-                                }
+                                .onSuccess { user -> App.USER = user }
                                 .onFailure {
                                     b.tvError.text = it.message
                                     b.tvError.visibility = View.VISIBLE

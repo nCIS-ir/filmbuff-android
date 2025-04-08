@@ -13,7 +13,6 @@ import database.models.Pack
 import database.models.Plan
 import database.models.Quality
 import database.models.Role
-import database.models.User
 import helpers.ContextHelper
 import helpers.KeyString
 import ir.ncis.filmbuff.ActivityEnhanced
@@ -233,27 +232,17 @@ class SplashActivity : ActivityEnhanced() {
 
     private suspend fun getUserInfo() {
         Auth.info()
-            .onSuccess {
-                App.DB.userDao().insert(
-                    User(
-                        id = it.id,
-                        username = it.username,
-                        email = it.email,
-                        coins = it.coins,
-                        subscription = it.subscription,
-                    )
-                )
+            .onSuccess { user ->
+                App.USER = user
                 nextActivity = MainActivity::class.java
             }
-            .onFailure {
-                val statusCode = ContextHelper.getHttpStatus(it)
+            .onFailure { exception ->
+                val statusCode = ContextHelper.getHttpStatus(exception)
                 if (statusCode != null) {
-                    if (statusCode == 401) {
-                        refreshToken()
-                    } else if (statusCode == 403) {
-                        nextActivity = AuthActivity::class.java
-                    } else {
-                        App.exit()
+                    when (statusCode) {
+                        401 -> refreshToken()
+                        403 -> nextActivity = AuthActivity::class.java
+                        else -> App.exit()
                     }
                 }
             }

@@ -3,7 +3,7 @@ package database.models
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import retrofit.models.BaseArtist
+import retrofit.models.Artist as WebArtist
 
 @Entity(tableName = "artists")
 data class Artist(
@@ -24,7 +24,7 @@ data class Artist(
     val biography: String,
 ) {
     companion object {
-        fun from(item: BaseArtist): Artist {
+        fun from(item: WebArtist): Artist {
             return Artist(
                 id = item.id,
                 roleId = item.roleId,
@@ -38,7 +38,7 @@ data class Artist(
             )
         }
 
-        fun from(items: List<BaseArtist>): List<Artist> {
+        fun from(items: List<WebArtist>): List<Artist> {
             val result = mutableListOf<Artist>()
             items.forEach { item -> result.add(from(item)) }
             return result.toList()

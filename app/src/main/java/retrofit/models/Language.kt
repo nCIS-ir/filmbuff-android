@@ -1,6 +1,6 @@
 package retrofit.models
 
-data class BaseLanguage (
+data class Language (
     val id: String,
     val code: String,
     val name: String,
