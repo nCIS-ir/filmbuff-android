@@ -210,7 +210,7 @@
         app:cardBackgroundColor="@color/blue_dark_300"
         app:cardCornerRadius="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:strokeColor="@color/blue_dark_50"
+        app:strokeColor="@color/blue_800"
         app:strokeWidth="2dp">
 
         <LinearLayout
@@ -218,37 +218,27 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <androidx.cardview.widget.CardView
+            <custom_views.MyButton
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_margin="4dp"
                 android:layout_weight="1"
                 app:cardBackgroundColor="@color/blue_dark_300"
-                app:cardCornerRadius="20dp">
+                app:cardCornerRadius="20dp"
+                app:font="@font/regular"
+                app:text="@string/movies"
+                app:textSize="16sp" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/movies"
-                    android:textColor="@color/white"
-                    android:textSize="16sp" />
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
+            <custom_views.MyButton
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_margin="4dp"
                 android:layout_weight="1"
                 app:cardBackgroundColor="@color/blue_dark_300"
-                app:cardCornerRadius="20dp">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/series"
-                    android:textColor="@color/white"
-                    android:textSize="16sp" />
-            </androidx.cardview.widget.CardView>
+                app:cardCornerRadius="20dp"
+                app:showBackground="false"
+                app:text="@string/series"
+                app:textSize="16sp" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
