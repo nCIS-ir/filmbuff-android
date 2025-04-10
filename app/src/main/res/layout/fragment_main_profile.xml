@@ -172,6 +172,11 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
+            <include
+                android:id="@+id/language"
+                layout="@layout/layout_language_select"
+                android:visibility="gone" />
+
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
@@ -212,6 +217,11 @@
                         app:srcCompat="@drawable/ic_arrow" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
+
+            <include
+                android:id="@+id/favorites"
+                layout="@layout/layout_favorites"
+                android:visibility="gone" />
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
