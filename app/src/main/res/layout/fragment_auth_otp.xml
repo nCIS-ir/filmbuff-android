@@ -48,7 +48,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="4dp"
         android:fontFamily="@font/regular"
-        android:text="@string/admin_email"
+        android:text="@string/sample_email"
         android:textColor="@color/green_400"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"

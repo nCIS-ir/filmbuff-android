@@ -158,7 +158,7 @@
             android:background="@null"
             android:fontFamily="@font/regular"
             android:gravity="start|center_vertical"
-            android:hint="@string/admin_email"
+            android:hint="@string/sample_email"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
             android:singleLine="true"
