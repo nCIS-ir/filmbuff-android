@@ -174,7 +174,7 @@
 
             <include
                 android:id="@+id/language"
-                layout="@layout/layout_language_select"
+                layout="@layout/layout_profile_language_select"
                 android:visibility="gone" />
 
             <com.google.android.material.card.MaterialCardView
@@ -220,7 +220,7 @@
 
             <include
                 android:id="@+id/favorites"
-                layout="@layout/layout_favorites"
+                layout="@layout/layout_profile_favorites"
                 android:visibility="gone" />
 
             <com.google.android.material.card.MaterialCardView
@@ -264,6 +264,11 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
+            <include
+                android:id="@+id/purchases"
+                layout="@layout/layout_profile_purchased_coins"
+                android:visibility="gone" />
+
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
@@ -305,6 +310,11 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
+            <include
+                android:id="@+id/subscriptions"
+                layout="@layout/layout_profile_vip_subscriptions"
+                android:visibility="gone" />
+
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
@@ -345,6 +355,11 @@
                         app:srcCompat="@drawable/ic_arrow" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
+
+            <include
+                android:id="@+id/password"
+                layout="@layout/layout_profile_change_password"
+                android:visibility="gone" />
         </LinearLayout>
     </ScrollView>
 
