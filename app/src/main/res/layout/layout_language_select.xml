@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_marginStart="64dp"
+    android:layout_marginEnd="64dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cvEnglish"
+        android:layout_marginTop="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        app:cardBackgroundColor="@color/black"
+        app:cardCornerRadius="24dp"
+        app:strokeColor="@color/blue_400"
+        app:strokeWidth="2dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivEnglish"
+                android:layout_width="32dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="8dp"
+                app:srcCompat="@mipmap/english" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvEnglish"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/regular"
+                android:text="@string/language_en"
+                android:textColor="@color/orange_300"
+                android:textSize="12sp" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivSelectedEnglish"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="12dp"
+                android:tint="@color/green_400"
+                app:srcCompat="@drawable/ic_check" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cvFarsi"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="24dp"
+        app:cardBackgroundColor="@color/blue_dark_400"
+        app:cardCornerRadius="24dp"
+        app:strokeColor="@color/blue_400"
+        app:strokeWidth="2dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivFarsi"
+                android:layout_width="32dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="8dp"
+                app:srcCompat="@mipmap/farsi" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvFarsi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/regular"
+                android:text="@string/language_fa"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivSelectedFarsi"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="12dp"
+                android:tint="@color/green_400"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/ic_check" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+</LinearLayout>
