@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cvLogo"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:translationZ="2dp"
+        app:cardCornerRadius="1000dp"
+        app:cardElevation="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="@color/blue_800"
+        app:strokeWidth="2dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srcCompat="@mipmap/logo" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cvHeader"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginStart="32dp"
+        app:cardBackgroundColor="@color/blue_dark_300"
+        app:layout_constraintBottom_toBottomOf="@+id/cvLogo"
+        app:layout_constraintTop_toTopOf="@+id/cvLogo"
+        app:shapeAppearance="@style/EndCornersRoundedCard24"
+        app:strokeColor="@color/blue_800"
+        app:strokeWidth="2dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/bold"
+            android:text="@string/sorting"
+            android:textColor="@color/blue_400"
+            android:textSize="16sp" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cvBody"
+        android:layout_width="match_parent"
+        android:layout_height="248dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="-2dp"
+        android:layout_marginEnd="24dp"
+        app:cardBackgroundColor="@color/blue_dark_400"
+        app:cardElevation="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/cvHeader"
+        app:shapeAppearance="@style/BottomCornersRoundedCard24"
+        app:strokeColor="@color/blue_800"
+        app:strokeWidth="2dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RadioGroup
+                android:id="@+id/rgSort"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <RadioButton
+                    android:id="@+id/rbRelease"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/blue_400"
+                    android:checked="true"
+                    android:fontFamily="@font/bold"
+                    android:text="@string/sort_release"
+                    android:textColor="@color/white" />
+
+                <RadioButton
+                    android:id="@+id/rbRating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:buttonTint="@color/blue_400"
+                    android:fontFamily="@font/bold"
+                    android:text="@string/sort_rating"
+                    android:textColor="@color/white" />
+
+                <RadioButton
+                    android:id="@+id/rbPopularity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:buttonTint="@color/blue_400"
+                    android:fontFamily="@font/bold"
+                    android:text="@string/sort_popularity"
+                    android:textColor="@color/white" />
+            </RadioGroup>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="80dp"
+                android:layout_height="0dp"
+                android:layout_marginEnd="16dp"
+                app:cardBackgroundColor="@color/transparent_black"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="0dp"
+                app:layout_constraintBottom_toBottomOf="@+id/rgSort"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/rgSort"
+                app:strokeColor="@color/blue_400"
+                app:strokeWidth="2dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivAscending"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:rotation="180"
+                        android:tint="@color/white"
+                        app:layout_constraintBottom_toTopOf="@+id/ivSeparator"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_arrow" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivSeparator"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@color/blue_400" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivDescending"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:tint="@color/orange_300"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/ivSeparator"
+                        app:srcCompat="@drawable/ic_arrow" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <custom_views.MyButton
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginBottom="16dp"
+                app:font="@font/regular"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rgSort"
+                app:text="@string/apply"
+                app:textSize="16sp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
