@@ -1,6 +1,7 @@
 <resources>
     <string name="already_have_an_account">Already have an account?</string>
     <string name="app_name">Film Buff</string>
+    <string name="apply">Apply</string>
     <string name="change">Change</string>
     <string name="change_password">change password</string>
     <string name="coins">Coins</string>
@@ -12,7 +13,7 @@
     <string name="end">End</string>
     <string name="enter">Login</string>
     <string name="enter_otp">Enter OTP</string>
-    <string name="exit_message">Are you sure you want to exit Film-Buff?</string>
+    <string name="exit_message">Are you sure you want\nto exit Film-Buff?</string>
     <string name="fantasy">Fantasy</string>
     <string name="favorites">Favorites</string>
     <string name="forgot_password">Forgot Password</string>
@@ -51,6 +52,10 @@
     <string name="sample_username" translatable="false">\@mlfr2kx</string>
     <string name="sci_fi">Sci-Fi</string>
     <string name="series">Series</string>
+    <string name="sort_popularity">Popularity</string>
+    <string name="sort_rating">Rating</string>
+    <string name="sort_release">Release</string>
+    <string name="sorting">Sorting</string>
     <string name="start">Start</string>
     <string name="subscription_colon">Subscription:</string>
     <string name="tapsell_app" translatable="false">djfbetfbatdbjibsrmtahmarjsqhlcnncnmlscqmsolnfqmbssilrtkrffthddierfbjjb</string>

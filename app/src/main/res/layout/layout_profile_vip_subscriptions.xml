@@ -99,7 +99,7 @@
         android:layout_marginStart="44dp"
         android:layout_marginEnd="44dp"
         app:cardBackgroundColor="@color/blue_dark_400"
-        app:shapeAppearance="@style/BottomCornersRoundedCard"
+        app:shapeAppearance="@style/BottomCornersRoundedCard16"
         app:strokeColor="@color/blue_800"
         app:strokeWidth="2dp">
 
