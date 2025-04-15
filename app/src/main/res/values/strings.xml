@@ -5,12 +5,14 @@
     <string name="change_password">change password</string>
     <string name="coins">Coins</string>
     <string name="confirm">Confirm</string>
+    <string name="confirm_exit">Confirm Exit</string>
     <string name="date">Date</string>
     <string name="duration">Duration</string>
     <string name="email">Email</string>
     <string name="end">End</string>
     <string name="enter">Login</string>
     <string name="enter_otp">Enter OTP</string>
+    <string name="exit_message">Are you sure you want to exit Film-Buff?</string>
     <string name="fantasy">Fantasy</string>
     <string name="favorites">Favorites</string>
     <string name="forgot_password">Forgot Password</string>

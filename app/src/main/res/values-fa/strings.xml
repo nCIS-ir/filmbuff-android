@@ -6,12 +6,14 @@
     <string name="change_password">تغییر رمز عبور</string>
     <string name="coins">سکه‌ها</string>
     <string name="confirm">تأیید</string>
+    <string name="confirm_exit">تایید خروج</string>
     <string name="date">تاریخ</string>
     <string name="duration">زمان</string>
     <string name="email">پست الکترونیکی</string>
     <string name="end">پایان</string>
     <string name="enter">وارد شوید</string>
     <string name="enter_otp">رمز یکبار مصرف را وارد کنید</string>
+    <string name="exit_message">آیا مطمئن هستید که می‌خواهید از خوره فیلم خارج شوید؟</string>
     <string name="fantasy">فانتزی</string>
     <string name="favorites">علاقه‌مندی‌ها</string>
     <string name="forgot_password">فراموشی رمز عبور</string>
