@@ -1,23 +1,26 @@
 package retrofit
 
-import retrofit.models.User
-import retrofit.models.Session
 import retrofit.models.Activity
 import retrofit.models.Artist
 import retrofit.models.Country
 import retrofit.models.Genre
 import retrofit.models.Language
+import retrofit.models.Movie
 import retrofit.models.Pack
 import retrofit.models.Plan
 import retrofit.models.Quality
-import retrofit.models.Role
 import retrofit.models.ResponseWrapper
+import retrofit.models.Role
+import retrofit.models.Session
+import retrofit.models.User
 import retrofit2.Response
 import retrofit2.http.DELETE
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface ApiInterface {
     //region Auth
@@ -76,5 +79,13 @@ interface ApiInterface {
 
     @GET("base/roles")
     suspend fun baseRoles(): Response<ResponseWrapper<List<Role>>>
+    //endregion
+
+    //region Movie
+    @GET("movie/recent")
+    suspend fun movieRecents(): Response<ResponseWrapper<List<Movie>>>
+
+    @GET("movie/{genre_id}")
+    suspend fun movieGenre(@Path("genre_id") genreId: String, @Query("page") page: Int, @Query("perPage") perPage: Int, @Query("sort") sort: String, @Query("direction") direction: String): Response<ResponseWrapper<List<Movie>>>
     //endregion
 }
