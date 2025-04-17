@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="all">همه</string>
     <string name="already_have_an_account">از قبل حساب کاربری دارید؟</string>
     <string name="app_name">خوره فیلم</string>
     <string name="apply">اعمال</string>
@@ -19,6 +20,7 @@
     <string name="favorites">علاقه‌مندی‌ها</string>
     <string name="forgot_password">فراموشی رمز عبور</string>
     <string name="format_subscription_remaining">%d روز باقی‌مانده</string>
+    <string name="genre">ژانر</string>
     <string name="incorrect_code">کد اشتباه است، لطفا دوباره تلاش کنید!</string>
     <string name="invalid_credentials">اطلاعات وارد شده اشتباه است!</string>
     <string name="language">زبان</string>
@@ -42,6 +44,7 @@
     <string name="resend_code">ارسال مجدد کد</string>
     <string name="sample_days">365 روز</string>
     <string name="sci_fi">علمی تخیلی</string>
+    <string name="search">جستجو</string>
     <string name="series">سریال ها</string>
     <string name="sort_popularity">محبوبیت</string>
     <string name="sort_rating">امتیاز</string>
