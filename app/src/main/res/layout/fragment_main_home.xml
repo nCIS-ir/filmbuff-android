@@ -51,7 +51,7 @@
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cvGroup"
+        android:id="@+id/cvSort"
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_marginEnd="12dp"
@@ -72,15 +72,15 @@
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/icUser"
+        android:id="@+id/cvProfile"
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_marginEnd="12dp"
         app:cardBackgroundColor="@color/blue_dark_300"
         app:cardCornerRadius="1000dp"
-        app:layout_constraintBottom_toBottomOf="@+id/cvGroup"
-        app:layout_constraintEnd_toStartOf="@+id/cvGroup"
-        app:layout_constraintTop_toTopOf="@+id/cvGroup"
+        app:layout_constraintBottom_toBottomOf="@+id/cvSort"
+        app:layout_constraintEnd_toStartOf="@+id/cvSort"
+        app:layout_constraintTop_toTopOf="@+id/cvSort"
         app:strokeColor="@color/blue_800"
         app:strokeWidth="2dp">
 
@@ -182,14 +182,14 @@
         app:layout_constraintTop_toBottomOf="@+id/vgIndicators" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvRecentlyViewed"
+        android:id="@+id/rvRecents"
         android:layout_width="match_parent"
         android:layout_height="128dp"
         android:contentDescription="@string/app_name"
         app:layout_constraintTop_toBottomOf="@+id/tvRecentlyViewed" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvCategory"
+        android:id="@+id/rvGenres"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginBottom="4dp"
@@ -197,7 +197,7 @@
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@+id/cvMoviesSeries"
-        app:layout_constraintTop_toBottomOf="@+id/rvRecentlyViewed"
+        app:layout_constraintTop_toBottomOf="@+id/rvRecents"
         tools:listitem="@layout/adapter_recycler_movie_genre" />
 
     <com.google.android.material.card.MaterialCardView
