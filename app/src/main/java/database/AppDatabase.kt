@@ -6,6 +6,7 @@ import database.daos.ActivityDao
 import database.daos.ArtistDao
 import database.daos.CountryDao
 import database.daos.GenreDao
+import database.daos.ImageCacheDao
 import database.daos.LanguageDao
 import database.daos.PackDao
 import database.daos.PlanDao
@@ -15,6 +16,7 @@ import database.models.Activity
 import database.models.Artist
 import database.models.Country
 import database.models.Genre
+import database.models.ImageCache
 import database.models.Language
 import database.models.Pack
 import database.models.Plan
@@ -27,6 +29,7 @@ import database.models.Role
         Artist::class,
         Country::class,
         Genre::class,
+        ImageCache::class,
         Language::class,
         Pack::class,
         Plan::class,
@@ -41,6 +44,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun artistDao(): ArtistDao
     abstract fun countryDao(): CountryDao
     abstract fun genreDao(): GenreDao
+    abstract fun imageCacheDao(): ImageCacheDao
     abstract fun languageDao(): LanguageDao
     abstract fun packDao(): PackDao
     abstract fun planDao(): PlanDao
