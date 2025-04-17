@@ -53,9 +53,8 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginStart="12dp"
-                android:rotation="90"
                 android:tint="@color/blue_800"
-                app:srcCompat="@drawable/ic_arrow" />
+                app:srcCompat="@drawable/ic_arrow_left" />
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/etSearch"
@@ -83,7 +82,7 @@
         android:id="@+id/tvGenre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/bold"
         android:text="@string/genre"
@@ -108,10 +107,11 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvGenre"
         android:layout_width="match_parent"
-        android:layout_height="24dp"
-        android:layout_marginStart="20dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginEnd="16dp"
+        tools:listitem="@layout/adapter_recycler_genre"
         app:layout_constraintTop_toBottomOf="@+id/tvGenre" />
 
     <custom_views.MyButton
