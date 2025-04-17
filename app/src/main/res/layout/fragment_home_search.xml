@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_gradient_blue_dark">
@@ -36,6 +37,7 @@
         android:layout_marginEnd="16dp"
         app:cardBackgroundColor="@color/blue_dark_400"
         app:cardCornerRadius="12dp"
+        app:cardElevation="0dp"
         app:layout_constraintTop_toBottomOf="@+id/ivLogo"
         app:strokeColor="@color/blue_800"
         app:strokeWidth="2dp">
@@ -58,10 +60,10 @@
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/etSearch"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="match_parent"
-                android:background="@null"
                 android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:background="@null"
                 android:fontFamily="@font/regular"
                 android:hint="@string/search"
                 android:singleLine="true"
@@ -78,6 +80,7 @@
     </com.google.android.material.card.MaterialCardView>
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvGenre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -87,5 +90,62 @@
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cvSearch"/>
+        app:layout_constraintTop_toBottomOf="@+id/cvSearch" />
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/cbGenre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:buttonTint="@color/blue_800"
+        android:text="@string/all"
+        android:textColor="@color/blue_800"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvGenre"
+        app:layout_constraintStart_toEndOf="@+id/tvGenre"
+        app:layout_constraintTop_toTopOf="@+id/tvGenre" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvGenre"
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/tvGenre" />
+
+    <custom_views.MyButton
+        android:id="@+id/btSearch"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:font="@font/regular"
+        app:layout_constraintTop_toBottomOf="@+id/rvGenre"
+        app:text="@string/search"
+        app:textSize="16sp" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cvResult"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="16dp"
+        app:cardBackgroundColor="@color/blue_dark_400"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btSearch"
+        app:strokeColor="@color/blue_800"
+        app:strokeWidth="2dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvResult"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/app_name"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/adapter_recycler_movie_genre" />
+    </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

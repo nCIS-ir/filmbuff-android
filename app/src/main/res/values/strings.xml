@@ -1,4 +1,5 @@
 <resources>
+    <string name="all">All</string>
     <string name="already_have_an_account">Already have an account?</string>
     <string name="app_name">Film Buff</string>
     <string name="apply">Apply</string>
