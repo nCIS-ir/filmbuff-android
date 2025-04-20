@@ -12,6 +12,7 @@
         android:layout_height="0dp"
         app:cardBackgroundColor="@color/transparent"
         app:cardCornerRadius="8dp"
+        app:cardElevation="0dp"
         app:layout_constraintDimensionRatio="2:3"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -22,6 +23,79 @@
             android:scaleType="fitXY"
             app:srcCompat="@mipmap/thumbnail" />
 
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="8dp"
+        app:cardBackgroundColor="@color/blue_dark_400"
+        app:cardCornerRadius="1000dp"
+        app:layout_constraintDimensionRatio="3:1"
+        app:layout_constraintEnd_toEndOf="@+id/glV50"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="2dp"
+                android:padding="2dp"
+                android:src="@drawable/ic_eye_open"
+                app:tint="@color/blue_800" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvVisits"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/bold"
+                android:text="@string/sample_5_digits"
+                android:textColor="@color/blue_800"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="8dp"
+        app:cardBackgroundColor="@color/orange_300"
+        app:cardCornerRadius="1000dp"
+        app:layout_constraintDimensionRatio="3:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/glV50"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:fontFamily="@font/regular"
+                android:text="@string/imdb"
+                android:textColor="@color/blue_800"
+                android:textSize="12sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvRating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/bold"
+                android:text="@string/sample_rating"
+                android:textColor="@color/blue_800"
+                android:textSize="12sp" />
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -36,4 +110,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cvThumnnail" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glV50"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
 </androidx.constraintlayout.widget.ConstraintLayout>

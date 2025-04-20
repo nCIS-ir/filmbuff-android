@@ -21,6 +21,7 @@
     <string name="format_subscription_remaining">%d day(s) left</string>
     <string name="genre">Genre</string>
     <string name="hashtag" translatable="false">#</string>
+    <string name="imdb" translatable="false">IMDB</string>
     <string name="incorrect_code">Incorrect code, please try again!</string>
     <string name="invalid_credentials">Invalid credentials</string>
     <string name="language">Language</string>
@@ -51,6 +52,7 @@
     <string name="sample_date" translatable="false">2025/01/01</string>
     <string name="sample_days">365 Days</string>
     <string name="sample_email" translatable="false">admin@film-buff.ir</string>
+    <string name="sample_rating" translatable="false">9.2</string>
     <string name="sample_username" translatable="false">\@mlfr2kx</string>
     <string name="sci_fi">Sci-Fi</string>
     <string name="search">Search</string>
