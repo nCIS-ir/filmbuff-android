@@ -3,6 +3,7 @@ package retrofit
 import retrofit.models.Activity
 import retrofit.models.Artist
 import retrofit.models.Country
+import retrofit.models.Favorite
 import retrofit.models.Genre
 import retrofit.models.Language
 import retrofit.models.Movie
@@ -18,6 +19,7 @@ import retrofit2.http.DELETE
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
+import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -83,9 +85,27 @@ interface ApiInterface {
 
     //region Movie
     @GET("movie/recent")
-    suspend fun movieRecents(): Response<ResponseWrapper<List<Movie>>>
+    suspend fun movieRecent(): Response<ResponseWrapper<List<Movie>>>
 
     @GET("movie/{genre_id}")
     suspend fun movieGenre(@Path("genre_id") genreId: String, @Query("page") page: Int, @Query("perPage") perPage: Int, @Query("sort") sort: String, @Query("direction") direction: String): Response<ResponseWrapper<List<Movie>>>
+
+    @GET("movie/slider")
+    suspend fun movieSlider(): Response<ResponseWrapper<List<Movie>>>
+
+    @GET("movie/favorite")
+    suspend fun movieFavorite(): Response<Void>
+
+    @PATCH("movie/favorite")
+    suspend fun editFavorite(@Path("movie_id") movieId: String): Response<Void>
+
+    @DELETE("movie/favorite")
+    suspend fun deleteFavorite(): Response<Void>
+
+    @PATCH("movie/visit")
+    suspend fun editVisit(@Path("movie_file_id") movieFileId: String): Response<Void>
+
+    @DELETE("movie/visit")
+    suspend fun deleteVisit(): Response<Void>
     //endregion
 }
