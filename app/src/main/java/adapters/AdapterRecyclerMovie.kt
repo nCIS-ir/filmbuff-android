@@ -18,6 +18,8 @@ class AdapterRecyclerMovie(private val movies: List<Movie>) : RecyclerView.Adapt
         val movie = movies[position]
         ImageHelper(movie.thumbnail, R.mipmap.logo).loadInto(holder.b.ivThumbnail)
         holder.b.tvTitle.text = movie.title
+        holder.b.tvVisits.text = movie.visits.toString()
+        holder.b.tvRating.text = movie.rating.toString()
     }
 
     override fun getItemCount(): Int = movies.size
