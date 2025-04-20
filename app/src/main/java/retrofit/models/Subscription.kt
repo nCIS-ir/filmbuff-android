@@ -11,4 +11,5 @@ data class Subscription(
     val startedAt: String,
     @SerializedName("ended_at")
     val endedAt: String,
+    val duration: Int,
 )

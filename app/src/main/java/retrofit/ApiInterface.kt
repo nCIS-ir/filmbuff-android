@@ -83,9 +83,27 @@ interface ApiInterface {
 
     //region Movie
     @GET("movie/recent")
-    suspend fun movieRecents(): Response<ResponseWrapper<List<Movie>>>
+    suspend fun movieRecent(): Response<ResponseWrapper<List<Movie>>>
 
     @GET("movie/{genre_id}")
     suspend fun movieGenre(@Path("genre_id") genreId: String, @Query("page") page: Int, @Query("perPage") perPage: Int, @Query("sort") sort: String, @Query("direction") direction: String): Response<ResponseWrapper<List<Movie>>>
+
+    @GET("movie/slider")
+    suspend fun movieSlider(): Response<ResponseWrapper<List<Movie>>>
+
+    @GET("movie/favorite")
+    suspend fun movieFavorite(): Response<Void>
+
+    @POST("movie/favorite/{movie_id}")
+    suspend fun editFavorite(@Path("movie_id") movieId: String): Response<Void>
+
+    @DELETE("movie/favorite/{movie_id}")
+    suspend fun deleteFavorite(@Path("movie_id") movieId: String): Response<Void>
+
+    @POST("movie/visit/{movie_file_id}")
+    suspend fun editVisit(@Path("movie_file_id") movieFileId: String): Response<Void>
+
+    @DELETE("movie/visit/{movie_file_id}")
+    suspend fun deleteVisit(@Path("movie_file_id") movieFileId: String): Response<Void>
     //endregion
 }

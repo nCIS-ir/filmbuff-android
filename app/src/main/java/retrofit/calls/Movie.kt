@@ -33,7 +33,7 @@ object Movie {
 
     suspend fun recents(): Result<List<Movie>> {
         return try {
-            val response = ApiClient.API.movieRecents()
+            val response = ApiClient.API.movieRecent()
             if (response.isSuccessful) {
                 val body = response.body()
                 if (body != null) {

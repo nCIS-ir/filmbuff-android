@@ -3,24 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="192dp"
-    android:layout_height="336dp"
+    android:layout_height="314dp"
     tools:background="@color/blue_dark_300">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvThumnnail"
-        app:cardBackgroundColor="@color/transparent"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:cardCornerRadius="12dp"
+        app:cardBackgroundColor="@color/transparent"
+        app:cardCornerRadius="8dp"
         app:layout_constraintDimensionRatio="2:3"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivThumbnail"
             android:layout_width="match_parent"
-            app:srcCompat="@mipmap/thumbnail"
+            android:layout_height="match_parent"
             android:scaleType="fitXY"
-            android:layout_height="match_parent"/>
+            app:srcCompat="@mipmap/thumbnail" />
 
     </androidx.cardview.widget.CardView>
 
@@ -29,22 +29,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
+        android:fontFamily="@font/bold"
         android:text="@string/title"
         android:textColor="@color/white"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cvThumnnail" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvEpisode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="@string/title"
-        android:textColor="@color/blue_100"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
 </androidx.constraintlayout.widget.ConstraintLayout>
