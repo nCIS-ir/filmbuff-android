@@ -9,41 +9,45 @@
     android:orientation="horizontal">
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvId"
         android:layout_width="24dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/regular"
         android:text="@string/sample_2_digits"
-        android:textColor="@color/green_400"
+        android:textColor="@color/blue_800"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvCoins"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/regular"
-        android:text="@string/sample_days"
-        android:textColor="@color/green_400"
+        android:text="@string/sample_5_digits"
+        android:textColor="@color/blue_800"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@+id/glV1"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvReference"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/regular"
-        android:text="@string/sample_date"
-        android:textColor="@color/green_400"
+        android:text="@string/sample_10_digits"
+        android:textColor="@color/blue_800"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@+id/glV2"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/regular"
         android:text="@string/sample_date"
-        android:textColor="@color/green_400"
+        android:textColor="@color/blue_800"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@+id/glV3"
         app:layout_constraintTop_toTopOf="parent" />
@@ -60,7 +64,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.4" />
+        app:layout_constraintGuide_percent="0.3" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/glV3"

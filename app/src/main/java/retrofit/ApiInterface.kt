@@ -3,7 +3,6 @@ package retrofit
 import retrofit.models.Activity
 import retrofit.models.Artist
 import retrofit.models.Country
-import retrofit.models.Favorite
 import retrofit.models.Genre
 import retrofit.models.Language
 import retrofit.models.Movie
@@ -19,7 +18,6 @@ import retrofit2.http.DELETE
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
-import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -96,16 +94,16 @@ interface ApiInterface {
     @GET("movie/favorite")
     suspend fun movieFavorite(): Response<Void>
 
-    @PATCH("movie/favorite")
+    @POST("movie/favorite/{movie_id}")
     suspend fun editFavorite(@Path("movie_id") movieId: String): Response<Void>
 
-    @DELETE("movie/favorite")
-    suspend fun deleteFavorite(): Response<Void>
+    @DELETE("movie/favorite/{movie_id}")
+    suspend fun deleteFavorite(@Path("movie_id") movieId: String): Response<Void>
 
-    @PATCH("movie/visit")
+    @POST("movie/visit/{movie_file_id}")
     suspend fun editVisit(@Path("movie_file_id") movieFileId: String): Response<Void>
 
-    @DELETE("movie/visit")
-    suspend fun deleteVisit(): Response<Void>
+    @DELETE("movie/visit/{movie_file_id}")
+    suspend fun deleteVisit(@Path("movie_file_id") movieFileId: String): Response<Void>
     //endregion
 }

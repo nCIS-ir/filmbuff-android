@@ -11,4 +11,6 @@ object ContextHelper {
         val errorMessage = e.localizedMessage ?: App.CONTEXT.getString(R.string.unknown_error)
         return errorMessage.substringAfter("HTTP ").substringBefore(":").toIntOrNull()
     }
+
+    fun getLanguage(): String = App.CONTEXT.resources.configuration.locales[0].language
 }
