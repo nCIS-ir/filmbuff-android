@@ -3,6 +3,7 @@ package retrofit
 import retrofit.models.Activity
 import retrofit.models.Artist
 import retrofit.models.Country
+import retrofit.models.Favorite
 import retrofit.models.Genre
 import retrofit.models.Language
 import retrofit.models.Movie
@@ -11,6 +12,7 @@ import retrofit.models.Plan
 import retrofit.models.Quality
 import retrofit.models.ResponseWrapper
 import retrofit.models.Role
+import retrofit.models.Serie
 import retrofit.models.Session
 import retrofit.models.User
 import retrofit2.Response
@@ -92,18 +94,44 @@ interface ApiInterface {
     suspend fun movieSlider(): Response<ResponseWrapper<List<Movie>>>
 
     @GET("movie/favorite")
-    suspend fun movieFavorite(): Response<Void>
+    suspend fun movieFavorite(): Response<List<Favorite>>
 
     @POST("movie/favorite/{movie_id}")
-    suspend fun editFavorite(@Path("movie_id") movieId: String): Response<Void>
+    suspend fun addFavoriteMovie(@Path("movie_id") movieId: String): Response<Void>
 
     @DELETE("movie/favorite/{movie_id}")
-    suspend fun deleteFavorite(@Path("movie_id") movieId: String): Response<Void>
+    suspend fun deleteFavoriteMovie(@Path("movie_id") movieId: String): Response<Void>
 
     @POST("movie/visit/{movie_file_id}")
-    suspend fun editVisit(@Path("movie_file_id") movieFileId: String): Response<Void>
+    suspend fun editVisitMovie(@Path("movie_file_id") movieFileId: String): Response<Void>
 
     @DELETE("movie/visit/{movie_file_id}")
-    suspend fun deleteVisit(@Path("movie_file_id") movieFileId: String): Response<Void>
+    suspend fun deleteVisitMovie(@Path("movie_file_id") movieFileId: String): Response<Void>
+    //endregion
+
+    //region Serie
+    @GET("serie/recent")
+    suspend fun serieRecent(): Response<ResponseWrapper<List<Serie>>>
+
+    @GET("serie/{genre_id}")
+    suspend fun serieGenre(@Path("genre_id") genreId: String, @Query("page") page: Int, @Query("perPage") perPage: Int, @Query("sort") sort: String, @Query("direction") direction: String): Response<ResponseWrapper<List<Serie>>>
+
+    @GET("serie/slider")
+    suspend fun serieSlider(): Response<ResponseWrapper<List<Serie>>>
+
+    @GET("serie/favorite")
+    suspend fun serieFavorite(): Response<List<Favorite>>
+
+    @POST("serie/favorite/{serie_id}")
+    suspend fun addFavoriteSerie(@Path("serie_id") serieId: String): Response<Void>
+
+    @DELETE("serie/favorite/{serie_id}")
+    suspend fun deleteFavoriteSerie(@Path("serie_id") serieId: String): Response<Void>
+
+    @POST("serie/visit/{episode_file_id}")
+    suspend fun editVisitSerie(@Path("episode_file_id") episodeFileId: String): Response<Void>
+
+    @DELETE("serie/visit/{episode_file_id}")
+    suspend fun deleteVisitSerie(@Path("episode_file_id") episodeFileId: String): Response<Void>
     //endregion
 }

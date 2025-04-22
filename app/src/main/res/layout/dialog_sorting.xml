@@ -35,7 +35,6 @@
         app:strokeWidth="2dp">
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -156,6 +155,7 @@
             </com.google.android.material.card.MaterialCardView>
 
             <custom_views.MyButton
+                android:id="@+id/btApply"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginStart="40dp"

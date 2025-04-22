@@ -5,12 +5,12 @@ import enums.Sort
 import ir.ncis.filmbuff.App
 import ir.ncis.filmbuff.R
 import retrofit.ApiClient
-import retrofit.models.Movie
+import retrofit.models.Serie
 
-object Movie {
-    suspend fun genre(genreId: String, page: Int = 1, perPage: Int = 10, sort: Sort = Sort.POPULARITY, direction: Direction = Direction.DESCENDING): Result<List<Movie>> {
+object Serie {
+    suspend fun genre(genreId: String, page: Int = 1, perPage: Int = 10, sort: Sort = Sort.POPULARITY, direction: Direction = Direction.DESCENDING): Result<List<Serie>> {
         return try {
-            val response = ApiClient.API.movieGenre(genreId, page, perPage, sort.value, direction.value)
+            val response = ApiClient.API.serieGenre(genreId, page, perPage, sort.value, direction.value)
             if (response.isSuccessful) {
                 val body = response.body()
                 if (body != null) {
@@ -31,9 +31,9 @@ object Movie {
         }
     }
 
-    suspend fun recent(): Result<List<Movie>> {
+    suspend fun recent(): Result<List<Serie>> {
         return try {
-            val response = ApiClient.API.movieRecent()
+            val response = ApiClient.API.serieRecent()
             if (response.isSuccessful) {
                 val body = response.body()
                 if (body != null) {

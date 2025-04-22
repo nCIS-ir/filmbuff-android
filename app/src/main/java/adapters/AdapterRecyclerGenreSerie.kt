@@ -9,9 +9,9 @@ import database.models.Genre
 import ir.ncis.filmbuff.App
 import ir.ncis.filmbuff.databinding.AdapterRecyclerMovieSerieGenreBinding
 import kotlinx.coroutines.launch
-import retrofit.calls.Movie
+import retrofit.calls.Serie
 
-class AdapterRecyclerGenreMovie(private val genres: List<Genre>) : RecyclerView.Adapter<AdapterRecyclerGenreMovie.MyViewHolder>() {
+class AdapterRecyclerGenreSerie(private val genres: List<Genre>) : RecyclerView.Adapter<AdapterRecyclerGenreSerie.MyViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         return MyViewHolder(AdapterRecyclerMovieSerieGenreBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
@@ -20,7 +20,7 @@ class AdapterRecyclerGenreMovie(private val genres: List<Genre>) : RecyclerView.
         val genre = genres[position]
         holder.b.tvTitle.text = genre.title
         App.ACTIVITY.lifecycleScope.launch {
-            Movie.genre(genre.id, sort = MainActivity.sort, direction = MainActivity.direction).onSuccess { holder.b.rvItems.adapter = AdapterRecyclerMovie(it) }
+            Serie.genre(genre.id, sort = MainActivity.sort, direction = MainActivity.direction).onSuccess { holder.b.rvItems.adapter = AdapterRecyclerSerie(it) }
         }
     }
 
