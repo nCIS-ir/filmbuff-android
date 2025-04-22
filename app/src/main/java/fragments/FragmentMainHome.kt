@@ -2,7 +2,9 @@ package fragments
 
 import activities.MainActivity
 import adapters.AdapterRecyclerGenreMovie
+import adapters.AdapterRecyclerGenreSerie
 import adapters.AdapterRecyclerMovie
+import adapters.AdapterRecyclerSerie
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +18,7 @@ import ir.ncis.filmbuff.App
 import ir.ncis.filmbuff.databinding.FragmentMainHomeBinding
 import kotlinx.coroutines.launch
 import retrofit.calls.Movie
+import retrofit.calls.Serie
 
 class FragmentMainHome : Fragment() {
     private lateinit var b: FragmentMainHomeBinding
@@ -35,6 +38,8 @@ class FragmentMainHome : Fragment() {
                 Movie.recents().onSuccess { b.rvRecents.adapter = AdapterRecyclerMovie(it) }
                 b.rvGenres.adapter = AdapterRecyclerGenreMovie(App.DB.genreDao().all())
             } else {
+                Serie.recents().onSuccess { b.rvRecents.adapter = AdapterRecyclerSerie(it) }
+                b.rvGenres.adapter = AdapterRecyclerGenreSerie(App.DB.genreDao().all())
             }
         }
     }
