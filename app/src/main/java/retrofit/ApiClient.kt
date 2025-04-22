@@ -18,7 +18,7 @@ object ApiClient {
                 .connectTimeout(30, TimeUnit.SECONDS)
                 .readTimeout(30, TimeUnit.SECONDS)
                 .writeTimeout(30, TimeUnit.SECONDS)
-                .addInterceptor(object: Interceptor {
+                .addInterceptor(object : Interceptor {
                     override fun intercept(chain: Interceptor.Chain): Response {
                         return chain.proceed(
                             chain
@@ -26,6 +26,7 @@ object ApiClient {
                                 .newBuilder()
                                 .headers(
                                     Headers.Builder()
+                                        .add("Accept", "application/json")
                                         .add("Accept-Language", Hawk.get(KeyString.LANGUAGE, "en"))
                                         .add("Authorization", "Bearer ${Hawk.get(KeyString.TOKEN, "")}")
                                         .build()

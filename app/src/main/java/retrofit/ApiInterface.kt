@@ -26,8 +26,7 @@ import retrofit2.http.Query
 
 interface ApiInterface {
     //region Auth
-    @POST("auth/info")
-    @FormUrlEncoded
+    @GET("auth/info")
     suspend fun authInfo(): Response<ResponseWrapper<User>>
 
     @POST("auth/login")
@@ -38,7 +37,6 @@ interface ApiInterface {
     suspend fun authLogout(): Response<Void?>
 
     @POST("auth/refresh")
-    @FormUrlEncoded
     suspend fun authRefresh(): Response<ResponseWrapper<Session>>
 
     @POST("auth/register")

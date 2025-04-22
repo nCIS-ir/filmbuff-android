@@ -1,6 +1,7 @@
 package fragments
 
 import activities.AuthActivity
+import activities.MainActivity
 import android.os.Bundle
 import android.text.InputType
 import android.view.LayoutInflater
@@ -47,7 +48,10 @@ class AuthLoginFragment() : Fragment() {
                             Hawk.put(KeyString.TOKEN, it.token)
                             Hawk.put(KeyString.REFRESH, it.refresh)
                             Auth.info()
-                                .onSuccess { user -> App.USER = user }
+                                .onSuccess {
+                                    user -> App.USER = user
+                                    App.ACTIVITY.runActivity(MainActivity::class.java, shouldFinishCurrentActivity = true)
+                                }
                                 .onFailure {
                                     b.tvError.text = it.message
                                     b.tvError.visibility = View.VISIBLE

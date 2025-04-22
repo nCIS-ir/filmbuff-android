@@ -1,7 +1,6 @@
 package retrofit.models
 
 import androidx.room.ColumnInfo
-import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 data class Serie(
@@ -27,6 +26,6 @@ data class Serie(
     val isFavorite: Boolean,
     val title: String,
     val description: String,
-    val genres: String,
-    val casts: String,
+    val genres: List<String>,
+    val casts: List<SerieCast>,
 )
