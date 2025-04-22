@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import ir.ncis.filmbuff.databinding.FragmentMainProfileBinding
 
-class FragmentMainProfile : Fragment() {
+class MainProfileFragment : Fragment() {
     private lateinit var b: FragmentMainProfileBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

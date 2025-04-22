@@ -5,13 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import ir.ncis.filmbuff.databinding.FragmentHomeSearchBinding
+import ir.ncis.filmbuff.databinding.FragmentMainSearchBinding
 
-class FargmentHomeSearch : Fragment() {
-    private lateinit var b: FragmentHomeSearchBinding
+class MainSearchFargment : Fragment() {
+    private lateinit var b: FragmentMainSearchBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        b = FragmentHomeSearchBinding.inflate(inflater, container, false)
+        b = FragmentMainSearchBinding.inflate(inflater, container, false)
         return b.root
     }
 

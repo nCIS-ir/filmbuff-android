@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import enums.Direction
 import enums.Sort
-import fragments.FragmentMainHome
+import fragments.MainHomeFragment
 import ir.ncis.filmbuff.ActivityEnhanced
 import ir.ncis.filmbuff.databinding.ActivityMainBinding
 
@@ -22,7 +22,7 @@ class MainActivity : ActivityEnhanced() {
         b = ActivityMainBinding.inflate(layoutInflater)
         setContentView(b.root)
 
-        showFragment(FragmentMainHome())
+        showFragment(MainHomeFragment())
     }
 
     fun showFragment(fragment: Fragment) {

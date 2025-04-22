@@ -20,7 +20,7 @@ import retrofit.calls.Movie
 import retrofit.calls.Serie
 import retrofit.models.Movie as MovieModel
 
-class FragmentMainHome : Fragment() {
+class MainHomeFragment : Fragment() {
     private lateinit var b: FragmentMainHomeBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -57,7 +57,7 @@ class FragmentMainHome : Fragment() {
         }
 
         b.cvProfile.setOnClickListener {
-            requireActivity().supportFragmentManager.beginTransaction().replace(b.root.id, FragmentMainProfile()).commit()
+            (activity as MainActivity).showFragment(MainProfileFragment())
         }
 
         b.cvSort.setOnClickListener {
@@ -65,7 +65,7 @@ class FragmentMainHome : Fragment() {
         }
 
         b.cvSearch.setOnClickListener {
-            requireActivity().supportFragmentManager.beginTransaction().replace(b.root.id, FargmentHomeSearch()).commit()
+            requireActivity().supportFragmentManager.beginTransaction().replace(b.root.id, MainSearchFargment()).commit()
         }
     }
 }
