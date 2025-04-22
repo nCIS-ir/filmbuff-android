@@ -12,8 +12,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import enums.Direction
-import enums.Sort
+import dialogs.SortingDialog
 import ir.ncis.filmbuff.App
 import ir.ncis.filmbuff.databinding.FragmentMainHomeBinding
 import kotlinx.coroutines.launch
@@ -35,12 +34,25 @@ class FragmentMainHome : Fragment() {
             b.rvRecents.layoutManager = LinearLayoutManager(App.ACTIVITY, LinearLayoutManager.HORIZONTAL, false)
             b.rvGenres.layoutManager = LinearLayoutManager(App.ACTIVITY, LinearLayoutManager.VERTICAL, false)
             if ((activity as MainActivity).mode == MainActivity.Mode.MOVIE) {
-                Movie.recents().onSuccess { b.rvRecents.adapter = AdapterRecyclerMovie(it) }
+                Movie.recent().onSuccess { b.rvRecents.adapter = AdapterRecyclerMovie(it) }
                 b.rvGenres.adapter = AdapterRecyclerGenreMovie(App.DB.genreDao().all())
             } else {
-                Serie.recents().onSuccess { b.rvRecents.adapter = AdapterRecyclerSerie(it) }
+                Serie.recent().onSuccess { b.rvRecents.adapter = AdapterRecyclerSerie(it) }
                 b.rvGenres.adapter = AdapterRecyclerGenreSerie(App.DB.genreDao().all())
             }
+        }
+
+        b.cvProfile.setOnClickListener {
+            requireActivity().supportFragmentManager.beginTransaction().replace(b.root.id, FragmentMainProfile()).commit()
+        }
+
+        b.cvSort.setOnClickListener {
+            SortingDialog(requireContext()).show()
+        }
+
+        b.cvSearch.setOnClickListener {
+            requireActivity().supportFragmentManager.beginTransaction().replace(b.root.id, FargmentHomeSearch()).commit()
+
         }
     }
 }

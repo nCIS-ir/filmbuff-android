@@ -146,6 +146,6 @@
             android:contentDescription="@string/app_name"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/adapter_recycler_movie_genre" />
+            tools:listitem="@layout/adapter_recycler_movie_serie_genre" />
     </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -31,7 +31,7 @@ object Serie {
         }
     }
 
-    suspend fun recents(): Result<List<Serie>> {
+    suspend fun recent(): Result<List<Serie>> {
         return try {
             val response = ApiClient.API.serieRecent()
             if (response.isSuccessful) {

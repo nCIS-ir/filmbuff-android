@@ -3,6 +3,7 @@ package retrofit
 import retrofit.models.Activity
 import retrofit.models.Artist
 import retrofit.models.Country
+import retrofit.models.Favorite
 import retrofit.models.Genre
 import retrofit.models.Language
 import retrofit.models.Movie
@@ -93,19 +94,19 @@ interface ApiInterface {
     suspend fun movieSlider(): Response<ResponseWrapper<List<Movie>>>
 
     @GET("movie/favorite")
-    suspend fun movieFavorite(): Response<Void>
+    suspend fun movieFavorite(): Response<List<Favorite>>
 
     @POST("movie/favorite/{movie_id}")
-    suspend fun editFavorite(@Path("movie_id") movieId: String): Response<Void>
+    suspend fun addFavoriteMovie(@Path("movie_id") movieId: String): Response<Void>
 
     @DELETE("movie/favorite/{movie_id}")
-    suspend fun deleteFavorite(@Path("movie_id") movieId: String): Response<Void>
+    suspend fun deleteFavoriteMovie(@Path("movie_id") movieId: String): Response<Void>
 
     @POST("movie/visit/{movie_file_id}")
-    suspend fun editVisit(@Path("movie_file_id") movieFileId: String): Response<Void>
+    suspend fun editVisitMovie(@Path("movie_file_id") movieFileId: String): Response<Void>
 
     @DELETE("movie/visit/{movie_file_id}")
-    suspend fun deleteVisit(@Path("movie_file_id") movieFileId: String): Response<Void>
+    suspend fun deleteVisitMovie(@Path("movie_file_id") movieFileId: String): Response<Void>
     //endregion
 
     //region Serie
@@ -119,10 +120,10 @@ interface ApiInterface {
     suspend fun serieSlider(): Response<ResponseWrapper<List<Serie>>>
 
     @GET("serie/favorite")
-    suspend fun serieFavorite(): Response<Void>
+    suspend fun serieFavorite(): Response<List<Favorite>>
 
     @POST("serie/favorite/{serie_id}")
-    suspend fun editFavoriteSerie(@Path("serie_id") serieId: String): Response<Void>
+    suspend fun addFavoriteSerie(@Path("serie_id") serieId: String): Response<Void>
 
     @DELETE("serie/favorite/{serie_id}")
     suspend fun deleteFavoriteSerie(@Path("serie_id") serieId: String): Response<Void>

@@ -7,14 +7,13 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import database.models.Genre
 import ir.ncis.filmbuff.App
-import ir.ncis.filmbuff.databinding.AdapterRecyclerMovieGenreBinding
+import ir.ncis.filmbuff.databinding.AdapterRecyclerMovieSerieGenreBinding
 import kotlinx.coroutines.launch
-import retrofit.calls.Movie
 import retrofit.calls.Serie
 
 class AdapterRecyclerGenreSerie(private val genres: List<Genre>) : RecyclerView.Adapter<AdapterRecyclerGenreSerie.MyViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        return MyViewHolder(AdapterRecyclerMovieGenreBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        return MyViewHolder(AdapterRecyclerMovieSerieGenreBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
@@ -27,5 +26,5 @@ class AdapterRecyclerGenreSerie(private val genres: List<Genre>) : RecyclerView.
 
     override fun getItemCount(): Int = genres.size
 
-    class MyViewHolder(val b: AdapterRecyclerMovieGenreBinding) : RecyclerView.ViewHolder(b.root)
+    class MyViewHolder(val b: AdapterRecyclerMovieSerieGenreBinding) : RecyclerView.ViewHolder(b.root)
 }
