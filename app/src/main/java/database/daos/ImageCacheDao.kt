@@ -8,7 +8,7 @@ import database.models.ImageCache
 @Dao
 interface ImageCacheDao {
     @Query("SELECT * FROM image_caches")
-    fun all(): List<ImageCache?>
+    fun all(): List<ImageCache>
 
     @Query("SELECT EXISTS (SELECT * FROM image_caches WHERE (url=:url))")
     fun exists(url: String?): Boolean
