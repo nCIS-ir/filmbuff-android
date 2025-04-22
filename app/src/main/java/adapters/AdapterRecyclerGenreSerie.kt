@@ -4,6 +4,7 @@ import activities.MainActivity
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import database.models.Genre
 import ir.ncis.filmbuff.App
@@ -20,7 +21,11 @@ class AdapterRecyclerGenreSerie(private val genres: List<Genre>) : RecyclerView.
         val genre = genres[position]
         holder.b.tvTitle.text = genre.title
         App.ACTIVITY.lifecycleScope.launch {
-            Serie.genre(genre.id, sort = MainActivity.sort, direction = MainActivity.direction).onSuccess { holder.b.rvItems.adapter = AdapterRecyclerSerie(it) }
+            Serie.genre(genre.id, sort = MainActivity.sort, direction = MainActivity.direction)
+                .onSuccess {
+                    holder.b.rvItems.layoutManager = LinearLayoutManager(App.ACTIVITY, LinearLayoutManager.HORIZONTAL, false)
+                    holder.b.rvItems.adapter = AdapterRecyclerSerie(it)
+                }
         }
     }
 

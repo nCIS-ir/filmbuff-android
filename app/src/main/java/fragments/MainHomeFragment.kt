@@ -18,8 +18,9 @@ import ir.ncis.filmbuff.databinding.FragmentMainHomeBinding
 import kotlinx.coroutines.launch
 import retrofit.calls.Movie
 import retrofit.calls.Serie
+import retrofit.models.Movie as MovieModel
 
-class FragmentMainHome : Fragment() {
+class MainHomeFragment : Fragment() {
     private lateinit var b: FragmentMainHomeBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -35,7 +36,20 @@ class FragmentMainHome : Fragment() {
             b.rvGenres.layoutManager = LinearLayoutManager(App.ACTIVITY, LinearLayoutManager.VERTICAL, false)
             if ((activity as MainActivity).mode == MainActivity.Mode.MOVIE) {
                 Movie.recent().onSuccess { b.rvRecents.adapter = AdapterRecyclerMovie(it) }
-                b.rvGenres.adapter = AdapterRecyclerGenreMovie(App.DB.genreDao().all())
+                lifecycleScope.launch {
+                    Movie.recent()
+                        .onSuccess {
+                            b.rvRecents.layoutManager = LinearLayoutManager(App.ACTIVITY, LinearLayoutManager.HORIZONTAL, false)
+                            b.rvRecents.adapter = AdapterRecyclerMovie(it)
+                        }
+                    val genres = App.DB.genreDao().all()
+                    var genreMovies = mutableMapOf<String, List<MovieModel>>()
+                    genres.forEach { genre ->
+                        Movie.genre(genre.id).onSuccess { movies -> genreMovies[genre.title] = movies }
+                    }
+                    b.rvGenres.layoutManager = LinearLayoutManager(App.ACTIVITY, LinearLayoutManager.VERTICAL, false)
+                    b.rvGenres.adapter = AdapterRecyclerGenreMovie(genres, genreMovies)
+                }
             } else {
                 Serie.recent().onSuccess { b.rvRecents.adapter = AdapterRecyclerSerie(it) }
                 b.rvGenres.adapter = AdapterRecyclerGenreSerie(App.DB.genreDao().all())
@@ -43,7 +57,7 @@ class FragmentMainHome : Fragment() {
         }
 
         b.cvProfile.setOnClickListener {
-            requireActivity().supportFragmentManager.beginTransaction().replace(b.root.id, FragmentMainProfile()).commit()
+            (activity as MainActivity).showFragment(MainProfileFragment())
         }
 
         b.cvSort.setOnClickListener {
@@ -51,8 +65,7 @@ class FragmentMainHome : Fragment() {
         }
 
         b.cvSearch.setOnClickListener {
-            requireActivity().supportFragmentManager.beginTransaction().replace(b.root.id, FargmentHomeSearch()).commit()
-
+            requireActivity().supportFragmentManager.beginTransaction().replace(b.root.id, MainSearchFargment()).commit()
         }
     }
 }
