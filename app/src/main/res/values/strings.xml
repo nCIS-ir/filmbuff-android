@@ -5,10 +5,13 @@
     <string name="api_auth_login">Login</string>
     <string name="api_auth_logout">Logout</string>
     <string name="api_auth_refresh">Refresh Security Token</string>
+    <string name="api_auth_register">Register</string>
+    <string name="api_auth_resend">Resend Code</string>
+    <string name="api_auth_verify">Verify OTP</string>
     <string name="app_name">Film Buff</string>
     <string name="apply">Apply</string>
     <string name="change">Change</string>
-    <string name="change_password">change password</string>
+    <string name="change_password">Change password</string>
     <string name="coins">Coins</string>
     <string name="confirm">Confirm</string>
     <string name="confirm_exit">Confirm Exit</string>

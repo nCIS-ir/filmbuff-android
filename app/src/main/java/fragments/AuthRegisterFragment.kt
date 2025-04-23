@@ -42,14 +42,15 @@ class AuthRegisterFragment() : Fragment() {
                 b.tvError.visibility = View.VISIBLE
             } else {
                 lifecycleScope.launch {
-                    Auth.register(username, password, email)
-                        .onSuccess {
+                    Auth.register(
+                        username, password, email,
+                        {
                             (App.ACTIVITY as AuthActivity).showFragment(AuthOtpFragment(username, email))
-                        }
-                        .onFailure {
+                        },
+                        {
                             b.tvError.text = it.message
                             b.tvError.visibility = View.VISIBLE
-                        }
+                        })
                 }
             }
         }

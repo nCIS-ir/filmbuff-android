@@ -54,6 +54,7 @@ dependencies {
     implementation(libs.hawk)
     implementation(libs.material)
     implementation(libs.picasso)
+    implementation(libs.pinview)
     implementation(libs.retrofit)
     implementation(libs.tapsell.plus.sdk.android)
     ksp(libs.androidx.room.compiler)

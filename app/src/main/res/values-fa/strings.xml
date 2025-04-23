@@ -6,6 +6,9 @@
     <string name="api_auth_login">ورود</string>
     <string name="api_auth_logout">خروج از حساب کاربری</string>
     <string name="api_auth_refresh">بروزرسانی شناسه امنیتی</string>
+    <string name="api_auth_register">ثبت‌نام</string>
+    <string name="api_auth_resend">ارسال مجدد کد</string>
+    <string name="api_auth_verify">بررسی کد</string>
     <string name="app_name">خوره فیلم</string>
     <string name="apply">اعمال</string>
     <string name="change">تغییر دهید</string>

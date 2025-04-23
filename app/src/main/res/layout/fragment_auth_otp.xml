@@ -67,122 +67,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvEmail" />
 
-    <LinearLayout
-        android:id="@+id/vgOtp"
+    <com.goodiebag.pinview.Pinview
+        android:id="@+id/otpView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:gravity="center"
-        android:layoutDirection="ltr"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/tvEnterOtp">
-
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            app:cardBackgroundColor="@color/blue_dark_400"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="0dp"
-            app:strokeColor="@color/blue_400"
-            app:strokeWidth="2dp">
-
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/etPin1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fontFamily="@font/bold"
-                android:gravity="center"
-                android:inputType="number"
-                android:maxLength="1"
-                android:singleLine="true"
-                android:textColor="@color/white"
-                android:textSize="24sp" />
-        </com.google.android.material.card.MaterialCardView>
-
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
-
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            app:cardBackgroundColor="@color/blue_dark_400"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="0dp"
-            app:strokeColor="@color/blue_400"
-            app:strokeWidth="2dp">
-
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/etPin2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fontFamily="@font/bold"
-                android:gravity="center"
-                android:inputType="number"
-                android:maxLength="1"
-                android:singleLine="true"
-                android:textColor="@color/white"
-                android:textSize="24sp" />
-        </com.google.android.material.card.MaterialCardView>
-
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
-
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            app:cardBackgroundColor="@color/blue_dark_400"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="0dp"
-            app:strokeColor="@color/blue_400"
-            app:strokeWidth="2dp">
-
-
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/etPin3"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fontFamily="@font/bold"
-                android:gravity="center"
-                android:inputType="number"
-                android:maxLength="1"
-                android:singleLine="true"
-                android:textColor="@color/white"
-                android:textSize="24sp" />
-        </com.google.android.material.card.MaterialCardView>
-
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
-
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            app:cardBackgroundColor="@color/blue_dark_400"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="0dp"
-            app:strokeColor="@color/blue_400"
-            app:strokeWidth="2dp">
-
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/etPin4"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fontFamily="@font/bold"
-                android:gravity="center"
-                android:inputType="number"
-                android:maxLength="1"
-                android:singleLine="true"
-                android:textColor="@color/white"
-                android:textSize="24sp" />
-        </com.google.android.material.card.MaterialCardView>
-    </LinearLayout>
+        app:forceKeyboard="false"
+        app:inputType="number"
+        app:layout_constraintTop_toBottomOf="@+id/tvEnterOtp"
+        app:pinBackground="@drawable/bg_pin"
+        app:pinHeight="48dp"
+        app:pinLength="5"
+        app:pinWidth="48dp"
+        app:splitWidth="16dp"
+        app:textSize="12sp" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvResendCode"
@@ -196,7 +93,7 @@
         android:textColor="@color/green_400"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vgOtp" />
+        app:layout_constraintTop_toBottomOf="@+id/otpView" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvError"

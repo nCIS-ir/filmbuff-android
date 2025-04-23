@@ -56,16 +56,8 @@ class MainHomeFragment : Fragment() {
             }
         }
 
-        b.cvProfile.setOnClickListener {
-            (activity as MainActivity).showFragment(MainProfileFragment())
-        }
-
-        b.cvSort.setOnClickListener {
-            SortingDialog(requireContext()).show()
-        }
-
-        b.cvSearch.setOnClickListener {
-            requireActivity().supportFragmentManager.beginTransaction().replace(b.root.id, MainSearchFargment()).commit()
-        }
+        b.cvProfile.setOnClickListener { (requireActivity() as MainActivity).showFragment(MainProfileFragment()) }
+        b.cvSort.setOnClickListener { SortingDialog(requireActivity()).show() }
+        b.cvSearch.setOnClickListener { (requireActivity() as MainActivity).showFragment(MainSearchFargment()) }
     }
 }

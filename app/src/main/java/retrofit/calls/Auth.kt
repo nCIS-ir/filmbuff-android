@@ -115,54 +115,72 @@ object Auth {
         }
     }
 
-    suspend fun register(username: String, password: String, email: String): Result<Void?> {
-        return try {
+    suspend fun register(username: String, password: String, email: String, onSuccess: () -> Unit, onError: ((Exception) -> Unit)? = null, showLoading: Boolean = true) {
+        var loadingDialog: LoadingDialog? = null
+        if (showLoading) {
+            loadingDialog = LoadingDialog(App.ACTIVITY, App.CONTEXT.getString(R.string.api_auth_register))
+            loadingDialog.show()
+        }
+        try {
             val response = ApiClient.API.authRegister(username, password, email)
+            loadingDialog?.dismiss()
             if (response.isSuccessful) {
-                Result.success(response.body())
+                onSuccess()
             } else {
                 val errorMessage = response.errorBody()?.string() ?: App.CONTEXT.getString(R.string.unknown_error)
-                Result.failure(Exception("HTTP ${response.code()}: $errorMessage"))
+                onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
             }
         } catch (e: Exception) {
-            Result.failure(e)
+            onError?.invoke(e)
         }
     }
 
-    suspend fun resend(username: String): Result<Void?> {
-        return try {
+    suspend fun resend(username: String, onSuccess: () -> Unit, onError: ((Exception) -> Unit)? = null, showLoading: Boolean = true) {
+        var loadingDialog: LoadingDialog? = null
+        if (showLoading) {
+            loadingDialog = LoadingDialog(App.ACTIVITY, App.CONTEXT.getString(R.string.api_auth_resend))
+            loadingDialog.show()
+        }
+        try {
             val response = ApiClient.API.authResend(username)
+            loadingDialog?.dismiss()
             if (response.isSuccessful) {
-                Result.success(response.body())
+                onSuccess()
             } else {
                 val errorMessage = response.errorBody()?.string() ?: App.CONTEXT.getString(R.string.unknown_error)
-                Result.failure(Exception("HTTP ${response.code()}: $errorMessage"))
+                onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
             }
         } catch (e: Exception) {
-            Result.failure(e)
+            onError?.invoke(e)
         }
     }
 
-    suspend fun verify(username: String, otp: Int): Result<Session> {
-        return try {
+    suspend fun verify(username: String, otp: Int, onSuccess: (Session) -> Unit, onError: ((Exception) -> Unit)? = null, showLoading: Boolean = true) {
+        var loadingDialog: LoadingDialog? = null
+        if (showLoading) {
+            loadingDialog = LoadingDialog(App.ACTIVITY, App.CONTEXT.getString(R.string.api_auth_verify))
+            loadingDialog.show()
+        }
+        try {
             val response = ApiClient.API.authVerify(username, otp)
+            loadingDialog?.dismiss()
             if (response.isSuccessful) {
                 val body = response.body()
                 if (body != null) {
                     if (body.result != null) {
-                        Result.success(body.result)
+                        onSuccess(body.result)
                     } else {
-                        Result.failure(Exception(body.message))
+                        onError?.invoke(Exception(body.message))
                     }
                 } else {
-                    Result.failure(Exception(response.message()))
+                    onError?.invoke(Exception(response.message()))
                 }
             } else {
                 val errorMessage = response.errorBody()?.string() ?: App.CONTEXT.getString(R.string.unknown_error)
-                Result.failure(Exception("HTTP ${response.code()}: $errorMessage"))
+                onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
             }
         } catch (e: Exception) {
-            Result.failure(e)
+            onError?.invoke(e)
         }
     }
 }

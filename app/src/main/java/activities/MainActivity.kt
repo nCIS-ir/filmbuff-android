@@ -1,6 +1,7 @@
 package activities
 
 import android.os.Bundle
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import enums.Direction
 import enums.Sort
@@ -23,6 +24,15 @@ class MainActivity : ActivityEnhanced() {
         setContentView(b.root)
 
         showFragment(MainHomeFragment())
+
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                when (b.fragment.getFragment<Fragment>()) {
+                    is MainHomeFragment -> checkedExit()
+                    else                -> showFragment(MainHomeFragment())
+                }
+            }
+        })
     }
 
     fun showFragment(fragment: Fragment) {

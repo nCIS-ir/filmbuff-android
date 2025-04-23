@@ -65,7 +65,9 @@
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
             android:singleLine="true"
-            android:textColorHint="@color/blue_800" />
+            android:textColor="@color/white"
+            android:textColorHint="@color/blue_800"
+            android:textCursorDrawable="@null" />
     </com.google.android.material.card.MaterialCardView>
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -113,7 +115,8 @@
                 android:paddingEnd="16dp"
                 android:singleLine="true"
                 android:textColor="@color/white"
-                android:textColorHint="@color/blue_800" />
+                android:textColorHint="@color/blue_800"
+                android:textCursorDrawable="@null" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/ivTogglePassword"
@@ -162,7 +165,9 @@
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
             android:singleLine="true"
-            android:textColorHint="@color/white" />
+            android:textColor="@color/white"
+            android:textColorHint="@color/blue_800"
+            android:textCursorDrawable="@null" />
     </com.google.android.material.card.MaterialCardView>
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -172,10 +177,10 @@
         android:layout_marginTop="24dp"
         android:fontFamily="@font/regular"
         android:gravity="center"
-        android:visibility="invisible"
         android:text="@string/username_already_taken"
         android:textColor="@color/red_400"
         android:textSize="16sp"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cvEmail" />

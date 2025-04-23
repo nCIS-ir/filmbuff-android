@@ -10,6 +10,7 @@ kotlin = "2.1.0"
 lifecycleRuntimeKtx = "2.8.7"
 material = "1.12.0"
 picasso = "2.71828"
+pinview = "v1.5"
 recyclerview = "1.4.0"
 recyclerviewSelection = "1.1.0"
 retrofit = "2.11.0"
@@ -36,6 +37,7 @@ converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref
 hawk = { module = "com.orhanobut:hawk", version.ref = "hawk" }
 material = { module = "com.google.android.material:material", version.ref = "material" }
 picasso = { module = "com.squareup.picasso:picasso", version.ref = "picasso" }
+pinview = { module = "com.github.GoodieBag:Pinview", version.ref = "pinview" }
 tapsell-plus-sdk-android = { module = "ir.tapsell.plus:tapsell-plus-sdk-android", version.ref = "tapsellPlusSdkAndroid" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 

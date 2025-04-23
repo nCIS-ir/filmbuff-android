@@ -76,6 +76,7 @@
             android:singleLine="true"
             android:textColor="@color/white"
             android:textColorHint="@color/blue_800"
+            android:textCursorDrawable="@null"
             android:textSize="16sp" />
     </com.google.android.material.card.MaterialCardView>
 
@@ -128,6 +129,7 @@
                 android:singleLine="true"
                 android:textColor="@color/white"
                 android:textColorHint="@color/blue_800"
+                android:textCursorDrawable="@null"
                 android:textSize="16sp" />
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -165,13 +167,12 @@
         android:id="@+id/tvError"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
         android:fontFamily="@font/regular"
         android:gravity="center"
         android:text="@string/invalid_credentials"
         android:textColor="@color/red_400"
         android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/btLogin"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvForgotPassword" />

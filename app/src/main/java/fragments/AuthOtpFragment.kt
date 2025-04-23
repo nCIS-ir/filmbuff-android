@@ -9,7 +9,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import com.goodiebag.pinview.Pinview
+import com.goodiebag.pinview.Pinview.PinViewEventListener
 import com.orhanobut.hawk.Hawk
+import helpers.ContextHelper
 import helpers.KeyString
 import ir.ncis.filmbuff.App
 import ir.ncis.filmbuff.R
@@ -38,37 +41,56 @@ class AuthOtpFragment(private val username: String, private val email: String) :
         b.tvResendCode.setOnClickListener {
             if (canClickResend) {
                 lifecycleScope.launch {
-                    Auth.resend(username)
-                        .onSuccess {
+                    Auth.resend(
+                        username,
+                        {
                             startTimer()
-                        }
-                        .onFailure {
+                        },
+                        {
                             b.tvError.text = it.message
                             b.tvError.visibility = View.VISIBLE
-                        }
+                        })
                 }
             }
         }
 
+        b.otpView.setTextColor(ContextHelper.getColor(R.color.white))
+
+        b.otpView.setPinViewEventListener(object : PinViewEventListener {
+            override fun onDataEntered(pinview: Pinview?, fromUser: Boolean) {
+                b.btVerify.performClick()
+            }
+        })
+
         b.btVerify.setOnClickListener {
+            ContextHelper.hideKeyboard(b.otpView)
             b.tvError.visibility = View.INVISIBLE
+            otp = b.otpView.value.toInt()
             lifecycleScope.launch {
-                Auth.verify(username, otp)
-                    .onSuccess {
+                Auth.verify(
+                    username, otp,
+                    {
                         Hawk.put(KeyString.TOKEN, it.token)
                         Hawk.put(KeyString.REFRESH, it.refresh)
-                        Auth.info({ user ->
-                            App.USER = user
-                            App.ACTIVITY.runActivity(MainActivity::class.java, shouldFinish = true)
-                        }, { exception ->
-                            b.tvError.text = exception.message
-                            b.tvError.visibility = View.VISIBLE
-                        })
-                    }
-                    .onFailure {
-                        b.tvError.text = it.message
+                        lifecycleScope.launch {
+                            Auth.info({ user ->
+                                App.USER = user
+                                App.ACTIVITY.runActivity(MainActivity::class.java, shouldFinish = true)
+                            }, { exception ->
+                                b.tvError.text = exception.message
+                                b.tvError.visibility = View.VISIBLE
+                            })
+                        }
+                    },
+                    { exception ->
+                        val statusCode = ContextHelper.getHttpStatus(exception)
+                        val message = ContextHelper.getHttpMessage(exception)
+                        b.tvError.text = when (statusCode) {
+                            403 -> message
+                            else -> exception.message
+                        }
                         b.tvError.visibility = View.VISIBLE
-                    }
+                    })
             }
         }
 
@@ -93,7 +115,7 @@ class AuthOtpFragment(private val username: String, private val email: String) :
             override fun onFinish() {
                 canClickResend = true
             }
-
         }
+        countDownTimer.start()
     }
 }

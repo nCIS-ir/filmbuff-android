@@ -1,5 +1,6 @@
 package fragments
 
+import activities.MainActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,5 +18,7 @@ class MainSearchFargment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        b.ivBack.setOnClickListener { (requireActivity() as MainActivity).showFragment(MainHomeFragment()) }
     }
 }

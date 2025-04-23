@@ -1,7 +1,9 @@
 package retrofit
 
+import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.orhanobut.hawk.Hawk
 import helpers.KeyString
+import ir.ncis.filmbuff.App
 import okhttp3.Headers
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -18,6 +20,7 @@ object ApiClient {
                 .connectTimeout(30, TimeUnit.SECONDS)
                 .readTimeout(30, TimeUnit.SECONDS)
                 .writeTimeout(30, TimeUnit.SECONDS)
+                .addInterceptor(ChuckerInterceptor(App.CONTEXT))
                 .addInterceptor(object : Interceptor {
                     override fun intercept(chain: Interceptor.Chain): Response {
                         return chain.proceed(
