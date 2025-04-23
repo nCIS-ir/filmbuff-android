@@ -57,15 +57,13 @@ class AuthOtpFragment(private val username: String, private val email: String) :
                     .onSuccess {
                         Hawk.put(KeyString.TOKEN, it.token)
                         Hawk.put(KeyString.REFRESH, it.refresh)
-                        Auth.info()
-                            .onSuccess { user ->
-                                App.USER = user
-                                App.ACTIVITY.runActivity(MainActivity::class.java, shouldFinishCurrentActivity = true)
-                            }
-                            .onFailure { exception ->
-                                b.tvError.text = exception.message
-                                b.tvError.visibility = View.VISIBLE
-                            }
+                        Auth.info({ user ->
+                            App.USER = user
+                            App.ACTIVITY.runActivity(MainActivity::class.java, shouldFinish = true)
+                        }, { exception ->
+                            b.tvError.text = exception.message
+                            b.tvError.visibility = View.VISIBLE
+                        })
                     }
                     .onFailure {
                         b.tvError.text = it.message

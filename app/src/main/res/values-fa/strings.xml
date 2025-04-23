@@ -2,6 +2,10 @@
 <resources>
     <string name="all">همه</string>
     <string name="already_have_an_account">از قبل حساب کاربری دارید؟</string>
+    <string name="api_auth_info">دریافت اطلاعات کاربر</string>
+    <string name="api_auth_login">ورود</string>
+    <string name="api_auth_logout">خروج از حساب کاربری</string>
+    <string name="api_auth_refresh">بروزرسانی شناسه امنیتی</string>
     <string name="app_name">خوره فیلم</string>
     <string name="apply">اعمال</string>
     <string name="change">تغییر دهید</string>
@@ -24,6 +28,8 @@
     <string name="incorrect_code">کد اشتباه است، لطفا دوباره تلاش کنید!</string>
     <string name="invalid_credentials">اطلاعات وارد شده اشتباه است!</string>
     <string name="language">زبان</string>
+    <string name="loading_message">لطفاً صبر کنید…</string>
+    <string name="loading_title">درحال بارگذاری</string>
     <string name="login">ورود</string>
     <string name="logout">خروج از حساب کاربری</string>
     <string name="movies">فیلم ها</string>

@@ -1,17 +1,9 @@
 package retrofit
 
-import retrofit.models.Activity
-import retrofit.models.Artist
-import retrofit.models.Country
 import retrofit.models.Favorite
-import retrofit.models.Genre
-import retrofit.models.Language
+import retrofit.models.Info
 import retrofit.models.Movie
-import retrofit.models.Pack
-import retrofit.models.Plan
-import retrofit.models.Quality
 import retrofit.models.ResponseWrapper
-import retrofit.models.Role
 import retrofit.models.Serie
 import retrofit.models.Session
 import retrofit.models.User
@@ -53,32 +45,8 @@ interface ApiInterface {
     //endregion
 
     //region Base
-    @GET("base/activities")
-    suspend fun baseActivities(): Response<ResponseWrapper<List<Activity>>>
-
-    @GET("base/artists")
-    suspend fun baseArtists(): Response<ResponseWrapper<List<Artist>>>
-
-    @GET("base/countries")
-    suspend fun baseCountries(): Response<ResponseWrapper<List<Country>>>
-
-    @GET("base/genres")
-    suspend fun baseGenres(): Response<ResponseWrapper<List<Genre>>>
-
-    @GET("base/languages")
-    suspend fun baseLanguages(): Response<ResponseWrapper<List<Language>>>
-
-    @GET("base/packs")
-    suspend fun basePacks(): Response<ResponseWrapper<List<Pack>>>
-
-    @GET("base/plans")
-    suspend fun basePlans(): Response<ResponseWrapper<List<Plan>>>
-
-    @GET("base/qualities")
-    suspend fun baseQualities(): Response<ResponseWrapper<List<Quality>>>
-
-    @GET("base/roles")
-    suspend fun baseRoles(): Response<ResponseWrapper<List<Role>>>
+    @GET("base/info")
+    suspend fun baseInfo(): Response<ResponseWrapper<Info>>
     //endregion
 
     //region Movie

@@ -32,8 +32,8 @@
         android:layoutDirection="ltr"
         app:backgroundColor="@color/green_600"
         app:cornerRadius="1000dp"
-        app:max="100"
-        app:progress="50"
+        app:max="10"
+        app:progress="0"
         app:progressColor="@color/green_400"
         app:stroke="1dp" />
 </LinearLayout>

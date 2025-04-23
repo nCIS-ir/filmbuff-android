@@ -43,24 +43,22 @@ class AuthLoginFragment() : Fragment() {
                 b.tvError.visibility = View.VISIBLE
             } else {
                 lifecycleScope.launch {
-                    Auth.login(username, password)
-                        .onSuccess {
-                            Hawk.put(KeyString.TOKEN, it.token)
-                            Hawk.put(KeyString.REFRESH, it.refresh)
-                            Auth.info()
-                                .onSuccess {
-                                    user -> App.USER = user
-                                    App.ACTIVITY.runActivity(MainActivity::class.java, shouldFinishCurrentActivity = true)
-                                }
-                                .onFailure {
-                                    b.tvError.text = it.message
-                                    b.tvError.visibility = View.VISIBLE
-                                }
+                    Auth.login(username, password, {
+                        Hawk.put(KeyString.TOKEN, it.token)
+                        Hawk.put(KeyString.REFRESH, it.refresh)
+                        lifecycleScope.launch {
+                            Auth.info({ user ->
+                                App.USER = user
+                                App.ACTIVITY.runActivity(MainActivity::class.java, shouldFinish = true)
+                            }, {
+                                b.tvError.text = it.message
+                                b.tvError.visibility = View.VISIBLE
+                            })
                         }
-                        .onFailure {
-                            b.tvError.text = it.message
-                            b.tvError.visibility = View.VISIBLE
-                        }
+                    }, {
+                        b.tvError.text = it.message
+                        b.tvError.visibility = View.VISIBLE
+                    })
                 }
             }
         }

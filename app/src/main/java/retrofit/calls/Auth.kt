@@ -1,92 +1,117 @@
 package retrofit.calls
 
+import dialogs.LoadingDialog
 import ir.ncis.filmbuff.App
 import ir.ncis.filmbuff.R
 import retrofit.ApiClient
-import retrofit.models.User
 import retrofit.models.Session
+import retrofit.models.User
 
 object Auth {
-    suspend fun info(): Result<User> {
-        return try {
+    suspend fun info(onSuccess: (User) -> Unit, onError: ((Exception) -> Unit)? = null, showLoading: Boolean = true) {
+        var loadingDialog: LoadingDialog? = null
+        if (showLoading) {
+            loadingDialog = LoadingDialog(App.ACTIVITY, App.CONTEXT.getString(R.string.api_auth_info))
+            loadingDialog.show()
+        }
+        try {
             val response = ApiClient.API.authInfo()
+            loadingDialog?.dismiss()
             if (response.isSuccessful) {
                 val body = response.body()
                 if (body != null) {
                     if (body.result != null) {
-                        Result.success(body.result)
+                        onSuccess(body.result)
                     } else {
-                        Result.failure(Exception(body.message))
+                        onError?.invoke(Exception(body.message))
                     }
                 } else {
-                    Result.failure(Exception(response.message()))
+                    onError?.invoke(Exception(response.message()))
                 }
             } else {
                 val errorMessage = response.errorBody()?.string() ?: App.CONTEXT.getString(R.string.unknown_error)
-                Result.failure(Exception("HTTP ${response.code()}: $errorMessage"))
+                onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
             }
         } catch (e: Exception) {
-            Result.failure(e)
+            onError?.invoke(e)
         }
     }
 
-    suspend fun login(username: String, password: String): Result<Session> {
-        return try {
+    suspend fun login(username: String, password: String, onSuccess: (Session) -> Unit, onError: ((Exception) -> Unit)? = null, showLoading: Boolean = true) {
+        var loadingDialog: LoadingDialog? = null
+        if (showLoading) {
+            loadingDialog = LoadingDialog(App.ACTIVITY, App.CONTEXT.getString(R.string.api_auth_login))
+            loadingDialog.show()
+        }
+        try {
             val response = ApiClient.API.authLogin(username, password)
+            loadingDialog?.dismiss()
             if (response.isSuccessful) {
                 val body = response.body()
                 if (body != null) {
                     if (body.result != null) {
-                        Result.success(body.result)
+                        onSuccess(body.result)
                     } else {
-                        Result.failure(Exception(body.message))
+                        onError?.invoke(Exception(body.message))
                     }
                 } else {
-                    Result.failure(Exception(response.message()))
+                    onError?.invoke(Exception(response.message()))
                 }
             } else {
                 val errorMessage = response.errorBody()?.string() ?: App.CONTEXT.getString(R.string.unknown_error)
-                Result.failure(Exception("HTTP ${response.code()}: $errorMessage"))
+                onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
             }
         } catch (e: Exception) {
-            Result.failure(e)
+            onError?.invoke(e)
         }
     }
 
-    suspend fun logout(): Result<Void?> {
-        return try {
+    suspend fun logout(onSuccess: () -> Unit, onError: ((Exception) -> Unit)? = null, showLoading: Boolean = true) {
+        var loadingDialog: LoadingDialog? = null
+        if (showLoading) {
+            loadingDialog = LoadingDialog(App.ACTIVITY, App.CONTEXT.getString(R.string.api_auth_logout))
+            loadingDialog.show()
+        }
+        try {
             val response = ApiClient.API.authLogout()
+            loadingDialog?.dismiss()
             if (response.isSuccessful) {
-                Result.success(response.body())
+                onSuccess()
             } else {
                 val errorMessage = response.errorBody()?.string() ?: App.CONTEXT.getString(R.string.unknown_error)
-                Result.failure(Exception("HTTP ${response.code()}: $errorMessage"))
+                onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
             }
         } catch (e: Exception) {
-            Result.failure(e)
+            onError?.invoke(e)
         }
     }
 
-    suspend fun refresh(): Result<Session> {
-        return try {
+    suspend fun refresh(onSuccess: (Session) -> Unit, onError: ((Exception) -> Unit)? = null, showLoading: Boolean = true) {
+        var loadingDialog: LoadingDialog? = null
+        if (showLoading) {
+            loadingDialog = LoadingDialog(App.ACTIVITY, App.CONTEXT.getString(R.string.api_auth_refresh))
+            loadingDialog.show()
+        }
+        try {
             val response = ApiClient.API.authRefresh()
+            loadingDialog?.dismiss()
             if (response.isSuccessful) {
                 val body = response.body()
                 if (body != null) {
                     if (body.result != null) {
-                        Result.success(body.result)
+                        onSuccess(body.result)
                     } else {
-                        Result.failure(Exception(body.message))
+                        onError?.invoke(Exception(body.message))
                     }
                 } else {
-                    Result.failure(Exception(response.message()))
+                    onError?.invoke(Exception(response.message()))
                 }
             } else {
                 val errorMessage = response.errorBody()?.string() ?: App.CONTEXT.getString(R.string.unknown_error)
-                Result.failure(Exception("HTTP ${response.code()}: $errorMessage"))
+                onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
             }
         } catch (e: Exception) {
-            Result.failure(e)
+            onError?.invoke(e)
         }
     }
 
