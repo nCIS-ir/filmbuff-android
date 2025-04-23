@@ -9,7 +9,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import dialogs.SortingDialog
 import ir.ncis.filmbuff.App
@@ -32,21 +34,14 @@ class MainHomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch {
             b.rvRecents.layoutManager = LinearLayoutManager(App.ACTIVITY, LinearLayoutManager.HORIZONTAL, false)
             if ((activity as MainActivity).mode == MainActivity.Mode.MOVIE) {
-                Movie.slider().onSuccess { b.vpSlider.adapter = AdapterPagerMovieSlider(requireActivity() as MainActivity, it) }
-                Movie.recent()
-                    .onSuccess {
-                        val adapter = AdapterRecyclerMovie()
-                        b.rvRecents.adapter = adapter
-                        adapter.submitList(it)
-                    }
-                lifecycleScope.launch {
+                viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                    Movie.slider().onSuccess { b.vpSlider.adapter = AdapterPagerMovieSlider(requireActivity() as MainActivity, it) }
                     Movie.recent()
                         .onSuccess {
                             val adapter = AdapterRecyclerMovie()
-                            b.rvRecents.layoutManager = LinearLayoutManager(App.ACTIVITY, LinearLayoutManager.HORIZONTAL, false)
                             b.rvRecents.adapter = adapter
                             adapter.submitList(it)
                         }
