@@ -2,7 +2,6 @@ package ir.ncis.filmbuff
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import dialogs.ConfirmDialog
 
@@ -11,7 +10,6 @@ open class ActivityEnhanced : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         App.INFLATER = layoutInflater
         App.ACTIVITY = this
-        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN)
     }
 
     override fun onResume() {
