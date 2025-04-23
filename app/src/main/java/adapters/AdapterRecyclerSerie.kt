@@ -17,6 +17,7 @@ class AdapterRecyclerSerie(private val series: List<Serie>) : RecyclerView.Adapt
         val serie = series[position]
         ImageHelper(serie.thumbnail, R.mipmap.logo).loadInto(holder.b.ivThumbnail)
         holder.b.tvTitle.text = serie.title
+        holder.b.tvTitle.isSelected = true
         holder.b.tvVisits.text = serie.visits.toString()
         holder.b.tvRating.text = serie.rating.toString()
     }
