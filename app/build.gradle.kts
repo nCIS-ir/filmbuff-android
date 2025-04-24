@@ -56,6 +56,7 @@ dependencies {
     implementation(libs.picasso)
     implementation(libs.pinview)
     implementation(libs.retrofit)
+    implementation (libs.shimmer)
     implementation(libs.tapsell.plus.sdk.android)
     ksp(libs.androidx.room.compiler)
     releaseImplementation(libs.chucker.no.op)

@@ -40,15 +40,25 @@ class MainHomeFragment : Fragment() {
                 viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                     Movie.slider(
                         {
+                            b.shimmerSlider.visibility = View.GONE
+                            b.vpSlider.visibility = View.VISIBLE
                             b.vpSlider.adapter = AdapterPagerMovieSlider(requireActivity() as MainActivity, it)
+                        },
+                        {
+                            b.shimmerSlider.visibility = View.GONE
                         },
                         showLoading = false
                     )
                     Movie.recent(
                         {
+                            b.shimmerRecent.visibility = View.GONE
+                            b.rvRecents.visibility = View.VISIBLE
                             val adapter = AdapterRecyclerMovie()
                             b.rvRecents.adapter = adapter
                             adapter.submitList(it)
+                        },
+                        {
+                            b.shimmerRecent.visibility = View.GONE
                         },
                         showLoading = false
                     )
@@ -63,7 +73,14 @@ class MainHomeFragment : Fragment() {
                             Movie.genre(
                                 genre.id,
                                 onSuccess = {
-                                    App.HANDLER.post { adapter.submitList(it) }
+                                    App.HANDLER.post {
+                                        view.shimmerItems.visibility = View.GONE
+                                        view.rvItems.visibility = View.VISIBLE
+                                        adapter.submitList(it)
+                                    }
+                                },
+                                onError = {
+                                    view.shimmerItems.visibility = View.GONE
                                 },
                                 showLoading = false
                             )

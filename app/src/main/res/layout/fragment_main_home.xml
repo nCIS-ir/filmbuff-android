@@ -114,11 +114,20 @@
                 app:cardCornerRadius="16dp"
                 app:cardElevation="0dp">
 
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/shimmerSlider"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <include layout="@layout/shimmer_slider" />
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
                 <androidx.viewpager2.widget.ViewPager2
                     android:id="@+id/vpSlider"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:contentDescription="@string/app_name" />
+                    android:contentDescription="@string/app_name"
+                    android:visibility="invisible" />
             </androidx.cardview.widget.CardView>
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -132,12 +141,21 @@
                 android:textColor="@color/white"
                 android:textSize="16sp" />
 
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmerRecent"
+                android:layout_width="match_parent"
+                android:layout_height="214dp">
+
+                <include layout="@layout/shimmer_movie_serie" />
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvRecents"
                 android:layout_width="match_parent"
-                android:layout_height="210dp"
+                android:layout_height="214dp"
                 android:contentDescription="@string/app_name"
                 android:orientation="horizontal"
+                android:visibility="gone"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/adapter_recycler_movie_serie" />
 

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="128dp"
-    android:layout_height="210dp"
+    android:layout_height="214dp"
     android:layout_marginStart="8dp"
     android:layout_marginEnd="8dp"
     tools:background="@color/blue_dark_300"
@@ -33,6 +33,7 @@
         android:layout_margin="6dp"
         app:cardBackgroundColor="@color/blue_dark_400"
         app:cardCornerRadius="1000dp"
+        app:cardElevation="0dp"
         app:layout_constraintEnd_toEndOf="@+id/glV50"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -71,6 +72,7 @@
         android:layout_margin="6dp"
         app:cardBackgroundColor="@color/orange_300"
         app:cardCornerRadius="1000dp"
+        app:cardElevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/glV50"
         app:layout_constraintTop_toTopOf="parent">
