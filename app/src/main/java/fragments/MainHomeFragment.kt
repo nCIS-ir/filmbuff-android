@@ -38,13 +38,20 @@ class MainHomeFragment : Fragment() {
             b.rvRecents.layoutManager = LinearLayoutManager(App.ACTIVITY, LinearLayoutManager.HORIZONTAL, false)
             if ((activity as MainActivity).mode == MainActivity.Mode.MOVIE) {
                 viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                    Movie.slider().onSuccess { b.vpSlider.adapter = AdapterPagerMovieSlider(requireActivity() as MainActivity, it) }
-                    Movie.recent()
-                        .onSuccess {
+                    Movie.slider(
+                        {
+                            b.vpSlider.adapter = AdapterPagerMovieSlider(requireActivity() as MainActivity, it)
+                        },
+                        showLoading = false
+                    )
+                    Movie.recent(
+                        {
                             val adapter = AdapterRecyclerMovie()
                             b.rvRecents.adapter = adapter
                             adapter.submitList(it)
-                        }
+                        },
+                        showLoading = false
+                    )
                     b.vgGenres.removeAllViews()
                     App.DB.genreDao().all().forEach { genre ->
                         val view = LayoutGenreBinding.inflate(layoutInflater)
@@ -52,12 +59,27 @@ class MainHomeFragment : Fragment() {
                         view.rvItems.layoutManager = LinearLayoutManager(App.ACTIVITY, LinearLayoutManager.HORIZONTAL, false)
                         val adapter = AdapterRecyclerMovie()
                         view.rvItems.adapter = adapter
-                        async(Dispatchers.IO) { Movie.genre(genre.id).onSuccess { App.HANDLER.post { adapter.submitList(it) } } }
+                        async(Dispatchers.IO) {
+                            Movie.genre(
+                                genre.id,
+                                onSuccess = {
+                                    App.HANDLER.post { adapter.submitList(it) }
+                                },
+                                showLoading = false
+                            )
+                        }
                         b.vgGenres.addView(view.root)
                     }
                 }
             } else {
-                Serie.recent().onSuccess { b.rvRecents.adapter = AdapterRecyclerSerie(it) }
+                Serie.recent(
+                    {
+                        val adapter = AdapterRecyclerSerie()
+                        b.rvRecents.adapter = adapter
+                        adapter.submitList(it)
+                    },
+                    showLoading = false
+                )
             }
         }
 

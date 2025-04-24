@@ -13,7 +13,6 @@ import database.models.Pack
 import database.models.Plan
 import database.models.Quality
 import database.models.Role
-import helpers.ContextHelper
 import helpers.KeyString
 import ir.ncis.filmbuff.ActivityEnhanced
 import ir.ncis.filmbuff.App
@@ -26,7 +25,6 @@ import retrofit.calls.Base
 class SplashActivity : ActivityEnhanced() {
     private val retries = 3
     private lateinit var b: ActivitySplashBinding
-    private lateinit var nextActivity: Class<*>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,11 +58,10 @@ class SplashActivity : ActivityEnhanced() {
                         App.DB.roleDao().insert(*Role.from(info.roles).toTypedArray())
                         App.HANDLER.post { b.pbLoading.progress++ }
                         if (!Hawk.contains(KeyString.TOKEN)) {
-                            nextActivity = AuthActivity::class.java
+                            runActivity(AuthActivity::class.java, shouldFinish = true)
                         } else {
                             getUserInfo()
                         }
-                        runActivity(nextActivity, shouldFinish = true)
                     }
                 },
                 {
@@ -80,17 +77,10 @@ class SplashActivity : ActivityEnhanced() {
         Auth.info(
             { user ->
                 App.USER = user
-                nextActivity = MainActivity::class.java
+                runActivity(MainActivity::class.java, shouldFinish = true)
             },
-            { exception ->
-                val statusCode = ContextHelper.getHttpStatus(exception)
-                if (statusCode != null) {
-                    when (statusCode) {
-                        401 -> lifecycleScope.launch { refreshToken() }
-                        403 -> nextActivity = AuthActivity::class.java
-                        else -> App.exit()
-                    }
-                }
+            {
+                runActivity(AuthActivity::class.java, shouldFinish = true)
             }
         )
     }

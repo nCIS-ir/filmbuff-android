@@ -1,8 +1,12 @@
 package retrofit.calls
 
+import androidx.lifecycle.lifecycleScope
+import com.orhanobut.hawk.Hawk
 import dialogs.LoadingDialog
+import helpers.KeyString
 import ir.ncis.filmbuff.App
 import ir.ncis.filmbuff.R
+import kotlinx.coroutines.launch
 import retrofit.ApiClient
 import retrofit.models.Session
 import retrofit.models.User
@@ -29,8 +33,20 @@ object Auth {
                     onError?.invoke(Exception(response.message()))
                 }
             } else {
-                val errorMessage = response.errorBody()?.string() ?: App.CONTEXT.getString(R.string.unknown_error)
-                onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
+                if (response.code() == 401) {
+                    refresh(
+                        {
+                            Hawk.put(KeyString.TOKEN, it.token)
+                            Hawk.put(KeyString.REFRESH, it.refresh)
+                            App.ACTIVITY.lifecycleScope.launch { info(onSuccess, onError, showLoading) }
+                        },
+                        {
+                            onError?.invoke(it)
+                        })
+                } else {
+                    val errorMessage = response.errorBody()?.string() ?: App.CONTEXT.getString(R.string.unknown_error)
+                    onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
+                }
             }
         } catch (e: Exception) {
             onError?.invoke(e)
@@ -78,8 +94,20 @@ object Auth {
             if (response.isSuccessful) {
                 onSuccess()
             } else {
-                val errorMessage = response.errorBody()?.string() ?: App.CONTEXT.getString(R.string.unknown_error)
-                onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
+                if (response.code() == 401) {
+                    refresh(
+                        {
+                            Hawk.put(KeyString.TOKEN, it.token)
+                            Hawk.put(KeyString.REFRESH, it.refresh)
+                            App.ACTIVITY.lifecycleScope.launch { logout(onSuccess, onError, showLoading) }
+                        },
+                        {
+                            onError?.invoke(it)
+                        })
+                } else {
+                    val errorMessage = response.errorBody()?.string() ?: App.CONTEXT.getString(R.string.unknown_error)
+                    onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
+                }
             }
         } catch (e: Exception) {
             onError?.invoke(e)
@@ -87,6 +115,7 @@ object Auth {
     }
 
     suspend fun refresh(onSuccess: (Session) -> Unit, onError: ((Exception) -> Unit)? = null, showLoading: Boolean = true) {
+        Hawk.put(KeyString.TOKEN, Hawk.get(KeyString.REFRESH, ""))
         var loadingDialog: LoadingDialog? = null
         if (showLoading) {
             loadingDialog = LoadingDialog(App.ACTIVITY, App.CONTEXT.getString(R.string.api_auth_refresh))

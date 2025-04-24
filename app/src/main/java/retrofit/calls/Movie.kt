@@ -1,79 +1,120 @@
 package retrofit.calls
 
+import androidx.lifecycle.lifecycleScope
+import com.orhanobut.hawk.Hawk
 import enums.Direction
 import enums.Sort
+import helpers.KeyString
 import ir.ncis.filmbuff.App
 import ir.ncis.filmbuff.R
+import kotlinx.coroutines.launch
 import retrofit.ApiClient
+import retrofit.calls.Auth.refresh
 import retrofit.models.MovieBrief
 
 object Movie {
-    suspend fun genre(genreId: String, page: Int = 1, perPage: Int = 10, sort: Sort = Sort.POPULARITY, direction: Direction = Direction.DESCENDING): Result<List<MovieBrief>> {
-        return try {
+    suspend fun genre(genreId: String, page: Int = 1, perPage: Int = 10, sort: Sort = Sort.POPULARITY, direction: Direction = Direction.DESCENDING, onSuccess: (List<MovieBrief>) -> Unit, onError: ((Exception) -> Unit)? = null, showLoading: Boolean = true) {
+        try {
             val response = ApiClient.API.movieGenre(genreId, page, perPage, sort.value, direction.value)
             if (response.isSuccessful) {
                 val body = response.body()
                 if (body != null) {
                     if (body.result != null) {
-                        Result.success(body.result)
+                        onSuccess(body.result)
                     } else {
-                        Result.failure(Exception(body.message))
+                        onError?.invoke(Exception(body.message))
                     }
                 } else {
-                    Result.failure(Exception(response.message()))
+                    onError?.invoke(Exception(response.message()))
                 }
             } else {
-                val errorMessage = response.errorBody()?.string() ?: App.CONTEXT.getString(R.string.unknown_error)
-                Result.failure(Exception("HTTP ${response.code()}: $errorMessage"))
+                if (response.code() == 401) {
+                    refresh(
+                        {
+                            Hawk.put(KeyString.TOKEN, it.token)
+                            Hawk.put(KeyString.REFRESH, it.refresh)
+                            App.ACTIVITY.lifecycleScope.launch { genre(genreId, page, perPage, sort, direction, onSuccess, onError, showLoading) }
+                        },
+                        {
+                            onError?.invoke(it)
+                        })
+                } else {
+                    val errorMessage = response.errorBody()?.string() ?: App.CONTEXT.getString(R.string.unknown_error)
+                    onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
+                }
             }
         } catch (e: Exception) {
-            Result.failure(e)
+            onError?.invoke(e)
         }
     }
 
-    suspend fun recent(): Result<List<MovieBrief>> {
-        return try {
+    suspend fun recent(onSuccess: (List<MovieBrief>) -> Unit, onError: ((Exception) -> Unit)? = null, showLoading: Boolean = true) {
+        try {
             val response = ApiClient.API.movieRecent()
             if (response.isSuccessful) {
                 val body = response.body()
                 if (body != null) {
                     if (body.result != null) {
-                        Result.success(body.result)
+                        onSuccess(body.result)
                     } else {
-                        Result.failure(Exception(body.message))
+                        onError?.invoke(Exception(body.message))
                     }
                 } else {
-                    Result.failure(Exception(response.message()))
+                    onError?.invoke(Exception(response.message()))
                 }
             } else {
-                val errorMessage = response.errorBody()?.string() ?: App.CONTEXT.getString(R.string.unknown_error)
-                Result.failure(Exception("HTTP ${response.code()}: $errorMessage"))
+                if (response.code() == 401) {
+                    refresh(
+                        {
+                            Hawk.put(KeyString.TOKEN, it.token)
+                            Hawk.put(KeyString.REFRESH, it.refresh)
+                            App.ACTIVITY.lifecycleScope.launch { recent(onSuccess, onError, showLoading) }
+                        },
+                        {
+                            onError?.invoke(it)
+                        })
+                } else {
+                    val errorMessage = response.errorBody()?.string() ?: App.CONTEXT.getString(R.string.unknown_error)
+                    onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
+                }
             }
         } catch (e: Exception) {
-            Result.failure(e)
+            onError?.invoke(e)
         }
     }
 
-    suspend fun slider(): Result<List<MovieBrief>> {
-        return try {
+    suspend fun slider(onSuccess: (List<MovieBrief>) -> Unit, onError: ((Exception) -> Unit)? = null, showLoading: Boolean = true) {
+        try {
             val response = ApiClient.API.movieSlider()
             if (response.isSuccessful) {
                 val body = response.body()
                 if (body != null) {
                     if (body.result != null) {
-                        Result.success(body.result)
+                        onSuccess(body.result)
                     } else {
-                        Result.failure(Exception(body.message))
+                        onError?.invoke(Exception(body.message))
                     }
                 } else {
-                    Result.failure(Exception(response.message()))
+                    onError?.invoke(Exception(response.message()))
                 }
             } else {
-                val errorMessage = response.errorBody()?.string() ?: App.CONTEXT.getString(R.string.unknown_error)
-                Result.failure(Exception("HTTP ${response.code()}: $errorMessage"))
+                if (response.code() == 401) {
+                    refresh(
+                        {
+                            Hawk.put(KeyString.TOKEN, it.token)
+                            Hawk.put(KeyString.REFRESH, it.refresh)
+                            App.ACTIVITY.lifecycleScope.launch { slider(onSuccess, onError, showLoading) }
+                        },
+                        {
+                            onError?.invoke(it)
+                        })
+                } else {
+                    val errorMessage = response.errorBody()?.string() ?: App.CONTEXT.getString(R.string.unknown_error)
+                    onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
+                }
             }
         } catch (e: Exception) {
-            Result.failure(e)
+            onError?.invoke(e)
         }
     }
 }

@@ -4,7 +4,7 @@ import retrofit.models.Favorite
 import retrofit.models.Info
 import retrofit.models.MovieBrief
 import retrofit.models.ResponseWrapper
-import retrofit.models.Serie
+import retrofit.models.SerieBrief
 import retrofit.models.Session
 import retrofit.models.User
 import retrofit2.Response
@@ -12,6 +12,7 @@ import retrofit2.http.DELETE
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
+import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -28,7 +29,7 @@ interface ApiInterface {
     @DELETE("auth/logout")
     suspend fun authLogout(): Response<Void?>
 
-    @POST("auth/refresh")
+    @PATCH("auth/refresh")
     suspend fun authRefresh(): Response<ResponseWrapper<Session>>
 
     @POST("auth/register")
@@ -77,13 +78,13 @@ interface ApiInterface {
 
     //region Serie
     @GET("serie/recent")
-    suspend fun serieRecent(): Response<ResponseWrapper<List<Serie>>>
+    suspend fun serieRecent(): Response<ResponseWrapper<List<SerieBrief>>>
 
     @GET("serie/{genre_id}")
-    suspend fun serieGenre(@Path("genre_id") genreId: String, @Query("page") page: Int, @Query("perPage") perPage: Int, @Query("sort") sort: String, @Query("direction") direction: String): Response<ResponseWrapper<List<Serie>>>
+    suspend fun serieGenre(@Path("genre_id") genreId: String, @Query("page") page: Int, @Query("perPage") perPage: Int, @Query("sort") sort: String, @Query("direction") direction: String): Response<ResponseWrapper<List<SerieBrief>>>
 
     @GET("serie/slider")
-    suspend fun serieSlider(): Response<ResponseWrapper<List<Serie>>>
+    suspend fun serieSlider(): Response<ResponseWrapper<List<SerieBrief>>>
 
     @GET("serie/favorite")
     suspend fun serieFavorite(): Response<List<Favorite>>
