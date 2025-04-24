@@ -10,6 +10,7 @@ data class Country(
     val id: String,
     val slug: String,
     val title: String,
+    val flag: String,
 ) {
     companion object {
         fun from(item: WebCountry): Country {
@@ -17,6 +18,7 @@ data class Country(
                 id = item.id,
                 slug = item.slug,
                 title = item.title,
+                flag = item.flag
             )
         }
 

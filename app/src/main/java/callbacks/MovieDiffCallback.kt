@@ -1,10 +1,10 @@
 package callbacks
 
 import androidx.recyclerview.widget.DiffUtil
-import retrofit.models.Movie
+import retrofit.models.MovieBrief
 
-class MovieDiffCallback : DiffUtil.ItemCallback<Movie>() {
-    override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean = oldItem.id == newItem.id
+class MovieDiffCallback : DiffUtil.ItemCallback<MovieBrief>() {
+    override fun areItemsTheSame(oldItem: MovieBrief, newItem: MovieBrief): Boolean = oldItem.id == newItem.id
 
-    override fun areContentsTheSame(oldItem: Movie, newItem: Movie): Boolean = oldItem == newItem
+    override fun areContentsTheSame(oldItem: MovieBrief, newItem: MovieBrief): Boolean = oldItem == newItem
 }

@@ -2,7 +2,7 @@ package retrofit
 
 import retrofit.models.Favorite
 import retrofit.models.Info
-import retrofit.models.Movie
+import retrofit.models.MovieBrief
 import retrofit.models.ResponseWrapper
 import retrofit.models.Serie
 import retrofit.models.Session
@@ -51,13 +51,13 @@ interface ApiInterface {
 
     //region Movie
     @GET("movie/recent")
-    suspend fun movieRecent(): Response<ResponseWrapper<List<Movie>>>
+    suspend fun movieRecent(): Response<ResponseWrapper<List<MovieBrief>>>
 
     @GET("movie/{genre_id}")
-    suspend fun movieGenre(@Path("genre_id") genreId: String, @Query("page") page: Int, @Query("perPage") perPage: Int, @Query("sort") sort: String, @Query("direction") direction: String): Response<ResponseWrapper<List<Movie>>>
+    suspend fun movieGenre(@Path("genre_id") genreId: String, @Query("page") page: Int, @Query("perPage") perPage: Int, @Query("sort") sort: String, @Query("direction") direction: String): Response<ResponseWrapper<List<MovieBrief>>>
 
     @GET("movie/slider")
-    suspend fun movieSlider(): Response<ResponseWrapper<List<Movie>>>
+    suspend fun movieSlider(): Response<ResponseWrapper<List<MovieBrief>>>
 
     @GET("movie/favorite")
     suspend fun movieFavorite(): Response<List<Favorite>>

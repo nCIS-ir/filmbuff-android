@@ -2,7 +2,7 @@ package retrofit.models
 
 import com.google.gson.annotations.SerializedName
 
-data class Movie(
+data class MovieFull(
     val id: String,
     @SerializedName("country_id")
     val countryId: String,

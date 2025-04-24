@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import helpers.ImageHelper
 import ir.ncis.filmbuff.R
 import ir.ncis.filmbuff.databinding.AdapterPagerSliderBinding
-import retrofit.models.Movie
+import retrofit.models.MovieBrief
 
 class MovieSlideFragment : Fragment() {
     private lateinit var b: AdapterPagerSliderBinding
@@ -17,7 +17,7 @@ class MovieSlideFragment : Fragment() {
         private const val ARG_IMAGE = "movie_image"
         private const val ARG_VIP = "movie_vip"
 
-        fun newInstance(movie: Movie): MovieSlideFragment {
+        fun newInstance(movie: MovieBrief): MovieSlideFragment {
             val fragment = MovieSlideFragment()
             val args = Bundle()
             args.putString(ARG_IMAGE, movie.cover)

@@ -8,9 +8,9 @@ import callbacks.MovieDiffCallback
 import helpers.ImageHelper
 import ir.ncis.filmbuff.R
 import ir.ncis.filmbuff.databinding.AdapterRecyclerMovieSerieBinding
-import retrofit.models.Movie
+import retrofit.models.MovieBrief
 
-class AdapterRecyclerMovie() : ListAdapter<Movie, AdapterRecyclerMovie.MyViewHolder>(MovieDiffCallback()) {
+class AdapterRecyclerMovie() : ListAdapter<MovieBrief, AdapterRecyclerMovie.MyViewHolder>(MovieDiffCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         return MyViewHolder(AdapterRecyclerMovieSerieBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
