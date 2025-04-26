@@ -17,19 +17,21 @@ class MainActivity : ActivityEnhanced() {
 
     private lateinit var b: ActivityMainBinding
     var mode = Mode.MOVIE
+    private val mainHomeFragment = MainHomeFragment()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         b = ActivityMainBinding.inflate(layoutInflater)
         setContentView(b.root)
 
-        showFragment(MainHomeFragment())
+        showFragment(mainHomeFragment)
 
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 when (b.fragment.getFragment<Fragment>()) {
                     is MainHomeFragment -> checkedExit()
-                    else                -> showFragment(MainHomeFragment())
+                    else                -> showFragment(mainHomeFragment)
                 }
             }
         })
