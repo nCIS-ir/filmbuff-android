@@ -25,16 +25,20 @@ class MainActivity : ActivityEnhanced() {
         b = ActivityMainBinding.inflate(layoutInflater)
         setContentView(b.root)
 
-        showFragment(mainHomeFragment)
+        showHomeFragment()
 
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 when (b.fragment.getFragment<Fragment>()) {
                     is MainHomeFragment -> checkedExit()
-                    else                -> showFragment(mainHomeFragment)
+                    else                -> showHomeFragment()
                 }
             }
         })
+    }
+
+    fun showHomeFragment() {
+        showFragment(mainHomeFragment)
     }
 
     fun showFragment(fragment: Fragment) {

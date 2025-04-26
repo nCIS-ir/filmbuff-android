@@ -27,7 +27,7 @@ class MainProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        b.ivBack.setOnClickListener { (requireActivity() as MainActivity).showFragment(MainHomeFragment()) }
+        b.ivBack.setOnClickListener { (requireActivity() as MainActivity).showHomeFragment() }
 
         b.cvLogout.setOnClickListener {
             ConfirmDialog(App.ACTIVITY, getString(R.string.confirm_exit), getString(R.string.exit_message)) {
