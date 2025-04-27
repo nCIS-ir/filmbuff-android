@@ -58,6 +58,7 @@
     <string name="repeat_new_password">Repeat New Password</string>
     <string name="required">Fill required fields.</string>
     <string name="resend_code">Resend Code</string>
+    <string name="reviews_description">Amazing! The movie was awesome. Thank you for amazing experience!</string>
     <string name="reviews">Reviews</string>
     <string name="sample_10_digits" translatable="false">1234567890</string>
     <string name="sample_2_digits" translatable="false">12</string>

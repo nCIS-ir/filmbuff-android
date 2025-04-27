@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:background="@drawable/bg_gradient_blue_dark">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cvReviews"
+        android:layout_width="match_parent"
+        android:layout_height="128dp"
+        android:layout_marginTop="16dp"
+        app:cardBackgroundColor="@color/blue_dark_300"
+        app:cardCornerRadius="24dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="@color/blue_800"
+        app:strokeWidth="2dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvUsername"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/bold"
+                android:text="@string/sample_username"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvBody"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/regular"
+                android:text="@string/reviews_description"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvUsername"
+                tools:ignore="SmallSp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:layout_marginEnd="36dp"
+        app:cardBackgroundColor="@color/blue_dark_400"
+        app:cardCornerRadius="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/cvReviews"
+        app:layout_constraintEnd_toEndOf="@+id/cvReviews"
+        app:layout_constraintTop_toTopOf="@+id/cvReviews"
+        app:strokeColor="@color/blue_800"
+        app:strokeWidth="2dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:padding="4dp"
+                android:tint="@color/orange_300"
+                app:srcCompat="@drawable/ic_star_full" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:padding="4dp"
+                android:tint="@color/orange_300"
+                app:srcCompat="@drawable/ic_star_full" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:padding="4dp"
+                android:tint="@color/orange_300"
+                app:srcCompat="@drawable/ic_star_full" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:padding="4dp"
+                android:tint="@color/orange_300"
+                app:srcCompat="@drawable/ic_star_full" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:padding="4dp"
+                android:tint="@color/orange_300"
+                app:srcCompat="@drawable/ic_star_full" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
