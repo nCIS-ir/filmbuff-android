@@ -55,11 +55,12 @@
     <string name="repeat_new_password">تکرار رمز جدید</string>
     <string name="required">فیلدهای اجباری را پر کنید.</string>
     <string name="resend_code">ارسال مجدد کد</string>
+    <string name="reviews_description">شگفت‌انگیز! فیلم خارق‌العاده بود. با تشکر از شما بابت تجربه شگفت‌انگیز!</string>
     <string name="reviews">نظرات</string>
     <string name="sample_days">365 روز</string>
     <string name="sci_fi">علمی تخیلی</string>
     <string name="search">جستجو</string>
-    <string name="seasons">Seasons</string>
+    <string name="seasons">فصل‌</string>
     <string name="series">سریال ها</string>
     <string name="sort_popularity">محبوبیت</string>
     <string name="sort_rating">امتیاز</string>
