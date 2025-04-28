@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    tools:background="@drawable/bg_gradient_blue_dark"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:background="@drawable/bg_gradient_blue_dark">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -41,7 +41,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            tools:itemCount="6"
+            app:spanCount="6"
+            tools:itemCount="18"
             tools:listitem="@layout/adapter_recycler_cast" />
     </LinearLayout>
 </ScrollView>
