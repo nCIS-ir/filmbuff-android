@@ -51,6 +51,7 @@
     <string name="play">Play</string>
     <string name="profile">Profile</string>
     <string name="purchased_coins">Purchased Coins</string>
+    <string name="quality">Quality:</string>
     <string name="recently_viewed">Recently Viewed</string>
     <string name="reference">Reference</string>
     <string name="register">Register</string>
@@ -90,4 +91,6 @@
     <string name="verify">Verify</string>
     <string name="vip_subscriptions">VIP Subscriptions</string>
     <string name="wrong_email">Wrong email address?</string>
+    <string name="audio">Audio</string>
+    <string name="subtitle">Subtitle</string>
 </resources>
