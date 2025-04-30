@@ -1,6 +1,7 @@
 package fragments
 
 import activities.MainActivity
+import activities.PlayActivity
 import adapters.AdapterPagerMovieSlider
 import adapters.AdapterRecyclerMovie
 import adapters.AdapterRecyclerSerie
@@ -103,5 +104,7 @@ class MainHomeFragment : Fragment() {
         b.cvProfile.setOnClickListener { (requireActivity() as MainActivity).showFragment(MainProfileFragment()) }
         b.cvSort.setOnClickListener { SortingDialog(requireActivity()).show() }
         b.cvSearch.setOnClickListener { (requireActivity() as MainActivity).showFragment(MainSearchFargment()) }
+
+        b.ivLogo.setOnClickListener { (requireActivity() as MainActivity).runActivity(PlayActivity::class.java) }
     }
 }
