@@ -84,18 +84,4 @@ class SplashActivity : ActivityEnhanced() {
             }
         )
     }
-
-    private suspend fun refreshToken() {
-        Hawk.put(KeyString.TOKEN, Hawk.get(KeyString.REFRESH, ""))
-        Auth.refresh(
-            {
-                Hawk.put(KeyString.TOKEN, it.token)
-                Hawk.put(KeyString.REFRESH, it.refresh)
-                lifecycleScope.launch { getUserInfo() }
-            },
-            {
-                App.exit()
-            }
-        )
-    }
 }
