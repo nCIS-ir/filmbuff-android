@@ -60,7 +60,15 @@ class SplashActivity : ActivityEnhanced() {
                         if (!Hawk.contains(KeyString.TOKEN)) {
                             runActivity(AuthActivity::class.java, shouldFinish = true)
                         } else {
-                            getUserInfo()
+                            Auth.info(
+                                { user ->
+                                    App.USER = user
+                                    this@SplashActivity.runActivity(MainActivity::class.java, shouldFinish = true)
+                                },
+                                {
+                                    this@SplashActivity.runActivity(AuthActivity::class.java, shouldFinish = true)
+                                }
+                            )
                         }
                     }
                 },
@@ -71,17 +79,5 @@ class SplashActivity : ActivityEnhanced() {
                 false
             )
         }
-    }
-
-    private suspend fun getUserInfo() {
-        Auth.info(
-            { user ->
-                App.USER = user
-                runActivity(MainActivity::class.java, shouldFinish = true)
-            },
-            {
-                runActivity(AuthActivity::class.java, shouldFinish = true)
-            }
-        )
     }
 }
