@@ -11,6 +11,7 @@
     <string name="api_auth_verify">Verify OTP</string>
     <string name="app_name">Film Buff</string>
     <string name="apply">Apply</string>
+    <string name="audio">Audio:</string>
     <string name="cast">Cast</string>
     <string name="change">Change</string>
     <string name="change_password">Change password</string>
@@ -18,7 +19,7 @@
     <string name="comment">Comment</string>
     <string name="confirm">Confirm</string>
     <string name="confirm_exit">Confirm Exit</string>
-    <string name="daenerys_targaryen">daenerys Targaryen</string>
+    <string name="daenerys_targaryen">Daenerys Targaryen</string>
     <string name="date">Date</string>
     <string name="duration">Duration</string>
     <string name="email">Email</string>
@@ -52,7 +53,6 @@
     <string name="otp_sent">OTP code has been sent to:</string>
     <string name="password">Password</string>
     <string name="play">Play</string>
-    <string name="please_enter_your_comment">Please enter your\n comment</string>
     <string name="profile">Profile</string>
     <string name="purchased_coins">Purchased Coins</string>
     <string name="quality">Quality:</string>
@@ -68,11 +68,14 @@
     <string name="sample_10_digits" translatable="false">1234567890</string>
     <string name="sample_2_digits" translatable="false">12</string>
     <string name="sample_5_digits" translatable="false">12345</string>
+    <string name="sample_bio">Emilia Clarke, born on October 23, 1986, in London, is a British actress whose magnetic presence and fearless performances catapulted her to international fame. A graduate of the Drama Centre London, she burst onto the global stage with her breakout role in Game of Thrones, captivating millions with her power and poise. Beyond Westeros, Clarke has showcased her versatility in films like Me Before You, Solo: A Star Wars Story, and Last Christmas. Admired for her charm, wit, and resilience—especially after surviving two life-threatening brain aneurysms—Clarke is as much a warrior off-screen as she is on it, becoming an inspiration and advocate for brain injury survivors worldwide.</string>
     <string name="sample_coins" translatable="false">1361</string>
     <string name="sample_date" translatable="false">2025/01/01</string>
     <string name="sample_days">365 Days</string>
     <string name="sample_email" translatable="false">admin@film-buff.ir</string>
+    <string name="sample_error_comment">Please enter your\n comment</string>
     <string name="sample_rating" translatable="false">9.2</string>
+    <string name="sample_role">In Game of Thrones, Emilia Clarke portrays Daenerys Targaryen, the exiled princess of a fallen dynasty who rises from obscurity to become a fierce contender for the Iron Throne. Starting as a timid girl sold into marriage, Daenerys evolves into the "Mother of Dragons," liberating the oppressed and amassing armies across continents. Her journey is marked by fire, blood, and moral complexity, as her dream of breaking the wheel of tyranny eventually clashes with her growing ruthlessness. Clarke’s portrayal imbued Daenerys with both vulnerability and commanding intensity, making her one of the series’ most iconic and divisive characters.</string>
     <string name="sample_username" translatable="false">\@mlfr2kx</string>
     <string name="sci_fi">Sci-Fi</string>
     <string name="search">Search</string>
@@ -86,6 +89,7 @@
     <string name="story">Story</string>
     <string name="submit_your_review">Submit Your Review</string>
     <string name="subscription_colon">Subscription:</string>
+    <string name="subtitle">Subtitle:</string>
     <string name="tapsell_app" translatable="false">djfbetfbatdbjibsrmtahmarjsqhlcnncnmlscqmsolnfqmbssilrtkrffthddierfbjjb</string>
     <string name="tapsell_interstitial" translatable="false">67cb3efdfb36b54b43f2cb7c</string>
     <string name="tapsell_rewarded" translatable="false">67cb3edbc1914d5fb3eec60e</string>
