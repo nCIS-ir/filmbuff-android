@@ -11,6 +11,7 @@
     <string name="api_auth_verify">Verify OTP</string>
     <string name="app_name">Film Buff</string>
     <string name="apply">Apply</string>
+    <string name="audio">Audio:</string>
     <string name="cast">Cast</string>
     <string name="change">Change</string>
     <string name="change_password">Change password</string>
@@ -54,6 +55,7 @@
     <string name="play">Play</string>
     <string name="profile">Profile</string>
     <string name="purchased_coins">Purchased Coins</string>
+    <string name="quality">Quality:</string>
     <string name="recently_viewed">Recently Viewed</string>
     <string name="reference">Reference</string>
     <string name="register">Register</string>
@@ -87,6 +89,7 @@
     <string name="story">Story</string>
     <string name="submit_your_review">Submit Your Review</string>
     <string name="subscription_colon">Subscription:</string>
+    <string name="subtitle">Subtitle:</string>
     <string name="tapsell_app" translatable="false">djfbetfbatdbjibsrmtahmarjsqhlcnncnmlscqmsolnfqmbssilrtkrffthddierfbjjb</string>
     <string name="tapsell_interstitial" translatable="false">67cb3efdfb36b54b43f2cb7c</string>
     <string name="tapsell_rewarded" translatable="false">67cb3edbc1914d5fb3eec60e</string>

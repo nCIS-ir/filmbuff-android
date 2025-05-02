@@ -12,6 +12,7 @@
     <string name="api_auth_verify">بررسی کد</string>
     <string name="app_name">خوره فیلم</string>
     <string name="apply">اعمال</string>
+    <string name="audio">صدا:</string>
     <string name="cast">دست‌اندرکاران</string>
     <string name="change">تغییر دهید</string>
     <string name="change_password">تغییر رمز عبور</string>
@@ -51,6 +52,7 @@
     <string name="play">پخش</string>
     <string name="profile">پروفایل</string>
     <string name="purchased_coins">سکه‌های خریداری‌شده</string>
+    <string name="quality">کیفیت:</string>
     <string name="recently_viewed">بازدیدهای اخیر</string>
     <string name="reference">مرجع تراکنش</string>
     <string name="register">ثبت نام کنید</string>
@@ -67,7 +69,7 @@
     <string name="sci_fi">علمی تخیلی</string>
     <string name="search">جستجو</string>
     <string name="seasons">فصل‌</string>
-    <string name="series">سریال ها</string>
+    <string name="series">سریال‌ها</string>
     <string name="sort_popularity">محبوبیت</string>
     <string name="sort_rating">امتیاز</string>
     <string name="sort_release">انتشار</string>
@@ -76,6 +78,7 @@
     <string name="story">داستان</string>
     <string name="submit_your_review">ثبت نظر شما</string>
     <string name="subscription_colon">اشتراک:</string>
+    <string name="subtitle">زیرنویس:</string>
     <string name="title">عنوان</string>
     <string name="unknown_error">خطای ناشناخته</string>
     <string name="username">نام کاربری</string>
