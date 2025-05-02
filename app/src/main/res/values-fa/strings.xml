@@ -86,4 +86,6 @@
     <string name="verify">بررسی</string>
     <string name="vip_subscriptions">اشتراک‌های VIP</string>
     <string name="wrong_email">آدرس ایمیل اشتباه است؟</string>
+    <string name="audio">Audio</string>
+    <string name="subtitle">Subtitle</string>
 </resources>
