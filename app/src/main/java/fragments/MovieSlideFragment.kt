@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import helpers.ImageHelper
 import ir.ncis.filmbuff.R
-import ir.ncis.filmbuff.databinding.AdapterPagerSliderBinding
+import ir.ncis.filmbuff.databinding.FragmentMovieSliderBinding
 import retrofit.models.MovieBrief
 
 class MovieSlideFragment : Fragment() {
-    private lateinit var b: AdapterPagerSliderBinding
+    private lateinit var b: FragmentMovieSliderBinding
 
     companion object {
         private const val ARG_IMAGE = "movie_image"
@@ -28,7 +28,7 @@ class MovieSlideFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        b = AdapterPagerSliderBinding.inflate(inflater, container, false)
+        b = FragmentMovieSliderBinding.inflate(inflater, container, false)
         return b.root
     }
 
