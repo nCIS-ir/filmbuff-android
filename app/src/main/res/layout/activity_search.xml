@@ -53,7 +53,7 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginStart="12dp"
-                android:tint="@color/blue_800"
+                android:tint="@color/white"
                 app:srcCompat="@drawable/ic_arrow_left" />
 
             <androidx.appcompat.widget.AppCompatEditText
@@ -111,8 +111,9 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        tools:listitem="@layout/adapter_recycler_genre"
-        app:layout_constraintTop_toBottomOf="@+id/tvGenre" />
+        android:contentDescription="@string/app_name"
+        app:layout_constraintTop_toBottomOf="@+id/tvGenre"
+        tools:listitem="@layout/adapter_recycler_genre" />
 
     <custom_views.MyButton
         android:id="@+id/btSearch"
