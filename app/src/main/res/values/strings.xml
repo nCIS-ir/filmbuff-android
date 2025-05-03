@@ -100,6 +100,4 @@
     <string name="verify">Verify</string>
     <string name="vip_subscriptions">VIP Subscriptions</string>
     <string name="wrong_email">Wrong email address?</string>
-    <string name="audio">Audio</string>
-    <string name="subtitle">Subtitle</string>
 </resources>
