@@ -80,44 +80,53 @@
         app:layout_constraintEnd_toStartOf="@+id/ivCoins"
         app:layout_constraintTop_toTopOf="@+id/ivCoins" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvSubscriptionLable"
+    <LinearLayout
+        android:id="@+id/vgSubscription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
-        android:fontFamily="@font/regular"
-        android:text="@string/subscription_colon"
-        android:textColor="@color/white"
-        android:textSize="16sp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/tvEmail">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvSubscription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:fontFamily="@font/regular"
-        android:text="@string/no_subscription"
-        android:textColor="@color/red_400"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tvSubscriptionLable"
-        app:layout_constraintStart_toEndOf="@+id/tvSubscriptionLable"
-        app:layout_constraintTop_toTopOf="@+id/tvSubscriptionLable" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/regular"
+            android:text="@string/subscription_colon"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvEmail" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvRemaining"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:fontFamily="@font/regular"
-        android:text="@string/format_subscription_remaining"
-        android:textColor="@color/green_400"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tvSubscriptionLable"
-        app:layout_constraintStart_toEndOf="@+id/tvSubscription"
-        app:layout_constraintTop_toTopOf="@+id/tvSubscriptionLable" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvNone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/regular"
+            android:text="@string/no_subscription"
+            android:textColor="@color/red_400"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tvSubscriptionLabel"
+            app:layout_constraintStart_toEndOf="@+id/tvSubscriptionLabel"
+            app:layout_constraintTop_toTopOf="@+id/tvSubscriptionLabel" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvRemaining"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/regular"
+            android:text="@string/format_subscription_remaining"
+            android:textColor="@color/green_400"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tvSubscriptionLabel"
+            app:layout_constraintStart_toEndOf="@+id/tvSubscription"
+            app:layout_constraintTop_toTopOf="@+id/tvSubscriptionLabel" />
+    </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -125,7 +134,7 @@
         android:layout_margin="16dp"
         android:layout_marginTop="24dp"
         app:layout_constraintBottom_toTopOf="@+id/cvLogout"
-        app:layout_constraintTop_toBottomOf="@+id/tvSubscriptionLable">
+        app:layout_constraintTop_toBottomOf="@+id/vgSubscription">
 
         <LinearLayout
             android:layout_width="match_parent"

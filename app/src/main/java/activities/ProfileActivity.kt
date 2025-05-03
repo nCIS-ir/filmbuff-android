@@ -1,6 +1,7 @@
 package activities
 
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.lifecycleScope
 import com.orhanobut.hawk.Hawk
 import dialogs.ConfirmDialog
@@ -18,6 +19,22 @@ class ProfileActivity : ActivityEnhanced() {
         setContentView(b.root)
 
         b.ivBack.setOnClickListener { finish() }
+
+        b.tvUsername.text = buildString {
+            append("@")
+            append(App.USER.username)
+        }
+
+        b.tvEmail.text = App.USER.email
+
+        if (App.USER.subscription > 0) {
+            b.tvNone.visibility = View.GONE
+            b.tvRemaining.text = App.USER.subscription.toString()
+        } else {
+            b.tvRemaining.visibility = View.GONE
+        }
+
+        b.tvCoins.text = App.USER.coins.toString()
 
         b.cvLogout.setOnClickListener {
             ConfirmDialog(App.ACTIVITY, getString(R.string.confirm_exit), getString(R.string.exit_message)) {
