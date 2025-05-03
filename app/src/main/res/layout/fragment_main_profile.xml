@@ -125,7 +125,7 @@
         android:layout_margin="16dp"
         android:layout_marginTop="24dp"
         app:layout_constraintBottom_toTopOf="@+id/cvLogout"
-        app:layout_constraintTop_toBottomOf="@id/tvSubscriptionLable">
+        app:layout_constraintTop_toBottomOf="@+id/tvSubscriptionLable">
 
         <LinearLayout
             android:layout_width="match_parent"
