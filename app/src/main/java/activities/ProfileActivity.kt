@@ -29,7 +29,11 @@ class ProfileActivity : ActivityEnhanced() {
 
         if (App.USER.subscription > 0) {
             b.tvNone.visibility = View.GONE
-            b.tvRemaining.text = App.USER.subscription.toString()
+            b.tvRemaining.text = buildString {
+                append(App.USER.subscription)
+                append(" ")
+                append(getString(if (App.USER.subscription > 1) R.string.days else R.string.day))
+            }
         } else {
             b.tvRemaining.visibility = View.GONE
         }

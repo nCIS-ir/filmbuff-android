@@ -21,6 +21,8 @@
     <string name="confirm_exit">Confirm Exit</string>
     <string name="daenerys_targaryen">Daenerys Targaryen</string>
     <string name="date">Date</string>
+    <string name="day">Day</string>
+    <string name="days">Days</string>
     <string name="duration">Duration</string>
     <string name="email">Email</string>
     <string name="emilia_clarke">Emilia Clarke</string>
