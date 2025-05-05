@@ -2,6 +2,7 @@ package activities
 
 import android.os.Bundle
 import android.view.View
+import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.orhanobut.hawk.Hawk
 import dialogs.ConfirmDialog
@@ -11,12 +12,18 @@ import ir.ncis.filmbuff.R
 import ir.ncis.filmbuff.databinding.ActivityProfileBinding
 import kotlinx.coroutines.launch
 import retrofit.calls.Auth
+import view_models.ProfileViewModel
 
 class ProfileActivity : ActivityEnhanced() {
+    private val profileViewModel: ProfileViewModel by viewModels()
+    private lateinit var b: ActivityProfileBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val b = ActivityProfileBinding.inflate(layoutInflater)
+        b = ActivityProfileBinding.inflate(layoutInflater)
         setContentView(b.root)
+
+        observe()
 
         b.ivBack.setOnClickListener { finish() }
 
@@ -41,62 +48,123 @@ class ProfileActivity : ActivityEnhanced() {
         b.tvCoins.text = App.USER.coins.toString()
 
         b.cvLogout.setOnClickListener {
-            ConfirmDialog(App.ACTIVITY, getString(R.string.confirm_exit), getString(R.string.exit_message)) {
+            ConfirmDialog(this, getString(R.string.confirm_exit), getString(R.string.exit_message)) {
                 lifecycleScope.launch {
                     Auth.logout(
                         {
                             Hawk.deleteAll()
                             App.DB.clearAllTables()
-                            App.ACTIVITY.runActivity(SplashActivity::class.java, shouldFinish = true)
+                            runActivity(SplashActivity::class.java, shouldFinish = true)
                         }
                     )
                 }
             }.show()
         }
 
-        b.cvLanguage.setOnClickListener {
-            b.language.vgRoot.visibility = View.VISIBLE
-            b.cvLanguage.setCardBackgroundColor(getColor(R.color.black))
-            b.ivLanguage.setColorFilter(getColor(R.color.orange_300))
-            b.tvLanguage.setTextColor(getColor(R.color.orange_300))
-            b.ivLanguageArrow.setColorFilter(getColor(R.color.orange_300))
-            b.ivLanguageArrow.rotation = 180f
+        b.cvLanguage.setOnClickListener { profileViewModel.toggleLanguage() }
+
+        b.cvFavorites.setOnClickListener { profileViewModel.toggleFavorites() }
+
+        b.cvPurchases.setOnClickListener { profileViewModel.togglePurchases() }
+
+        b.cvSubscriptions.setOnClickListener { profileViewModel.toggleSubscriptions() }
+
+        b.cvPassword.setOnClickListener { profileViewModel.togglePassword() }
+    }
+
+    private fun observe() {
+        val colorBlack = getColor(R.color.black)
+        val colorBlueDark400 = getColor(R.color.blue_dark_400)
+        val colorOrange300 = getColor(R.color.orange_300)
+        val colorWhite = getColor(R.color.white)
+        profileViewModel.isLanguageVisible.observe(this) {
+            if (it) {
+                b.language.vgRoot.visibility = View.VISIBLE
+                b.cvLanguage.setCardBackgroundColor(colorBlack)
+                b.ivLanguage.setColorFilter(colorOrange300)
+                b.tvLanguage.setTextColor(colorOrange300)
+                b.ivLanguageArrow.setColorFilter(colorOrange300)
+                b.ivLanguageArrow.rotation = 180f
+            } else {
+                b.language.vgRoot.visibility = View.GONE
+                b.cvLanguage.setCardBackgroundColor(colorBlueDark400)
+                b.ivLanguage.setColorFilter(colorWhite)
+                b.tvLanguage.setTextColor(colorWhite)
+                b.ivLanguageArrow.setColorFilter(colorWhite)
+                b.ivLanguageArrow.rotation = 0f
+            }
         }
 
-        b.cvFavorites.setOnClickListener {
-            b.favorites.vgRoot.visibility = View.VISIBLE
-            b.cvFavorites.setCardBackgroundColor(getColor(R.color.black))
-            b.ivFavorites.setColorFilter(getColor(R.color.orange_300))
-            b.tvFavorites.setTextColor(getColor(R.color.orange_300))
-            b.ivFavoriteArrow.setColorFilter(getColor(R.color.orange_300))
-            b.ivFavoriteArrow.rotation = 180f
+        profileViewModel.isFavoritesVisible.observe(this) {
+            if (it) {
+                b.favorites.vgRoot.visibility = View.VISIBLE
+                b.cvFavorites.setCardBackgroundColor(colorBlack)
+                b.ivFavorites.setColorFilter(colorOrange300)
+                b.tvFavorites.setTextColor(colorOrange300)
+                b.ivFavoritesArrow.setColorFilter(colorOrange300)
+                b.ivFavoritesArrow.rotation = 180f
+            } else {
+                b.favorites.vgRoot.visibility = View.GONE
+                b.cvFavorites.setCardBackgroundColor(colorBlueDark400)
+                b.ivFavorites.setColorFilter(colorWhite)
+                b.tvFavorites.setTextColor(colorWhite)
+                b.ivFavoritesArrow.setColorFilter(colorWhite)
+                b.ivFavoritesArrow.rotation = 0f
+            }
         }
 
-        b.cvPurchase.setOnClickListener {
-            b.purchases.vgRoot.visibility = View.VISIBLE
-            b.cvPurchase.setCardBackgroundColor(getColor(R.color.black))
-            b.ivPurchase.setColorFilter(getColor(R.color.orange_300))
-            b.tvPurchase.setTextColor(getColor(R.color.orange_300))
-            b.ivPurchaseArrow.setColorFilter(getColor(R.color.orange_300))
-            b.ivPurchaseArrow.rotation = 180f
+        profileViewModel.isPurchasesVisible.observe(this) {
+            if (it) {
+                b.purchases.vgRoot.visibility = View.VISIBLE
+                b.cvPurchases.setCardBackgroundColor(colorBlack)
+                b.ivPurchases.setColorFilter(colorOrange300)
+                b.tvPurchases.setTextColor(colorOrange300)
+                b.ivPurchasesArrow.setColorFilter(colorOrange300)
+                b.ivPurchasesArrow.rotation = 180f
+            } else {
+                b.purchases.vgRoot.visibility = View.GONE
+                b.cvPurchases.setCardBackgroundColor(colorBlueDark400)
+                b.ivPurchases.setColorFilter(colorWhite)
+                b.tvPurchases.setTextColor(colorWhite)
+                b.ivPurchasesArrow.setColorFilter(colorWhite)
+                b.ivPurchasesArrow.rotation = 0f
+            }
         }
 
-        b.cvSubscriptions.setOnClickListener {
-            b.subscriptions.vgRoot.visibility = View.VISIBLE
-            b.cvSubscriptions.setCardBackgroundColor(getColor(R.color.black))
-            b.ivSubscriptions.setColorFilter(getColor(R.color.orange_300))
-            b.tvSubscriptions.setTextColor(getColor(R.color.orange_300))
-            b.ivSubscriptionsArrow.setColorFilter(getColor(R.color.orange_300))
-            b.ivSubscriptionsArrow.rotation = 180f
+        profileViewModel.isSubscriptionsVisible.observe(this) {
+            if (it) {
+                b.subscriptions.vgRoot.visibility = View.VISIBLE
+                b.cvSubscriptions.setCardBackgroundColor(colorBlack)
+                b.ivSubscriptions.setColorFilter(colorOrange300)
+                b.tvSubscriptions.setTextColor(colorOrange300)
+                b.ivSubscriptionsArrow.setColorFilter(colorOrange300)
+                b.ivSubscriptionsArrow.rotation = 180f
+            } else {
+                b.subscriptions.vgRoot.visibility = View.GONE
+                b.cvSubscriptions.setCardBackgroundColor(colorBlueDark400)
+                b.ivSubscriptions.setColorFilter(colorWhite)
+                b.tvSubscriptions.setTextColor(colorWhite)
+                b.ivSubscriptionsArrow.setColorFilter(colorWhite)
+                b.ivSubscriptionsArrow.rotation = 0f
+            }
         }
 
-        b.cvPassword.setOnClickListener {
-            b.password.vgRoot.visibility = View.VISIBLE
-            b.cvPassword.setCardBackgroundColor(getColor(R.color.black))
-            b.ivPassword.setColorFilter(getColor(R.color.orange_300))
-            b.tvPassword.setTextColor(getColor(R.color.orange_300))
-            b.ivPasswordArrow.setColorFilter(getColor(R.color.orange_300))
-            b.ivPasswordArrow.rotation = 180f
+        profileViewModel.isPasswordVisible.observe(this) {
+            if (it) {
+                b.password.vgRoot.visibility = View.VISIBLE
+                b.cvPassword.setCardBackgroundColor(colorBlack)
+                b.ivPassword.setColorFilter(colorOrange300)
+                b.tvPassword.setTextColor(colorOrange300)
+                b.ivPasswordArrow.setColorFilter(colorOrange300)
+                b.ivPasswordArrow.rotation = 180f
+            } else {
+                b.password.vgRoot.visibility = View.GONE
+                b.cvPassword.setCardBackgroundColor(colorBlueDark400)
+                b.ivPassword.setColorFilter(colorWhite)
+                b.tvPassword.setTextColor(colorWhite)
+                b.ivPasswordArrow.setColorFilter(colorWhite)
+                b.ivPasswordArrow.rotation = 0f
+            }
         }
     }
 }
