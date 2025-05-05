@@ -226,7 +226,7 @@
                         android:textSize="12sp" />
 
                     <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/ivFavoriteArrow"
+                        android:id="@+id/ivFavoritesArrow"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:layout_marginEnd="12dp"
@@ -241,7 +241,7 @@
                 android:visibility="gone" />
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cvPurchase"
+                android:id="@+id/cvPurchases"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginTop="24dp"
@@ -257,7 +257,7 @@
                     android:orientation="horizontal">
 
                     <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/ivPurchase"
+                        android:id="@+id/ivPurchases"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:layout_marginStart="12dp"
@@ -265,7 +265,7 @@
                         app:srcCompat="@drawable/ic_dollar" />
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tvPurchase"
+                        android:id="@+id/tvPurchases"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="12dp"
@@ -276,7 +276,7 @@
                         android:textSize="12sp" />
 
                     <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/ivPurchaseArrow"
+                        android:id="@+id/ivPurchasesArrow"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:layout_marginEnd="12dp"
