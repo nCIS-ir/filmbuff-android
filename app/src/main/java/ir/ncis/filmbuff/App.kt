@@ -10,6 +10,8 @@ import android.view.LayoutInflater
 import androidx.room.Room
 import com.orhanobut.hawk.Hawk
 import database.AppDatabase
+import helpers.KeyString
+import helpers.LocaleHelper
 import retrofit.models.User
 import kotlin.system.exitProcess
 
@@ -37,5 +39,14 @@ class App : Application() {
         CONTEXT = applicationContext
         Hawk.init(CONTEXT).build()
         DB = Room.databaseBuilder(applicationContext, AppDatabase::class.java, "filmbuff.sqlite").allowMainThreadQueries().build()
+
+        var storedLocale = Hawk.get(KeyString.LOCALE, "")
+        var defaultLocale = if (storedLocale.isNotEmpty()) {
+            storedLocale
+        } else {
+            if (LocaleHelper.getCurrentLocale() == "fa") "fa" else "en"
+        }
+        LocaleHelper.setLocale(this, defaultLocale)
+        Hawk.put(KeyString.LOCALE, defaultLocale)
     }
 }

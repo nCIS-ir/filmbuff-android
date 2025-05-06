@@ -30,7 +30,7 @@ object ApiClient {
                                 .headers(
                                     Headers.Builder()
                                         .add("Accept", "application/json")
-                                        .add("Accept-Language", Hawk.get(KeyString.LANGUAGE, "en"))
+                                        .add("Accept-Language", Hawk.get(KeyString.LOCALE, "en"))
                                         .add("Authorization", "Bearer ${Hawk.get(KeyString.TOKEN, "")}")
                                         .build()
                                 )

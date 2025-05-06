@@ -6,7 +6,7 @@ import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.orhanobut.hawk.Hawk
 import dialogs.ConfirmDialog
-import helpers.ContextHelper
+import helpers.LocaleHelper
 import ir.ncis.filmbuff.ActivityEnhanced
 import ir.ncis.filmbuff.App
 import ir.ncis.filmbuff.R
@@ -72,7 +72,7 @@ class ProfileActivity : ActivityEnhanced() {
 
         b.cvPassword.setOnClickListener { profileViewModel.togglePassword() }
 
-        when (ContextHelper.getLanguage()) {
+        when (LocaleHelper.getCurrentLocale()) {
             "en" -> {
                 b.language.cvEnglish.setCardBackgroundColor(getColor(R.color.black))
                 b.language.tvEnglish.setTextColor(getColor(R.color.orange_300))
@@ -81,6 +81,7 @@ class ProfileActivity : ActivityEnhanced() {
                 b.language.tvFarsi.setTextColor(getColor(R.color.white))
                 b.language.ivSelectedFarsi.visibility = View.INVISIBLE
             }
+
             "fa" -> {
                 b.language.cvEnglish.setCardBackgroundColor(getColor(R.color.blue_dark_400))
                 b.language.tvEnglish.setTextColor(getColor(R.color.white))
@@ -90,6 +91,9 @@ class ProfileActivity : ActivityEnhanced() {
                 b.language.ivSelectedFarsi.visibility = View.VISIBLE
             }
         }
+
+        b.language.cvEnglish.setOnClickListener { LocaleHelper.changeLocale(this, LocaleHelper.EN) }
+        b.language.cvFarsi.setOnClickListener { LocaleHelper.changeLocale(this, LocaleHelper.FA) }
     }
 
     private fun observe() {
