@@ -25,7 +25,6 @@
     <string name="date">تاریخ</string>
     <string name="day">روز</string>
     <string name="days">روز</string>
-    <string name="deleting_visit">در حال حذف بازدید</string>
     <string name="duration">زمان</string>
     <string name="email">پست الکترونیکی</string>
     <string name="emilia_clarke">امیلیا کلارک</string>
@@ -72,7 +71,6 @@
     <string name="sample_days">365 روز</string>
     <string name="sample_error_comment">لطفا متن نظر خود را\n وارد کنید!</string>
     <string name="sample_role">در سریال بازی تاج‌وتخت، امیلیا کلارک نقش دنریس تارگرین را ایفا می‌کند؛ شاهزاده‌ای تبعیدی از یک خاندان سرنگون‌شده که از هیچ به قدرتی عظیم می‌رسد و به یکی از مدعیان جدی تخت آهنین تبدیل می‌شود. او که در آغاز دختری خجالتی و فروخته‌شده به ازدواج است، به «مادر اژدهایان» تبدیل می‌شود، بردگان را آزاد می‌کند و ارتش‌های بزرگی را گرد خود جمع می‌آورد. مسیر او با آتش، خون و پیچیدگی‌های اخلاقی همراه است، چرا که رؤیای او برای شکستن چرخه استبداد در نهایت با بی‌رحمی فزاینده‌اش در تضاد قرار می‌گیرد. بازی درخشان کلارک ترکیبی از لطافت و اقتدار بود و دنریس را به یکی از نمادین‌ترین و بحث‌برانگیزترین شخصیت‌های سریال تبدیل کرد.</string>
-    <string name="saving_visit">در حال ثبت بازدید</string>
     <string name="sci_fi">علمی تخیلی</string>
     <string name="search">جستجو</string>
     <string name="seasons">فصل‌</string>
@@ -92,5 +90,7 @@
     <string name="username_already_taken">نام کاربری قبلا گرفته شده است!</string>
     <string name="verify">بررسی</string>
     <string name="vip_subscriptions">اشتراک‌های VIP</string>
+    <string name="visit_delete">در حال حذف بازدید</string>
+    <string name="visit_save">در حال ثبت بازدید</string>
     <string name="wrong_email">آدرس ایمیل اشتباه است؟</string>
 </resources>
