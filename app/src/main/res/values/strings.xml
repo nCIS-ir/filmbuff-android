@@ -23,6 +23,7 @@
     <string name="date">Date</string>
     <string name="day">Day</string>
     <string name="days">Days</string>
+    <string name="deleting_visit">Deleting Visit</string>
     <string name="duration">Duration</string>
     <string name="email">Email</string>
     <string name="emilia_clarke">Emilia Clarke</string>
@@ -31,6 +32,8 @@
     <string name="enter_otp">Enter OTP</string>
     <string name="exit_message">Are you sure you want\nto exit Film-Buff?</string>
     <string name="fantasy">Fantasy</string>
+    <string name="favorite_add">Adding Favorites</string>
+    <string name="favorite_delete">Deleting Favorites</string>
     <string name="favorites">Favorites</string>
     <string name="forgot_password">Forgot Password</string>
     <string name="format_subscription_remaining">%d day(s) left</string>
@@ -65,8 +68,8 @@
     <string name="repeat_new_password">Repeat New Password</string>
     <string name="required">Fill required fields.</string>
     <string name="resend_code">Resend Code</string>
-    <string name="reviews_description">Amazing! The movie was awesome. Thank you for amazing experience!</string>
     <string name="reviews">Reviews</string>
+    <string name="reviews_description">Amazing! The movie was awesome. Thank you for amazing experience!</string>
     <string name="sample_10_digits" translatable="false">1234567890</string>
     <string name="sample_2_digits" translatable="false">12</string>
     <string name="sample_5_digits" translatable="false">12345</string>
@@ -79,6 +82,7 @@
     <string name="sample_rating" translatable="false">9.2</string>
     <string name="sample_role">In Game of Thrones, Emilia Clarke portrays Daenerys Targaryen, the exiled princess of a fallen dynasty who rises from obscurity to become a fierce contender for the Iron Throne. Starting as a timid girl sold into marriage, Daenerys evolves into the "Mother of Dragons," liberating the oppressed and amassing armies across continents. Her journey is marked by fire, blood, and moral complexity, as her dream of breaking the wheel of tyranny eventually clashes with her growing ruthlessness. Clarke’s portrayal imbued Daenerys with both vulnerability and commanding intensity, making her one of the series’ most iconic and divisive characters.</string>
     <string name="sample_username" translatable="false">\@mlfr2kx</string>
+    <string name="saving_visit">Saving Visit</string>
     <string name="sci_fi">Sci-Fi</string>
     <string name="search">Search</string>
     <string name="seasons">Seasons</string>

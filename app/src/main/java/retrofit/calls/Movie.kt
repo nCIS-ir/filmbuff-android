@@ -2,6 +2,7 @@ package retrofit.calls
 
 import androidx.lifecycle.lifecycleScope
 import com.orhanobut.hawk.Hawk
+import dialogs.LoadingDialog
 import enums.Direction
 import enums.Sort
 import helpers.KeyString
@@ -149,6 +150,86 @@ object Movie {
                     val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.unknown_error)
                     onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
                 }
+            }
+        } catch (e: Exception) {
+            onError?.invoke(e)
+        }
+    }
+
+    suspend fun addFavorite(movieId: String, onSuccess: (() -> Unit)? = null, onError: ((Exception) -> Unit)? = null, showLoading: Boolean = true) {
+        var loadingDialog: LoadingDialog? = null
+        if (showLoading) {
+            loadingDialog = LoadingDialog(App.ACTIVITY, App.ACTIVITY.getString(R.string.favorite_add))
+            loadingDialog.show()
+        }
+        try {
+            val response = ApiClient.API.addFavoriteMovie(movieId)
+            loadingDialog?.dismiss()
+            if (response.isSuccessful) {
+                onSuccess?.invoke()
+            } else {
+                val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.unknown_error)
+                onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
+            }
+        } catch (e: Exception) {
+            onError?.invoke(e)
+        }
+    }
+
+    suspend fun deleteFavorite(movieId: String, onSuccess: (() -> Unit)? = null, onError: ((Exception) -> Unit)? = null, showLoading: Boolean = true) {
+        var loadingDialog: LoadingDialog? = null
+        if (showLoading) {
+            loadingDialog = LoadingDialog(App.ACTIVITY, App.ACTIVITY.getString(R.string.favorite_delete))
+            loadingDialog.show()
+        }
+        try {
+            val response = ApiClient.API.deleteFavoriteMovie(movieId)
+            loadingDialog?.dismiss()
+            if (response.isSuccessful) {
+                onSuccess?.invoke()
+            } else {
+                val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.unknown_error)
+                onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
+            }
+        } catch (e: Exception) {
+            onError?.invoke(e)
+        }
+    }
+
+    suspend fun editVisit(movieFileId: String, onSuccess: (() -> Unit)? = null, onError: ((Exception) -> Unit)? = null, showLoading: Boolean = true) {
+        var loadingDialog: LoadingDialog? = null
+        if (showLoading) {
+            loadingDialog = LoadingDialog(App.ACTIVITY, App.ACTIVITY.getString(R.string.saving_visit))
+            loadingDialog.show()
+        }
+        try {
+            val response = ApiClient.API.editVisitMovie(movieFileId)
+            loadingDialog?.dismiss()
+            if (response.isSuccessful) {
+                onSuccess?.invoke()
+            } else {
+                val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.unknown_error)
+                onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
+            }
+        } catch (e: Exception) {
+            onError?.invoke(e)
+        }
+    }
+
+    suspend fun deleteVisit(movieFileId: String, onSuccess: (() -> Unit)? = null, onError: ((Exception) -> Unit)? = null, showLoading: Boolean = true) {
+        var loadingDialog: LoadingDialog? = null
+        if (showLoading) {
+            loadingDialog = LoadingDialog(App.ACTIVITY, App.ACTIVITY.getString(R.string.deleting_visit))
+            loadingDialog.show()
+        }
+        try {
+            val response = ApiClient.API.deleteVisitMovie(movieFileId)
+            loadingDialog?.dismiss()
+            if (response.isSuccessful) {
+                onSuccess?.invoke()
+            } else {
+                val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.unknown_error)
+                onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
             }
         } catch (e: Exception) {
             onError?.invoke(e)
