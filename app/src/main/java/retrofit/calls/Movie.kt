@@ -199,7 +199,7 @@ object Movie {
     suspend fun editVisit(movieFileId: String, onSuccess: (() -> Unit)? = null, onError: ((Exception) -> Unit)? = null, showLoading: Boolean = true) {
         var loadingDialog: LoadingDialog? = null
         if (showLoading) {
-            loadingDialog = LoadingDialog(App.ACTIVITY, App.ACTIVITY.getString(R.string.edit_visit))
+            loadingDialog = LoadingDialog(App.ACTIVITY, App.ACTIVITY.getString(R.string.saving_visit))
             loadingDialog.show()
         }
         try {
@@ -219,7 +219,7 @@ object Movie {
     suspend fun deleteVisit(movieFileId: String, onSuccess: (() -> Unit)? = null, onError: ((Exception) -> Unit)? = null, showLoading: Boolean = true) {
         var loadingDialog: LoadingDialog? = null
         if (showLoading) {
-            loadingDialog = LoadingDialog(App.ACTIVITY, App.ACTIVITY.getString(R.string.delete_visit))
+            loadingDialog = LoadingDialog(App.ACTIVITY, App.ACTIVITY.getString(R.string.deleting_visit))
             loadingDialog.show()
         }
         try {
