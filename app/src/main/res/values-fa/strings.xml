@@ -22,9 +22,11 @@
     <string name="confirm_exit">تایید خروج</string>
     <string name="date">تاریخ</string>
     <string name="daenerys_targaryen">دنریس تارگرین</string>
-    <string name="duration">زمان</string>
     <string name="day">روز</string>
     <string name="days">روز</string>
+    <string name="delete_visit">حذف بازدیدهای اخیر</string>
+    <string name="duration">زمان</string>
+    <string name="edit_visit">ثبت بازدیدهای اخیر</string>
     <string name="email">پست الکترونیکی</string>
     <string name="emilia_clarke">امیلیا کلارک</string>
     <string name="end">پایان</string>
@@ -32,6 +34,8 @@
     <string name="enter_otp">رمز یکبار مصرف را وارد کنید</string>
     <string name="exit_message">آیا مطمئن هستید که می‌خواهید\nاز خوره فیلم خارج شوید؟</string>
     <string name="fantasy">فانتزی</string>
+    <string name="favorite_add">در حال ثبت علاقه‌مندی‌ها</string>
+    <string name="favorite_delete">در حال حذف علاقه‌مندی‌ها</string>
     <string name="favorites">علاقه‌مندی‌ها</string>
     <string name="forgot_password">فراموشی رمز عبور</string>
     <string name="format_subscription_remaining">%d روز باقی‌مانده</string>
