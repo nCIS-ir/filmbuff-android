@@ -10,18 +10,19 @@ import ir.ncis.filmbuff.R
 import kotlinx.coroutines.launch
 import retrofit.ApiClient
 import retrofit.calls.Auth.refresh
-import retrofit.models.Favorite
 import retrofit.models.MovieBrief
 
 object Movie {
-    suspend fun favorite(onSuccess: (List<Favorite>) -> Unit, onError: ((Exception) -> Unit)? = null, showLoading: Boolean = true) {
+    suspend fun favorite(onSuccess: (List<MovieBrief>) -> Unit, onError: ((Exception) -> Unit)? = null, showLoading: Boolean = true) {
         try {
             val response = ApiClient.API.movieFavorite()
             if (response.isSuccessful) {
                 val body = response.body()
                 if (body != null) {
                     if (body.result != null) {
-                        onSuccess(body.result)
+                        val result = mutableListOf<MovieBrief>()
+                        body.result.forEach { result += it.movie!! }
+                        onSuccess(result)
                     } else {
                         onError?.invoke(Exception(body.message))
                     }
@@ -34,7 +35,7 @@ object Movie {
                         {
                             Hawk.put(KeyString.TOKEN, it.token)
                             Hawk.put(KeyString.REFRESH, it.refresh)
-                            App.ACTIVITY.lifecycleScope.launch {favorite(onSuccess, onError, showLoading) }
+                            App.ACTIVITY.lifecycleScope.launch { favorite(onSuccess, onError, showLoading) }
                         },
                         {
                             onError?.invoke(it)

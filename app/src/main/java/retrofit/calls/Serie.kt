@@ -13,6 +13,43 @@ import retrofit.calls.Auth.refresh
 import retrofit.models.SerieBrief
 
 object Serie {
+    suspend fun favorite(onSuccess: (List<SerieBrief>) -> Unit, onError: ((Exception) -> Unit)? = null, showLoading: Boolean = true) {
+        try {
+            val response = ApiClient.API.serieFavorite()
+            if (response.isSuccessful) {
+                val body = response.body()
+                if (body != null) {
+                    if (body.result != null) {
+                        val result = mutableListOf<SerieBrief>()
+                        body.result.forEach { result += it.serie!! }
+                        onSuccess(result)
+                    } else {
+                        onError?.invoke(Exception(body.message))
+                    }
+                } else {
+                    onError?.invoke(Exception(response.message()))
+                }
+            } else {
+                if (response.code() == 401) {
+                    refresh(
+                        {
+                            Hawk.put(KeyString.TOKEN, it.token)
+                            Hawk.put(KeyString.REFRESH, it.refresh)
+                            App.ACTIVITY.lifecycleScope.launch { favorite(onSuccess, onError, showLoading) }
+                        },
+                        {
+                            onError?.invoke(it)
+                        })
+                } else {
+                    val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.unknown_error)
+                    onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
+                }
+            }
+        } catch (e: Exception) {
+            onError?.invoke(e)
+        }
+    }
+
     suspend fun genre(genreId: String, page: Int = 1, perPage: Int = 10, sort: Sort = Sort.POPULARITY, direction: Direction = Direction.DESCENDING, onSuccess: (List<SerieBrief>) -> Unit, onError: ((Exception) -> Unit)? = null, showLoading: Boolean = true) {
         try {
             val response = ApiClient.API.serieGenre(genreId, page, perPage, sort.value, direction.value)
