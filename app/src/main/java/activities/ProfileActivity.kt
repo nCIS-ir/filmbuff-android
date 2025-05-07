@@ -13,6 +13,7 @@ import ir.ncis.filmbuff.R
 import ir.ncis.filmbuff.databinding.ActivityProfileBinding
 import kotlinx.coroutines.launch
 import retrofit.calls.Auth
+import retrofit.calls.Movie
 import view_models.ProfileViewModel
 
 class ProfileActivity : ActivityEnhanced() {
@@ -94,6 +95,15 @@ class ProfileActivity : ActivityEnhanced() {
 
         b.language.cvEnglish.setOnClickListener { LocaleHelper.changeLocale(this, LocaleHelper.EN) }
         b.language.cvFarsi.setOnClickListener { LocaleHelper.changeLocale(this, LocaleHelper.FA) }
+
+        b.favorites.vgRoot.setOnClickListener {
+            lifecycleScope.launch {
+                Movie.favorite(
+                    { movies ->
+
+                    })
+            }
+        }
     }
 
     private fun observe() {

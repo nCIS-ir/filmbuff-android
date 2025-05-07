@@ -61,7 +61,7 @@ interface ApiInterface {
     suspend fun movieSlider(): Response<ResponseWrapper<List<MovieBrief>>>
 
     @GET("movie/favorite")
-    suspend fun movieFavorite(): Response<List<Favorite>>
+    suspend fun movieFavorite(): Response<ResponseWrapper<List<Favorite>>>
 
     @POST("movie/favorite/{movie_id}")
     suspend fun addFavoriteMovie(@Path("movie_id") movieId: String): Response<Void>
