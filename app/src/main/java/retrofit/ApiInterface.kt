@@ -87,7 +87,7 @@ interface ApiInterface {
     suspend fun serieSlider(): Response<ResponseWrapper<List<SerieBrief>>>
 
     @GET("serie/favorite")
-    suspend fun serieFavorite(): Response<List<Favorite>>
+    suspend fun serieFavorite(): Response<ResponseWrapper<List<Favorite>>>
 
     @POST("serie/favorite/{serie_id}")
     suspend fun addFavoriteSerie(@Path("serie_id") serieId: String): Response<Void>
