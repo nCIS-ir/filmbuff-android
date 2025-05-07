@@ -1,9 +1,12 @@
 package activities
 
+import adapters.AdapterRecyclerMovie
+import adapters.AdapterRecyclerSerie
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.orhanobut.hawk.Hawk
 import dialogs.ConfirmDialog
 import helpers.LocaleHelper
@@ -14,6 +17,7 @@ import ir.ncis.filmbuff.databinding.ActivityProfileBinding
 import kotlinx.coroutines.launch
 import retrofit.calls.Auth
 import retrofit.calls.Movie
+import retrofit.calls.Serie
 import view_models.ProfileViewModel
 
 class ProfileActivity : ActivityEnhanced() {
@@ -100,8 +104,20 @@ class ProfileActivity : ActivityEnhanced() {
             lifecycleScope.launch {
                 Movie.favorite(
                     { movies ->
-
-                    })
+                        b.favorites.rvMovies.layoutManager = LinearLayoutManager(this@ProfileActivity, LinearLayoutManager.HORIZONTAL, false)
+                        val adapter = AdapterRecyclerMovie()
+                        b.favorites.rvMovies.adapter = adapter
+                        adapter.submitList(movies)
+                    }, showLoading = false
+                )
+                Serie.favorite(
+                    { series ->
+                        b.favorites.rvSeries.layoutManager = LinearLayoutManager(this@ProfileActivity, LinearLayoutManager.HORIZONTAL, false)
+                        val adapter = AdapterRecyclerSerie()
+                        b.favorites.rvSeries.adapter = adapter
+                        adapter.submitList(series)
+                    }, showLoading = false
+                )
             }
         }
     }
