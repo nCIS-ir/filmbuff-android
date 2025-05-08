@@ -5,4 +5,3 @@ data class Favorite(
     val movie: MovieBrief?,
     val serie: SerieBrief?,
 )
-
