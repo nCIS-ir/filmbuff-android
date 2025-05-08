@@ -12,7 +12,6 @@
         android:orientation="vertical">
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvStory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -21,11 +20,13 @@
             android:textColor="@color/white" />
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvStory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:fontFamily="@font/bold"
-            android:text="@string/story"
+            android:fontFamily="@font/regular"
+            android:justificationMode="inter_word"
+            android:text="@string/sample_story"
             android:textColor="@color/white" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -37,6 +38,7 @@
             android:textColor="@color/white" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvCasts"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
