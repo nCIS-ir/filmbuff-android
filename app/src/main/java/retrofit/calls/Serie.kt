@@ -2,6 +2,7 @@ package retrofit.calls
 
 import androidx.lifecycle.lifecycleScope
 import com.orhanobut.hawk.Hawk
+import dialogs.LoadingDialog
 import enums.Direction
 import enums.Sort
 import helpers.KeyString
@@ -114,6 +115,121 @@ object Serie {
                     val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.unknown_error)
                     onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
                 }
+            }
+        } catch (e: Exception) {
+            onError?.invoke(e)
+        }
+    }
+
+    suspend fun slider(onSuccess: (List<SerieBrief>) -> Unit, onError: ((Exception) -> Unit)? = null, showLoading: Boolean = true) {
+        try {
+            val response = ApiClient.API.serieSlider()
+            if (response.isSuccessful) {
+                val body = response.body()
+                if (body != null) {
+                    if (body.result != null) {
+                        onSuccess(body.result)
+                    } else {
+                        onError?.invoke(Exception(body.message))
+                    }
+                } else {
+                    onError?.invoke(Exception(response.message()))
+                }
+            } else {
+                if (response.code() == 401) {
+                    refresh(
+                        {
+                            Hawk.put(KeyString.TOKEN, it.token)
+                            Hawk.put(KeyString.REFRESH, it.refresh)
+                            App.ACTIVITY.lifecycleScope.launch { slider(onSuccess, onError, showLoading) }
+                        },
+                        {
+                            onError?.invoke(it)
+                        })
+                } else {
+                    val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.unknown_error)
+                    onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
+                }
+            }
+        } catch (e: Exception) {
+            onError?.invoke(e)
+        }
+    }
+
+    suspend fun addFavorite(serieId: String, onSuccess: (() -> Unit)? = null, onError: ((Exception) -> Unit)? = null, showLoading: Boolean = true) {
+        var loadingDialog: LoadingDialog? = null
+        if (showLoading) {
+            loadingDialog = LoadingDialog(App.ACTIVITY, App.ACTIVITY.getString(R.string.favorite_add))
+            loadingDialog.show()
+        }
+        try {
+            val response = ApiClient.API.addFavoriteSerie(serieId)
+            loadingDialog?.dismiss()
+            if (response.isSuccessful) {
+                onSuccess?.invoke()
+            } else {
+                val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.unknown_error)
+                onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
+            }
+        } catch (e: Exception) {
+            onError?.invoke(e)
+        }
+    }
+
+    suspend fun deleteFavorite(serieId: String, onSuccess: (() -> Unit)? = null, onError: ((Exception) -> Unit)? = null, showLoading: Boolean = true) {
+        var loadingDialog: LoadingDialog? = null
+        if (showLoading) {
+            loadingDialog = LoadingDialog(App.ACTIVITY, App.ACTIVITY.getString(R.string.favorite_delete))
+            loadingDialog.show()
+        }
+        try {
+            val response = ApiClient.API.deleteFavoriteSerie(serieId)
+            loadingDialog?.dismiss()
+            if (response.isSuccessful) {
+                onSuccess?.invoke()
+            } else {
+                val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.unknown_error)
+                onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
+            }
+        } catch (e: Exception) {
+            onError?.invoke(e)
+        }
+    }
+
+    suspend fun editVisit(episodeFileId: String, onSuccess: (() -> Unit)? = null, onError: ((Exception) -> Unit)? = null, showLoading: Boolean = true) {
+        var loadingDialog: LoadingDialog? = null
+        if (showLoading) {
+            loadingDialog = LoadingDialog(App.ACTIVITY, App.ACTIVITY.getString(R.string.visit_save))
+            loadingDialog.show()
+        }
+        try {
+            val response = ApiClient.API.editVisitSerie(episodeFileId)
+            loadingDialog?.dismiss()
+            if (response.isSuccessful) {
+                onSuccess?.invoke()
+            } else {
+                val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.unknown_error)
+                onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
+            }
+        } catch (e: Exception) {
+            onError?.invoke(e)
+        }
+    }
+
+    suspend fun deleteVisit(episodeFileId: String, onSuccess: (() -> Unit)? = null, onError: ((Exception) -> Unit)? = null, showLoading: Boolean = true) {
+        var loadingDialog: LoadingDialog? = null
+        if (showLoading) {
+            loadingDialog = LoadingDialog(App.ACTIVITY, App.ACTIVITY.getString(R.string.visit_delete))
+            loadingDialog.show()
+        }
+        try {
+            val response = ApiClient.API.deleteVisitSerie(episodeFileId)
+            loadingDialog?.dismiss()
+            if (response.isSuccessful) {
+                onSuccess?.invoke()
+            } else {
+                val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.unknown_error)
+                onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
             }
         } catch (e: Exception) {
             onError?.invoke(e)
