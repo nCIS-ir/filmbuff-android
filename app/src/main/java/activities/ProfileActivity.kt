@@ -99,27 +99,6 @@ class ProfileActivity : ActivityEnhanced() {
 
         b.language.cvEnglish.setOnClickListener { LocaleHelper.changeLocale(this, LocaleHelper.EN) }
         b.language.cvFarsi.setOnClickListener { LocaleHelper.changeLocale(this, LocaleHelper.FA) }
-
-        b.favorites.vgRoot.setOnClickListener {
-            lifecycleScope.launch {
-                Movie.favorite(
-                    { movies ->
-                        b.favorites.rvMovies.layoutManager = LinearLayoutManager(this@ProfileActivity, LinearLayoutManager.HORIZONTAL, false)
-                        val adapter = AdapterRecyclerMovie()
-                        b.favorites.rvMovies.adapter = adapter
-                        adapter.submitList(movies)
-                    }, showLoading = false
-                )
-                Serie.favorite(
-                    { series ->
-                        b.favorites.rvSeries.layoutManager = LinearLayoutManager(this@ProfileActivity, LinearLayoutManager.HORIZONTAL, false)
-                        val adapter = AdapterRecyclerSerie()
-                        b.favorites.rvSeries.adapter = adapter
-                        adapter.submitList(series)
-                    }, showLoading = false
-                )
-            }
-        }
     }
 
     private fun observe() {
@@ -127,6 +106,7 @@ class ProfileActivity : ActivityEnhanced() {
         val colorBlueDark400 = getColor(R.color.blue_dark_400)
         val colorOrange300 = getColor(R.color.orange_300)
         val colorWhite = getColor(R.color.white)
+
         profileViewModel.isLanguageVisible.observe(this) {
             if (it) {
                 b.language.vgRoot.visibility = View.VISIBLE
@@ -153,6 +133,40 @@ class ProfileActivity : ActivityEnhanced() {
                 b.tvFavorites.setTextColor(colorOrange300)
                 b.ivFavoritesArrow.setColorFilter(colorOrange300)
                 b.ivFavoritesArrow.rotation = 180f
+                b.favorites.shimmerMovies.visibility = View.VISIBLE
+                b.favorites.rvMovies.visibility = View.GONE
+                b.favorites.shimmerSeries.visibility = View.VISIBLE
+                b.favorites.rvSeries.visibility = View.GONE
+                lifecycleScope.launch {
+                    Movie.favorite(
+                        {
+                            b.favorites.shimmerMovies.visibility = View.GONE
+                            b.favorites.rvMovies.visibility = View.VISIBLE
+                            b.favorites.rvMovies.layoutManager = LinearLayoutManager(this@ProfileActivity, LinearLayoutManager.HORIZONTAL, false)
+                            val adapter = AdapterRecyclerMovie()
+                            adapter.submitList(it)
+                            b.favorites.rvMovies.adapter = adapter
+                        },
+                        {
+                            b.favorites.shimmerMovies.visibility = View.INVISIBLE
+                        },
+                        showLoading = false
+                    )
+                    Serie.favorite(
+                        {
+                            b.favorites.shimmerSeries.visibility = View.GONE
+                            b.favorites.rvSeries.visibility = View.VISIBLE
+                            b.favorites.rvSeries.layoutManager = LinearLayoutManager(this@ProfileActivity, LinearLayoutManager.HORIZONTAL, false)
+                            val adapter = AdapterRecyclerSerie()
+                            adapter.submitList(it)
+                            b.favorites.rvSeries.adapter = adapter
+                        },
+                        {
+                            b.favorites.shimmerSeries.visibility = View.INVISIBLE
+                        },
+                        showLoading = false
+                    )
+                }
             } else {
                 b.favorites.vgRoot.visibility = View.GONE
                 b.cvFavorites.setCardBackgroundColor(colorBlueDark400)

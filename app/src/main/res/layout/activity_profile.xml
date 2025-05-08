@@ -238,7 +238,7 @@
             <include
                 android:id="@+id/favorites"
                 layout="@layout/layout_profile_favorites"
-                android:visibility="gone" />
+                android:visibility="visible" />
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cvPurchases"

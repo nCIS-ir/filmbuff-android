@@ -85,7 +85,7 @@ class MainActivity : ActivityEnhanced() {
                                 },
                                 onError = {
                                     App.HANDLER.post {
-                                        view.shimmerItems.visibility = View.GONE
+                                        view.shimmerItems.visibility = View.INVISIBLE
                                     }
                                 },
                                 showLoading = false
