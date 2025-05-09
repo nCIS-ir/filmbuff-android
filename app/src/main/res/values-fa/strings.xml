@@ -54,6 +54,8 @@
     <string name="old_password">رمز قبلی</string>
     <string name="otp_sent">رمز یکبار مصرف ارسال شده است به:</string>
     <string name="password">رمز عبور</string>
+    <string name="permission_action">دریافت مجوز</string>
+    <string name="permission_message">این برنامه به مجوز نمایش اعلان نیاز دارد.</string>
     <string name="play">پخش</string>
     <string name="profile">پروفایل</string>
     <string name="purchased_coins">سکه‌های خریداری‌شده</string>

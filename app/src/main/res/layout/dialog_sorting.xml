@@ -30,7 +30,7 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cvBody"
         android:layout_width="match_parent"
-        android:layout_height="248dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="-2dp"
         android:layout_marginEnd="24dp"
@@ -50,52 +50,59 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
-                android:layout_marginTop="16dp"
                 android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="@id/vgDirection"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="@+id/vgDirection">
 
                 <RadioButton
                     android:id="@+id/rbRelease"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="start"
                     android:buttonTint="@color/blue_400"
                     android:checked="true"
                     android:fontFamily="@font/bold"
                     android:text="@string/sort_release"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
 
                 <RadioButton
                     android:id="@+id/rbRating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="start"
                     android:layout_marginTop="8dp"
                     android:buttonTint="@color/blue_400"
                     android:fontFamily="@font/bold"
                     android:text="@string/sort_rating"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
 
                 <RadioButton
                     android:id="@+id/rbPopularity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="start"
                     android:layout_marginTop="8dp"
                     android:buttonTint="@color/blue_400"
                     android:fontFamily="@font/bold"
                     android:text="@string/sort_popularity"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
             </RadioGroup>
 
             <com.google.android.material.card.MaterialCardView
-                android:layout_width="80dp"
-                android:layout_height="0dp"
+                android:id="@+id/vgDirection"
+                android:layout_width="72dp"
+                android:layout_height="144dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 app:cardBackgroundColor="@color/transparent_black"
                 app:cardCornerRadius="24dp"
                 app:cardElevation="0dp"
-                app:layout_constraintBottom_toBottomOf="@+id/rgSort"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/rgSort"
+                app:layout_constraintTop_toTopOf="parent"
                 app:strokeColor="@color/blue_400"
                 app:strokeWidth="2dp">
 
@@ -141,13 +148,13 @@
                 android:id="@+id/btApply"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:layout_marginStart="40dp"
+                android:layout_marginStart="48dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="40dp"
+                android:layout_marginEnd="48dp"
                 android:layout_marginBottom="16dp"
                 app:font="@font/regular"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rgSort"
+                app:layout_constraintTop_toBottomOf="@+id/vgDirection"
                 app:text="@string/apply"
                 app:textSize="16sp" />
         </androidx.constraintlayout.widget.ConstraintLayout>

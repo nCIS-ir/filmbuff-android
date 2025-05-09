@@ -10,6 +10,5 @@ class SortingDialog(context: Context) : DialogEnhanced(context) {
         super.onCreate(savedInstanceState)
         val b = DialogSortingBinding.inflate(layoutInflater)
         setContentView(b.root)
-
     }
 }

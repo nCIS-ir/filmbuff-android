@@ -113,7 +113,6 @@ class MainActivity : ActivityEnhanced() {
         b.ivLogo.setOnClickListener { runActivity(PlayActivity::class.java) }
 
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
-
             override fun handleOnBackPressed() {
                 checkedExit()
             }

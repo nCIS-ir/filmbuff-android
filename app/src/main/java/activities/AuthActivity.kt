@@ -1,6 +1,7 @@
 package activities
 
 import android.os.Bundle
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import fragments.AuthLoginFragment
 import ir.ncis.filmbuff.ActivityEnhanced
@@ -16,6 +17,12 @@ class AuthActivity : ActivityEnhanced() {
         setContentView(b.root)
 
         showFragment(AuthLoginFragment())
+
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                checkedExit()
+            }
+        })
     }
 
     fun showFragment(fragment: Fragment) {
