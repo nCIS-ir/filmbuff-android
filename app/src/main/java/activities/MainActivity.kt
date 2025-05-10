@@ -1,6 +1,7 @@
 package activities
 
 import adapters.AdapterPagerMovieSlider
+import adapters.AdapterPagerSerieSlider
 import adapters.AdapterRecyclerMovie
 import adapters.AdapterRecyclerSerie
 import android.os.Bundle
@@ -12,6 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import dialogs.SortingDialog
+import enums.Mode
 import ir.ncis.filmbuff.ActivityEnhanced
 import ir.ncis.filmbuff.App
 import ir.ncis.filmbuff.databinding.ActivityMainBinding
@@ -26,7 +28,6 @@ import view_models.MainViewModel
 class MainActivity : ActivityEnhanced() {
     private val mainViewModel: MainViewModel by viewModels()
     private lateinit var b: ActivityMainBinding
-    var mode = Mode.MOVIE
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,6 +65,8 @@ class MainActivity : ActivityEnhanced() {
         mainViewModel.direction.observe(this) { mainViewModel.setShouldReload(true) }
         mainViewModel.mode.observe(this) { mode ->
             if (mode == Mode.MOVIE) {
+                b.btMovie.showBackground = true
+                b.btSerie.showBackground = false
                 lifecycleScope.launch {
                     repeatOnLifecycle(Lifecycle.State.STARTED) {
                         Movie.slider(
@@ -94,19 +97,37 @@ class MainActivity : ActivityEnhanced() {
                     }
                 }
             } else {
-                Serie.recent(
-                    {
-                        val adapter = AdapterRecyclerSerie()
-                        b.rvRecents.adapter = adapter
-                        adapter.submitList(it)
-                    },
-                    showLoading = false
-                )
+                b.btMovie.showBackground = false
+                b.btSerie.showBackground = true
+                lifecycleScope.launch {
+                    repeatOnLifecycle(Lifecycle.State.STARTED) {
+                        Serie.recent(
+                            {
+                                val adapter = AdapterRecyclerSerie()
+                                b.rvRecents.adapter = adapter
+                                adapter.submitList(it)
+                            },
+                            showLoading = false
+                        )
+                        Serie.slider(
+                            {
+                                b.shimmerSlider.visibility = View.GONE
+                                b.vpSlider.visibility = View.VISIBLE
+                                b.vpSlider.adapter = AdapterPagerSerieSlider(this@MainActivity, it)
+                            },
+                            {
+                                b.shimmerSlider.visibility = View.GONE
+                            },
+                            showLoading = false
+                        )
+                        loadSerieGenres()
+                    }
+                }
             }
         }
         mainViewModel.shouldReload.observe(this) { shouldReload ->
             if (shouldReload) {
-                if (mode == Mode.MOVIE) {
+                if (mainViewModel.mode.value == Mode.MOVIE) {
                     loadMovieGenres()
                 } else {
                     loadSerieGenres()
@@ -182,10 +203,5 @@ class MainActivity : ActivityEnhanced() {
                 b.vgGenres.addView(view.root)
             }
         }
-    }
-
-    enum class Mode {
-        MOVIE,
-        SERIE,
     }
 }
