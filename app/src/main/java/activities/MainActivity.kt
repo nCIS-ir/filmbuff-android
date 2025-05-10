@@ -35,6 +35,8 @@ class MainActivity : ActivityEnhanced() {
         b = ActivityMainBinding.inflate(layoutInflater)
         setContentView(b.root)
 
+        b.rvRecents.layoutManager = LinearLayoutManager(App.ACTIVITY, LinearLayoutManager.HORIZONTAL, false)
+
         observe()
 
         b.btMovie.setOnClickListener {
@@ -58,7 +60,6 @@ class MainActivity : ActivityEnhanced() {
         })
     }
 
-    //     b.rvRecents.layoutManager = LinearLayoutManager(App.ACTIVITY, LinearLayoutManager.HORIZONTAL, false)
 
     private fun observe() {
         mainViewModel.sort.observe(this) { mainViewModel.setShouldReload(true) }
