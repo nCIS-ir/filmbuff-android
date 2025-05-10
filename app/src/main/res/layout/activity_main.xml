@@ -186,6 +186,7 @@
             android:orientation="horizontal">
 
             <custom_views.MyButton
+                android:id="@+id/btMovie"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="4dp"
@@ -197,6 +198,7 @@
                 app:textSize="16sp" />
 
             <custom_views.MyButton
+                android:id="@+id/btSerie"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="4dp"
