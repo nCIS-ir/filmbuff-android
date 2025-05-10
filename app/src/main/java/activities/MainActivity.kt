@@ -21,10 +21,10 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import retrofit.calls.Movie
 import retrofit.calls.Serie
-import view_models.MainSortingViewModel
+import view_models.MainViewModel
 
 class MainActivity : ActivityEnhanced() {
-    private val mainSortingViewModel: MainSortingViewModel by viewModels()
+    private val mainViewModel: MainViewModel by viewModels()
     private lateinit var b: ActivityMainBinding
     var mode = Mode.MOVIE
 
@@ -36,35 +36,62 @@ class MainActivity : ActivityEnhanced() {
 
         observe()
 
-        lifecycleScope.launch {
-            b.rvRecents.layoutManager = LinearLayoutManager(App.ACTIVITY, LinearLayoutManager.HORIZONTAL, false)
+        b.btMovie.setOnClickListener {
+            mainViewModel.setMode(Mode.MOVIE)
+        }
+
+        b.btSerie.setOnClickListener {
+            mainViewModel.setMode(Mode.SERIE)
+        }
+
+        b.cvProfile.setOnClickListener { runActivity(ProfileActivity::class.java) }
+        b.cvSort.setOnClickListener { SortingDialog(this, mainViewModel).show() }
+        b.cvSearch.setOnClickListener { runActivity(SearchActivity::class.java) }
+
+        b.ivLogo.setOnClickListener { runActivity(PlayActivity::class.java) }
+
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                checkedExit()
+            }
+        })
+    }
+
+    //     b.rvRecents.layoutManager = LinearLayoutManager(App.ACTIVITY, LinearLayoutManager.HORIZONTAL, false)
+
+    private fun observe() {
+        mainViewModel.sort.observe(this) { mainViewModel.setShouldReload(true) }
+        mainViewModel.direction.observe(this) { mainViewModel.setShouldReload(true) }
+        mainViewModel.mode.observe(this) { mode ->
             if (mode == Mode.MOVIE) {
-                repeatOnLifecycle(Lifecycle.State.STARTED) {
-                    Movie.slider(
-                        {
-                            b.shimmerSlider.visibility = View.GONE
-                            b.vpSlider.visibility = View.VISIBLE
-                            b.vpSlider.adapter = AdapterPagerMovieSlider(this@MainActivity, it)
-                        },
-                        {
-                            b.shimmerSlider.visibility = View.GONE
-                        },
-                        showLoading = false
-                    )
-                    Movie.recent(
-                        {
-                            b.shimmerRecent.visibility = View.GONE
-                            b.rvRecents.visibility = View.VISIBLE
-                            val adapter = AdapterRecyclerMovie()
-                            b.rvRecents.adapter = adapter
-                            adapter.submitList(it)
-                        },
-                        {
-                            b.shimmerRecent.visibility = View.GONE
-                        },
-                        showLoading = false
-                    )
-                    loadMovieGenres()
+                lifecycleScope.launch {
+                    repeatOnLifecycle(Lifecycle.State.STARTED) {
+                        Movie.slider(
+                            {
+                                b.shimmerSlider.visibility = View.GONE
+                                b.vpSlider.visibility = View.VISIBLE
+                                b.vpSlider.adapter = AdapterPagerMovieSlider(this@MainActivity, it)
+                            },
+                            {
+                                b.shimmerSlider.visibility = View.GONE
+                            },
+                            showLoading = false
+                        )
+                        Movie.recent(
+                            {
+                                b.shimmerRecent.visibility = View.GONE
+                                b.rvRecents.visibility = View.VISIBLE
+                                val adapter = AdapterRecyclerMovie()
+                                b.rvRecents.adapter = adapter
+                                adapter.submitList(it)
+                            },
+                            {
+                                b.shimmerRecent.visibility = View.GONE
+                            },
+                            showLoading = false
+                        )
+                        loadMovieGenres()
+                    }
                 }
             } else {
                 Serie.recent(
@@ -77,31 +104,14 @@ class MainActivity : ActivityEnhanced() {
                 )
             }
         }
-
-        b.cvProfile.setOnClickListener { runActivity(ProfileActivity::class.java) }
-        b.cvSort.setOnClickListener { SortingDialog(this, mainSortingViewModel).show() }
-        b.cvSearch.setOnClickListener { runActivity(SearchActivity::class.java) }
-
-        b.ivLogo.setOnClickListener { runActivity(PlayActivity::class.java) }
-
-        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                checkedExit()
-            }
-        })
-    }
-
-    private fun observe() {
-        mainSortingViewModel.sort.observe(this) { mainSortingViewModel.setShouldReload(true) }
-        mainSortingViewModel.direction.observe(this) { mainSortingViewModel.setShouldReload(true) }
-        mainSortingViewModel.shouldReload.observe(this) { shouldReload ->
+        mainViewModel.shouldReload.observe(this) { shouldReload ->
             if (shouldReload) {
                 if (mode == Mode.MOVIE) {
                     loadMovieGenres()
                 } else {
-                    TODO("Serie genres")
+                    loadSerieGenres()
                 }
-                mainSortingViewModel.setShouldReload(false)
+                mainViewModel.setShouldReload(false)
             }
         }
     }
@@ -118,8 +128,42 @@ class MainActivity : ActivityEnhanced() {
                 async(Dispatchers.IO) {
                     Movie.genre(
                         genreId = genre.id,
-                        sort = mainSortingViewModel.sort.value!!,
-                        direction = mainSortingViewModel.direction.value!!,
+                        sort = mainViewModel.sort.value!!,
+                        direction = mainViewModel.direction.value!!,
+                        onSuccess = {
+                            App.HANDLER.post {
+                                view.shimmerItems.visibility = View.GONE
+                                view.rvItems.visibility = View.VISIBLE
+                                adapter.submitList(it)
+                            }
+                        },
+                        onError = {
+                            App.HANDLER.post {
+                                view.shimmerItems.visibility = View.INVISIBLE
+                            }
+                        },
+                        showLoading = false
+                    )
+                }
+                b.vgGenres.addView(view.root)
+            }
+        }
+    }
+
+    private fun loadSerieGenres() {
+        lifecycleScope.launch {
+            b.vgGenres.removeAllViews()
+            App.DB.genreDao().all().forEach { genre ->
+                val view = LayoutGenreBinding.inflate(layoutInflater)
+                view.tvTitle.text = genre.title
+                view.rvItems.layoutManager = LinearLayoutManager(App.ACTIVITY, LinearLayoutManager.HORIZONTAL, false)
+                val adapter = AdapterRecyclerSerie()
+                view.rvItems.adapter = adapter
+                async(Dispatchers.IO) {
+                    Serie.genre(
+                        genreId = genre.id,
+                        sort = mainViewModel.sort.value!!,
+                        direction = mainViewModel.direction.value!!,
                         onSuccess = {
                             App.HANDLER.post {
                                 view.shimmerItems.visibility = View.GONE

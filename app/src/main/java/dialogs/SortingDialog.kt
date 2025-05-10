@@ -9,9 +9,9 @@ import ir.ncis.filmbuff.App
 import ir.ncis.filmbuff.DialogEnhanced
 import ir.ncis.filmbuff.R
 import ir.ncis.filmbuff.databinding.DialogSortingBinding
-import view_models.MainSortingViewModel
+import view_models.MainViewModel
 
-class SortingDialog(context: Context, private val mainSortingViewModel: MainSortingViewModel) : DialogEnhanced(context) {
+class SortingDialog(context: Context, private val mainViewModel: MainViewModel) : DialogEnhanced(context) {
     private lateinit var b: DialogSortingBinding
     private val colorOrange300 = ContextHelper.getColor(R.color.orange_300)
     private val colorWhite = ContextHelper.getColor(R.color.white)
@@ -38,7 +38,7 @@ class SortingDialog(context: Context, private val mainSortingViewModel: MainSort
         }
 
         b.btApply.setOnClickListener {
-            mainSortingViewModel.setSort(
+            mainViewModel.setSort(
                 when {
                     b.rbPopularity.isChecked -> Sort.POPULARITY
                     b.rbRating.isChecked     -> Sort.RATING
@@ -46,13 +46,13 @@ class SortingDialog(context: Context, private val mainSortingViewModel: MainSort
                     else                     -> Sort.POPULARITY
                 }
             )
-            mainSortingViewModel.setDirection(if (b.ivAscending.getTag(b.ivAscending.id) as Boolean) Direction.ASCENDING else Direction.DESCENDING)
+            mainViewModel.setDirection(if (b.ivAscending.getTag(b.ivAscending.id) as Boolean) Direction.ASCENDING else Direction.DESCENDING)
             dismiss()
         }
     }
 
     private fun observe() {
-        mainSortingViewModel.sort.observe(App.ACTIVITY) { sort ->
+        mainViewModel.sort.observe(App.ACTIVITY) { sort ->
             when (sort) {
                 Sort.POPULARITY -> b.rbPopularity.isChecked = true
                 Sort.RATING     -> b.rbRating.isChecked = true
@@ -60,7 +60,7 @@ class SortingDialog(context: Context, private val mainSortingViewModel: MainSort
             }
         }
 
-        mainSortingViewModel.direction.observe(App.ACTIVITY) { direction ->
+        mainViewModel.direction.observe(App.ACTIVITY) { direction ->
             when (direction) {
                 Direction.ASCENDING  -> {
                     b.ivAscending.setColorFilter(colorOrange300)
