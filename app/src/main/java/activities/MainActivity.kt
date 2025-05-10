@@ -89,9 +89,7 @@ class MainActivity : ActivityEnhanced() {
                                 b.rvRecents.adapter = adapter
                                 adapter.submitList(it)
                             },
-                            {
-                                b.shimmerRecent.visibility = View.GONE
-                            },
+                            { b.shimmerRecent.visibility = View.GONE },
                             showLoading = false
                         )
                         loadMovieGenres()
@@ -116,9 +114,7 @@ class MainActivity : ActivityEnhanced() {
                                 b.vpSlider.visibility = View.VISIBLE
                                 b.vpSlider.adapter = AdapterPagerSerieSlider(this@MainActivity, it)
                             },
-                            {
-                                b.shimmerSlider.visibility = View.GONE
-                            },
+                            { b.shimmerSlider.visibility = View.GONE },
                             showLoading = false
                         )
                         loadSerieGenres()
@@ -159,11 +155,7 @@ class MainActivity : ActivityEnhanced() {
                                 adapter.submitList(it)
                             }
                         },
-                        onError = {
-                            App.HANDLER.post {
-                                view.shimmerItems.visibility = View.INVISIBLE
-                            }
-                        },
+                        onError = { App.HANDLER.post { view.shimmerItems.visibility = View.INVISIBLE } },
                         showLoading = false
                     )
                 }
@@ -193,11 +185,7 @@ class MainActivity : ActivityEnhanced() {
                                 adapter.submitList(it)
                             }
                         },
-                        onError = {
-                            App.HANDLER.post {
-                                view.shimmerItems.visibility = View.INVISIBLE
-                            }
-                        },
+                        onError = { App.HANDLER.post { view.shimmerItems.visibility = View.INVISIBLE } },
                         showLoading = false
                     )
                 }
