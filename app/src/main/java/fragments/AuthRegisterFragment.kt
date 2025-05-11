@@ -2,12 +2,12 @@ package fragments
 
 import activities.AuthActivity
 import android.os.Bundle
-import android.text.InputType
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import helpers.ContextHelper
 import ir.ncis.filmbuff.App
 import ir.ncis.filmbuff.R
 import ir.ncis.filmbuff.databinding.FragmentAuthRegisterBinding
@@ -55,10 +55,6 @@ class AuthRegisterFragment() : Fragment() {
             }
         }
 
-        b.ivTogglePassword.setOnClickListener {
-            isPasswordVisible = !isPasswordVisible
-            b.ivTogglePassword.setImageResource(if (isPasswordVisible) R.drawable.ic_eye_close else R.drawable.ic_eye_open)
-            b.etPassword.inputType = InputType.TYPE_CLASS_TEXT or if (isPasswordVisible) InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD else InputType.TYPE_TEXT_VARIATION_PASSWORD
-        }
+        ContextHelper.togglePassword(b.ivTogglePassword, b.etPassword)
     }
 }

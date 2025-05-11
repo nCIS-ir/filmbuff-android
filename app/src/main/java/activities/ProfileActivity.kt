@@ -9,6 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.orhanobut.hawk.Hawk
 import dialogs.ConfirmDialog
+import helpers.ContextHelper
 import helpers.LocaleHelper
 import ir.ncis.filmbuff.ActivityEnhanced
 import ir.ncis.filmbuff.App
@@ -230,5 +231,9 @@ class ProfileActivity : ActivityEnhanced() {
                 b.ivPasswordArrow.rotation = 0f
             }
         }
+
+        ContextHelper.togglePassword(b.password.ivToggleOldPassword, b.password.etOldPassword)
+        ContextHelper.togglePassword(b.password.ivToggleNewPassword, b.password.etNewPassword)
+        ContextHelper.togglePassword(b.password.ivToggleRepeatNewPassword, b.password.etRepeatNewPassword)
     }
 }
