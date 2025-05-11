@@ -3,6 +3,7 @@ package retrofit
 import retrofit.models.Favorite
 import retrofit.models.Info
 import retrofit.models.MovieBrief
+import retrofit.models.Purchase
 import retrofit.models.ResponseWrapper
 import retrofit.models.SerieBrief
 import retrofit.models.Session
@@ -100,5 +101,10 @@ interface ApiInterface {
 
     @DELETE("serie/visit/{episode_file_id}")
     suspend fun deleteVisitSerie(@Path("episode_file_id") episodeFileId: String): Response<Void>
+    //endregion
+
+    //region User
+    @GET("user/purchases")
+    suspend fun userPurchases(): Response<ResponseWrapper<List<Purchase>>>
     //endregion
 }

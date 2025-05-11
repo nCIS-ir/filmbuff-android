@@ -10,6 +10,7 @@
     <string name="api_auth_register">ثبت‌نام</string>
     <string name="api_auth_resend">ارسال مجدد کد</string>
     <string name="api_auth_verify">بررسی کد</string>
+    <string name="api_user_purchases">دریافت خریدهای کاربر</string>
     <string name="app_name">خوره فیلم</string>
     <string name="apply">اعمال</string>
     <string name="audio">صدا:</string>

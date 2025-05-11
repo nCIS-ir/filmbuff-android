@@ -9,6 +9,7 @@
     <string name="api_auth_register">Register</string>
     <string name="api_auth_resend">Resend Code</string>
     <string name="api_auth_verify">Verify OTP</string>
+    <string name="api_user_purchases">Get User Purchases</string>
     <string name="app_name">Film Buff</string>
     <string name="apply">Apply</string>
     <string name="audio">Audio:</string>

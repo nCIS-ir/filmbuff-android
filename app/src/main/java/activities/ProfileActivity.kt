@@ -1,6 +1,7 @@
 package activities
 
 import adapters.AdapterRecyclerMovie
+import adapters.AdapterRecyclerPurchase
 import adapters.AdapterRecyclerSerie
 import android.os.Bundle
 import android.view.View
@@ -18,6 +19,7 @@ import kotlinx.coroutines.launch
 import retrofit.calls.Auth
 import retrofit.calls.Movie
 import retrofit.calls.Serie
+import retrofit.calls.User
 import view_models.ProfileViewModel
 
 class ProfileActivity : ActivityEnhanced() {
@@ -185,6 +187,15 @@ class ProfileActivity : ActivityEnhanced() {
                 b.tvPurchases.setTextColor(colorOrange300)
                 b.ivPurchasesArrow.setColorFilter(colorOrange300)
                 b.ivPurchasesArrow.rotation = 180f
+                lifecycleScope.launch {
+                    User.purchases(
+                        {
+                            b.purchases.rvPurchases.layoutManager = LinearLayoutManager(this@ProfileActivity, LinearLayoutManager.VERTICAL,true)
+                            b.purchases.rvPurchases.adapter = AdapterRecyclerPurchase(it)
+                        },
+                        showLoading = true
+                    )
+                }
             } else {
                 b.purchases.vgRoot.visibility = View.GONE
                 b.cvPurchases.setCardBackgroundColor(colorBlueDark400)
