@@ -29,6 +29,7 @@
     <string name="end">End</string>
     <string name="enter">Login</string>
     <string name="enter_otp">Enter OTP</string>
+    <string name="episode">Episode 1</string>
     <string name="exit_message">Are you sure you want\nto exit Film-Buff?</string>
     <string name="fantasy">Fantasy</string>
     <string name="favorite_add">Adding Favorites</string>
