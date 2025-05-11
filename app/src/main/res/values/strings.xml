@@ -29,7 +29,6 @@
     <string name="end">End</string>
     <string name="enter">Login</string>
     <string name="enter_otp">Enter OTP</string>
-    <string name="episode">Episode 1</string>
     <string name="exit_message">Are you sure you want\nto exit Film-Buff?</string>
     <string name="fantasy">Fantasy</string>
     <string name="favorite_add">Adding Favorites</string>
@@ -80,9 +79,12 @@
     <string name="sample_date" translatable="false">2025/01/01</string>
     <string name="sample_days">365 Days</string>
     <string name="sample_email" translatable="false">admin@film-buff.ir</string>
+    <string name="sample_episode">Episode 1</string>
     <string name="sample_error_comment">Please enter your\n comment</string>
     <string name="sample_rating" translatable="false">9.2</string>
     <string name="sample_role">In Game of Thrones, Emilia Clarke portrays Daenerys Targaryen, the exiled princess of a fallen dynasty who rises from obscurity to become a fierce contender for the Iron Throne. Starting as a timid girl sold into marriage, Daenerys evolves into the "Mother of Dragons," liberating the oppressed and amassing armies across continents. Her journey is marked by fire, blood, and moral complexity, as her dream of breaking the wheel of tyranny eventually clashes with her growing ruthlessness. Clarke’s portrayal imbued Daenerys with both vulnerability and commanding intensity, making her one of the series’ most iconic and divisive characters.</string>
+    <string name="sample_season_description">Noble houses fight for power, Eddard Stark is betrayed, Daenerys Targaryen rises, and dark threats stir beyond the Wall.</string>
+    <string name="sample_season_title">Season 01</string>
     <string name="sample_story">Game of Thrones is a fantasy epic that chronicles the brutal and complex power struggles among noble families vying for control of the Iron Throne in the Seven Kingdoms of Westeros. As political alliances shift and betrayals abound, the story weaves together the fates of characters like Jon Snow, Daenerys Targaryen, and Tyrion Lannister, while supernatural threats—most notably the White Walkers—loom in the North. Themes of honor, ambition, loyalty, and survival drive the narrative, culminating in a climactic battle for the fate of the realm and questioning who is truly fit to rule.</string>
     <string name="sample_username" translatable="false">\@mlfr2kx</string>
     <string name="sci_fi">Sci-Fi</string>

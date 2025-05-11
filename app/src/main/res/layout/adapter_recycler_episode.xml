@@ -3,6 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="96dp"
+    android:layout_margin="4dp"
+    app:cardElevation="0dp"
     android:layout_height="48dp"
     app:cardCornerRadius="8dp">
 
@@ -22,7 +24,7 @@
             android:layout_height="0dp"
             android:alpha="0.5"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/glVertical"
+            app:layout_constraintTop_toTopOf="@+id/glHorizontal"
             app:srcCompat="@color/black" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -32,7 +34,7 @@
             android:layout_marginStart="4dp"
             android:layout_marginBottom="4dp"
             android:fontFamily="@font/regular"
-            android:text="@string/episode"
+            android:text="@string/sample_episode"
             android:textColor="@color/white"
             android:textSize="8sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -40,7 +42,7 @@
             tools:ignore="SmallSp" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvMinute"
+            android:id="@+id/tvDuration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"
@@ -54,8 +56,8 @@
             tools:ignore="SmallSp" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/glVertical"
-            android:layout_width="match_parent"
+            android:id="@+id/glHorizontal"
+            android:layout_width="0dp"
             android:layout_height="0dp"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.65" />
