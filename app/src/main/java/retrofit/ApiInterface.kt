@@ -7,6 +7,7 @@ import retrofit.models.Purchase
 import retrofit.models.ResponseWrapper
 import retrofit.models.SerieBrief
 import retrofit.models.Session
+import retrofit.models.Subscription
 import retrofit.models.User
 import retrofit2.Response
 import retrofit2.http.DELETE
@@ -106,5 +107,8 @@ interface ApiInterface {
     //region User
     @GET("user/purchases")
     suspend fun userPurchases(): Response<ResponseWrapper<List<Purchase>>>
+
+    @GET("user/subscriptions")
+    suspend fun userSubscriptions(): Response<ResponseWrapper<List<Subscription>>>
     //endregion
 }

@@ -3,6 +3,7 @@ package activities
 import adapters.AdapterRecyclerMovie
 import adapters.AdapterRecyclerPurchase
 import adapters.AdapterRecyclerSerie
+import adapters.AdapterRecyclerSubscription
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
@@ -215,6 +216,15 @@ class ProfileActivity : ActivityEnhanced() {
                 b.tvSubscriptions.setTextColor(colorOrange300)
                 b.ivSubscriptionsArrow.setColorFilter(colorOrange300)
                 b.ivSubscriptionsArrow.rotation = 180f
+                lifecycleScope.launch {
+                    User.subscriptions(
+                        {
+                            b.subscriptions.rvSubscriptions.layoutManager = LinearLayoutManager(this@ProfileActivity, LinearLayoutManager.VERTICAL,true)
+                            b.subscriptions.rvSubscriptions.adapter = AdapterRecyclerSubscription(it)
+                        },
+                        showLoading = true
+                    )
+                }
             } else {
                 b.subscriptions.vgRoot.visibility = View.GONE
                 b.cvSubscriptions.setCardBackgroundColor(colorBlueDark400)
