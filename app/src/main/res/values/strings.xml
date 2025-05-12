@@ -38,6 +38,7 @@
     <string name="favorites">Favorites</string>
     <string name="forgot_password">Forgot Password</string>
     <string name="format_subscription_remaining">%d day(s) left</string>
+    <string name="game_of_thrones">Game of Thrones</string>
     <string name="genre">Genre</string>
     <string name="hashtag" translatable="false">#</string>
     <string name="imdb" translatable="false">IMDB</string>
@@ -77,6 +78,7 @@
     <string name="sample_2_digits" translatable="false">12</string>
     <string name="sample_5_digits" translatable="false">12345</string>
     <string name="sample_bio">Emilia Clarke, born on October 23, 1986, in London, is a British actress whose magnetic presence and fearless performances catapulted her to international fame. A graduate of the Drama Centre London, she burst onto the global stage with her breakout role in Game of Thrones, captivating millions with her power and poise. Beyond Westeros, Clarke has showcased her versatility in films like Me Before You, Solo: A Star Wars Story, and Last Christmas. Admired for her charm, wit, and resilience—especially after surviving two life-threatening brain aneurysms—Clarke is as much a warrior off-screen as she is on it, becoming an inspiration and advocate for brain injury survivors worldwide.</string>
+    <string name="sample_body_description">King Robert asks Ned Stark to be Hand of the King, while across the sea, Daenerys Targaryen is married off to Khal Drogo. Meanwhile, a supernatural threat stirs beyond the Wall, and young Bran Stark witnesses a dark secret that nearly costs him his life.</string>
     <string name="sample_coins" translatable="false">1361</string>
     <string name="sample_date" translatable="false">2025/01/01</string>
     <string name="sample_days">365 Days</string>
