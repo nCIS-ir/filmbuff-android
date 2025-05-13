@@ -13,7 +13,7 @@ class AdapterRecyclerPurchase(private val purchases: List<Purchase>) : RecyclerV
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val purchase = purchases[position]
-        holder.b.tvId.text = purchase.id
+        holder.b.tvId.text = buildString { append(purchases.size - position) }
         holder.b.tvCoins.text = purchase.coins.toString()
         holder.b.tvReference.text = purchase.reference
         holder.b.tvDate.text = purchase.paidAt
