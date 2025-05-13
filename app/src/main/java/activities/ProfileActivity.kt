@@ -190,10 +190,12 @@ class ProfileActivity : ActivityEnhanced() {
                 b.ivPurchasesArrow.setColorFilter(colorOrange300)
                 b.ivPurchasesArrow.rotation = 180f
                 lifecycleScope.launch {
+                    b.purchases.rvPurchases.visibility = View.GONE
                     User.purchases(
                         {
-                            b.purchases.rvPurchases.layoutManager = LinearLayoutManager(this@ProfileActivity, LinearLayoutManager.VERTICAL,true)
-                            b.purchases.rvPurchases.adapter = AdapterRecyclerPurchase(it)
+                            b.purchases.rvPurchases.visibility = View.VISIBLE
+                            b.purchases.rvPurchases.layoutManager = LinearLayoutManager(this@ProfileActivity, LinearLayoutManager.VERTICAL, false)
+                            b.purchases.rvPurchases.adapter = AdapterRecyclerPurchase(it.reversed())
                         },
                         showLoading = true
                     )
@@ -217,10 +219,12 @@ class ProfileActivity : ActivityEnhanced() {
                 b.ivSubscriptionsArrow.setColorFilter(colorOrange300)
                 b.ivSubscriptionsArrow.rotation = 180f
                 lifecycleScope.launch {
+                    b.subscriptions.rvSubscriptions.visibility = View.GONE
                     User.subscriptions(
                         {
-                            b.subscriptions.rvSubscriptions.layoutManager = LinearLayoutManager(this@ProfileActivity, LinearLayoutManager.VERTICAL,true)
-                            b.subscriptions.rvSubscriptions.adapter = AdapterRecyclerSubscription(it)
+                            b.subscriptions.rvSubscriptions.visibility = View.VISIBLE
+                            b.subscriptions.rvSubscriptions.layoutManager = LinearLayoutManager(this@ProfileActivity, LinearLayoutManager.VERTICAL, false)
+                            b.subscriptions.rvSubscriptions.adapter = AdapterRecyclerSubscription(it.reversed())
                         },
                         showLoading = true
                     )

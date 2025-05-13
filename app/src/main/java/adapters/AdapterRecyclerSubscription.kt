@@ -13,7 +13,7 @@ class AdapterRecyclerSubscription(private val subscriptions: List<Subscription>)
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val subscription = subscriptions[position]
-        holder.b.tvId.text = subscription.id
+        holder.b.tvId.text = buildString { append(subscriptions.size - position) }
         holder.b.tvDuration.text = subscription.duration.toString()
         holder.b.tvStart.text = subscription.startedAt
         holder.b.tvEnd.text = subscription.endedAt
