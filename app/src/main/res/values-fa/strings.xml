@@ -10,6 +10,7 @@
     <string name="api_auth_register">ثبت‌نام</string>
     <string name="api_auth_resend">ارسال مجدد کد</string>
     <string name="api_auth_verify">بررسی کد</string>
+    <string name="api_user_password">تغییر رمز عبور</string>
     <string name="api_user_purchases">دریافت خریدهای کاربر</string>
     <string name="api_user_subscriptions">دریافت اشتراک‌های کاربر</string>
     <string name="app_name">خوره فیلم</string>
@@ -32,6 +33,9 @@
     <string name="end">پایان</string>
     <string name="enter">وارد شوید</string>
     <string name="enter_otp">رمز یکبار مصرف را وارد کنید</string>
+    <string name="error_new_password">رمز جدید باید حداقل 8 کاراکتر باشد!</string>
+    <string name="error_old_password">رمز قبلی را وارد کنید!</string>
+    <string name="error_repeat_password">تکرار رمز جدید باید با رمز جدید یکسان باشد!</string>
     <string name="exit_message">آیا مطمئن هستید که می‌خواهید\nاز خوره فیلم خارج شوید؟</string>
     <string name="fantasy">فانتزی</string>
     <string name="favorite_add">در حال ثبت علاقه‌مندی‌</string>
@@ -48,6 +52,7 @@
     <string name="loading_title">درحال بارگذاری</string>
     <string name="login">ورود</string>
     <string name="logout">خروج از حساب کاربری</string>
+    <string name="message_password_changed">رمز عبور با موفقیت تغییر یافت.</string>
     <string name="movie_name">بازی تاج و تخت</string>
     <string name="movies">فیلم ها</string>
     <string name="new_password">رمز جدید</string>

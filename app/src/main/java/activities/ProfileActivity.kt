@@ -6,6 +6,7 @@ import adapters.AdapterRecyclerSerie
 import adapters.AdapterRecyclerSubscription
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -103,6 +104,45 @@ class ProfileActivity : ActivityEnhanced() {
 
         b.language.cvEnglish.setOnClickListener { LocaleHelper.changeLocale(this, LocaleHelper.EN) }
         b.language.cvFarsi.setOnClickListener { LocaleHelper.changeLocale(this, LocaleHelper.FA) }
+
+        b.password.btConfirm.setOnClickListener {
+            val oldPassword = b.password.etOldPassword.editableText.toString()
+            val newPassword = b.password.etNewPassword.editableText.toString()
+            val repeatNewPassword = b.password.etRepeatNewPassword.editableText.toString()
+            var error: String? = null
+            if (oldPassword.isEmpty()) {
+                error = getString(R.string.error_old_password)
+            } else {
+                if (newPassword.length < 8) {
+                    error = getString(R.string.error_new_password)
+                } else {
+                    if (repeatNewPassword != newPassword) {
+                        error = getString(R.string.error_repeat_password)
+                    }
+                }
+            }
+            if (error != null) {
+                Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
+            } else {
+                lifecycleScope.launch {
+                    User.password(
+                        oldPassword,
+                        newPassword,
+                        repeatNewPassword,
+                        {
+                            Toast.makeText(this@ProfileActivity, "Password has been changed successfully.", Toast.LENGTH_SHORT).show()
+                            b.password.etOldPassword.text = null
+                            b.password.etNewPassword.text = null
+                            b.password.etRepeatNewPassword.text = null
+                        },
+                        {
+                            Toast.makeText(this@ProfileActivity, it.message, Toast.LENGTH_SHORT).show()
+                        },
+                        showLoading = true
+                    )
+                }
+            }
+        }
     }
 
     private fun observe() {
@@ -190,10 +230,8 @@ class ProfileActivity : ActivityEnhanced() {
                 b.ivPurchasesArrow.setColorFilter(colorOrange300)
                 b.ivPurchasesArrow.rotation = 180f
                 lifecycleScope.launch {
-                    b.purchases.rvPurchases.visibility = View.GONE
                     User.purchases(
                         {
-                            b.purchases.rvPurchases.visibility = View.VISIBLE
                             b.purchases.rvPurchases.layoutManager = LinearLayoutManager(this@ProfileActivity, LinearLayoutManager.VERTICAL, false)
                             b.purchases.rvPurchases.adapter = AdapterRecyclerPurchase(it.reversed())
                         },
@@ -219,10 +257,8 @@ class ProfileActivity : ActivityEnhanced() {
                 b.ivSubscriptionsArrow.setColorFilter(colorOrange300)
                 b.ivSubscriptionsArrow.rotation = 180f
                 lifecycleScope.launch {
-                    b.subscriptions.rvSubscriptions.visibility = View.GONE
                     User.subscriptions(
                         {
-                            b.subscriptions.rvSubscriptions.visibility = View.VISIBLE
                             b.subscriptions.rvSubscriptions.layoutManager = LinearLayoutManager(this@ProfileActivity, LinearLayoutManager.VERTICAL, false)
                             b.subscriptions.rvSubscriptions.adapter = AdapterRecyclerSubscription(it.reversed())
                         },

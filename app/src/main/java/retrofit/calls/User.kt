@@ -94,4 +94,24 @@ object User {
             onError?.invoke(e)
         }
     }
+
+    suspend fun password(oldPass: String, newPass: String, repeatPass: String, onSuccess: () -> Unit, onError: ((Exception) -> Unit)? = null, showLoading: Boolean = true) {
+        var loadingDialog: LoadingDialog? = null
+        if (showLoading) {
+            loadingDialog = LoadingDialog(App.ACTIVITY, App.ACTIVITY.getString(R.string.api_user_password))
+            loadingDialog.show()
+        }
+        try {
+            val response = ApiClient.API.userPassword(oldPass,newPass,repeatPass)
+            loadingDialog?.dismiss()
+            if (response.isSuccessful) {
+                onSuccess?.invoke()
+            } else {
+                val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.unknown_error)
+                onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
+            }
+        }catch (e: Exception){
+            onError?.invoke(e)
+        }
+    }
 }
