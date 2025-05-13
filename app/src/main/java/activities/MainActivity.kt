@@ -40,11 +40,15 @@ class MainActivity : ActivityEnhanced() {
         observe()
 
         b.btMovie.setOnClickListener {
-            mainViewModel.setMode(Mode.MOVIE)
+            if (mainViewModel.mode.value != Mode.MOVIE) {
+                mainViewModel.setMode(Mode.MOVIE)
+            }
         }
 
         b.btSerie.setOnClickListener {
-            mainViewModel.setMode(Mode.SERIE)
+            if (mainViewModel.mode.value != Mode.SERIE) {
+                mainViewModel.setMode(Mode.SERIE)
+            }
         }
 
         b.cvProfile.setOnClickListener { runActivity(ProfileActivity::class.java) }
@@ -70,6 +74,10 @@ class MainActivity : ActivityEnhanced() {
                 b.btSerie.showBackground = false
                 lifecycleScope.launch {
                     repeatOnLifecycle(Lifecycle.State.STARTED) {
+                        b.shimmerSlider.visibility = View.VISIBLE
+                        b.vpSlider.visibility = View.GONE
+                        b.shimmerRecent.visibility = View.VISIBLE
+                        b.rvRecents.visibility = View.GONE
                         Movie.slider(
                             {
                                 b.shimmerSlider.visibility = View.GONE
@@ -100,14 +108,10 @@ class MainActivity : ActivityEnhanced() {
                 b.btSerie.showBackground = true
                 lifecycleScope.launch {
                     repeatOnLifecycle(Lifecycle.State.STARTED) {
-                        Serie.recent(
-                            {
-                                val adapter = AdapterRecyclerSerie()
-                                b.rvRecents.adapter = adapter
-                                adapter.submitList(it)
-                            },
-                            showLoading = false
-                        )
+                        b.shimmerSlider.visibility = View.VISIBLE
+                        b.vpSlider.visibility = View.GONE
+                        b.shimmerRecent.visibility = View.VISIBLE
+                        b.rvRecents.visibility = View.GONE
                         Serie.slider(
                             {
                                 b.shimmerSlider.visibility = View.GONE
@@ -115,6 +119,14 @@ class MainActivity : ActivityEnhanced() {
                                 b.vpSlider.adapter = AdapterPagerSerieSlider(this@MainActivity, it)
                             },
                             { b.shimmerSlider.visibility = View.GONE },
+                            showLoading = false
+                        )
+                        Serie.recent(
+                            {
+                                val adapter = AdapterRecyclerSerie()
+                                b.rvRecents.adapter = adapter
+                                adapter.submitList(it)
+                            },
                             showLoading = false
                         )
                         loadSerieGenres()
