@@ -105,6 +105,10 @@ interface ApiInterface {
     //endregion
 
     //region User
+    @PATCH("user/password")
+    @FormUrlEncoded
+    suspend fun userPassword(@Field("old_pass") oldPass: String, @Field("new_pass") newPass: String, @Field("repeat_pass") repeatPass: String): Response<Void>
+
     @GET("user/purchases")
     suspend fun userPurchases(): Response<ResponseWrapper<List<Purchase>>>
 

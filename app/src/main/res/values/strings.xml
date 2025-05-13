@@ -9,6 +9,7 @@
     <string name="api_auth_register">Register</string>
     <string name="api_auth_resend">Resend Code</string>
     <string name="api_auth_verify">Verify OTP</string>
+    <string name="api_user_password">Change Your Password</string>
     <string name="api_user_purchases">Get User Purchases</string>
     <string name="api_user_subscriptions">Get User Subscriptions</string>
     <string name="app_name">Film Buff</string>
@@ -31,6 +32,9 @@
     <string name="end">End</string>
     <string name="enter">Login</string>
     <string name="enter_otp">Enter OTP</string>
+    <string name="error_new_password">New password must be at least 8 characters!</string>
+    <string name="error_old_password">Enter old password!</string>
+    <string name="error_repeat_password">Repeat password must be the same as new password!</string>
     <string name="exit_message">Are you sure you want\nto exit Film-Buff?</string>
     <string name="fantasy">Fantasy</string>
     <string name="favorite_add">Adding Favorites</string>
@@ -51,6 +55,7 @@
     <string name="loading_title">Loading</string>
     <string name="login">Login</string>
     <string name="logout">Logout</string>
+    <string name="message_password_changed">Password has been changed successfully.</string>
     <string name="movie_name">The Game of Thrones</string>
     <string name="movies">Movies</string>
     <string name="new_password">New Password</string>
