@@ -79,7 +79,7 @@
                 android:layout_gravity="center"
                 android:fontFamily="@font/regular"
                 android:justificationMode="inter_word"
-                android:text="@string/sample_body_description"
+                android:text="@string/sample_episode_description"
                 android:textColor="@color/white"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -88,6 +88,7 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
+                android:layout_marginTop="8dp"
                 android:layout_height="wrap_content"
                 tools:itemCount="4"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
