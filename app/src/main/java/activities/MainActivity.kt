@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
+import androidx.core.view.children
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -69,6 +70,7 @@ class MainActivity : ActivityEnhanced() {
         mainViewModel.sort.observe(this) { mainViewModel.setShouldReload(true) }
         mainViewModel.direction.observe(this) { mainViewModel.setShouldReload(true) }
         mainViewModel.mode.observe(this) { mode ->
+            mainViewModel.setShouldReload(true)
             if (mode == Mode.MOVIE) {
                 b.btMovie.showBackground = true
                 b.btSerie.showBackground = false
@@ -78,32 +80,38 @@ class MainActivity : ActivityEnhanced() {
                         b.vpSlider.visibility = View.GONE
                         b.shimmerRecent.visibility = View.VISIBLE
                         b.rvRecents.visibility = View.GONE
-                        Movie.slider(
-                            {
-                                b.shimmerSlider.visibility = View.GONE
-                                b.vpSlider.visibility = View.VISIBLE
-                                b.vpSlider.adapter = AdapterPagerMovieSlider(this@MainActivity, it)
-                            },
-                            {
-                                b.shimmerSlider.visibility = View.GONE
-                            },
-                            showLoading = false
-                        )
-                        Movie.recent(
-                            {
-                                b.shimmerRecent.visibility = View.GONE
-                                b.rvRecents.visibility = View.VISIBLE
-                                val adapter = AdapterRecyclerMovie()
-                                b.rvRecents.adapter = adapter
-                                adapter.submitList(it)
-                            },
-                            { b.shimmerRecent.visibility = View.GONE },
-                            showLoading = false
-                        )
-                        loadMovieGenres()
+                        async(Dispatchers.IO) {
+                            Movie.slider(
+                                { movies ->
+                                    App.HANDLER.post {
+                                        b.shimmerSlider.visibility = View.GONE
+                                        b.vpSlider.visibility = View.VISIBLE
+                                        b.vpSlider.adapter = AdapterPagerMovieSlider(this@MainActivity, movies)
+                                    }
+                                },
+                                { App.HANDLER.post { b.shimmerSlider.visibility = View.GONE } },
+                                showLoading = false
+                            )
+                        }
+                        async(Dispatchers.IO) {
+                            Movie.recent(
+                                { movies ->
+                                    App.HANDLER.post {
+                                        b.shimmerRecent.visibility = View.GONE
+                                        b.rvRecents.visibility = View.VISIBLE
+                                        val adapter = AdapterRecyclerMovie()
+                                        b.rvRecents.adapter = adapter
+                                        adapter.submitList(movies)
+                                    }
+                                },
+                                { App.HANDLER.post { b.shimmerRecent.visibility = View.GONE } },
+                                showLoading = false
+                            )
+                        }
                     }
                 }
             } else {
+                mainViewModel.setShouldReload(true)
                 b.btMovie.showBackground = false
                 b.btSerie.showBackground = true
                 lifecycleScope.launch {
@@ -112,24 +120,34 @@ class MainActivity : ActivityEnhanced() {
                         b.vpSlider.visibility = View.GONE
                         b.shimmerRecent.visibility = View.VISIBLE
                         b.rvRecents.visibility = View.GONE
-                        Serie.slider(
-                            {
-                                b.shimmerSlider.visibility = View.GONE
-                                b.vpSlider.visibility = View.VISIBLE
-                                b.vpSlider.adapter = AdapterPagerSerieSlider(this@MainActivity, it)
-                            },
-                            { b.shimmerSlider.visibility = View.GONE },
-                            showLoading = false
-                        )
-                        Serie.recent(
-                            {
-                                val adapter = AdapterRecyclerSerie()
-                                b.rvRecents.adapter = adapter
-                                adapter.submitList(it)
-                            },
-                            showLoading = false
-                        )
-                        loadSerieGenres()
+                        async(Dispatchers.IO) {
+                            Serie.slider(
+                                { series ->
+                                    App.HANDLER.post {
+                                        b.shimmerSlider.visibility = View.GONE
+                                        b.vpSlider.visibility = View.VISIBLE
+                                        b.vpSlider.adapter = AdapterPagerSerieSlider(this@MainActivity, series)
+                                    }
+                                },
+                                { App.HANDLER.post { b.shimmerSlider.visibility = View.GONE } },
+                                showLoading = false
+                            )
+                        }
+                        async(Dispatchers.IO) {
+                            Serie.recent(
+                                { series ->
+                                    App.HANDLER.post {
+                                        b.shimmerRecent.visibility = View.GONE
+                                        b.rvRecents.visibility = View.VISIBLE
+                                        val adapter = AdapterRecyclerSerie()
+                                        b.rvRecents.adapter = adapter
+                                        adapter.submitList(series)
+                                    }
+                                },
+                                { App.HANDLER.post { b.shimmerRecent.visibility = View.GONE } },
+                                showLoading = false
+                            )
+                        }
                     }
                 }
             }
@@ -151,27 +169,32 @@ class MainActivity : ActivityEnhanced() {
             b.vgGenres.removeAllViews()
             App.DB.genreDao().all().forEach { genre ->
                 val view = LayoutGenreBinding.inflate(layoutInflater)
+                view.root.tag = genre.id
                 view.tvTitle.text = genre.title
                 view.rvItems.layoutManager = LinearLayoutManager(App.ACTIVITY, LinearLayoutManager.HORIZONTAL, false)
-                val adapter = AdapterRecyclerMovie()
-                view.rvItems.adapter = adapter
-                async(Dispatchers.IO) {
-                    Movie.genre(
-                        genreId = genre.id,
-                        sort = mainViewModel.sort.value!!,
-                        direction = mainViewModel.direction.value!!,
-                        onSuccess = {
-                            App.HANDLER.post {
-                                view.shimmerItems.visibility = View.GONE
-                                view.rvItems.visibility = View.VISIBLE
-                                adapter.submitList(it)
-                            }
-                        },
-                        onError = { App.HANDLER.post { view.shimmerItems.visibility = View.INVISIBLE } },
-                        showLoading = false
-                    )
-                }
                 b.vgGenres.addView(view.root)
+            }
+            async(Dispatchers.IO) {
+                Movie.allGenres(
+                    sort = mainViewModel.sort.value!!,
+                    direction = mainViewModel.direction.value!!,
+                    onSuccess = { movieGenres ->
+                        movieGenres.forEach { movieGenre ->
+                            App.HANDLER.post {
+                                val view = b.vgGenres.children.find { view -> view.tag == movieGenre.genreId }
+                                if (view != null) {
+                                    val bindingView = LayoutGenreBinding.bind(view)
+                                    bindingView.shimmerItems.visibility = View.GONE
+                                    bindingView.rvItems.visibility = View.VISIBLE
+                                    val adapter = AdapterRecyclerMovie()
+                                    bindingView.rvItems.adapter = adapter
+                                    adapter.submitList(movieGenre.movies)
+                                }
+                            }
+                        }
+                    },
+                    showLoading = false
+                )
             }
         }
     }
@@ -181,27 +204,32 @@ class MainActivity : ActivityEnhanced() {
             b.vgGenres.removeAllViews()
             App.DB.genreDao().all().forEach { genre ->
                 val view = LayoutGenreBinding.inflate(layoutInflater)
+                view.root.tag = genre.id
                 view.tvTitle.text = genre.title
                 view.rvItems.layoutManager = LinearLayoutManager(App.ACTIVITY, LinearLayoutManager.HORIZONTAL, false)
-                val adapter = AdapterRecyclerSerie()
-                view.rvItems.adapter = adapter
-                async(Dispatchers.IO) {
-                    Serie.genre(
-                        genreId = genre.id,
-                        sort = mainViewModel.sort.value!!,
-                        direction = mainViewModel.direction.value!!,
-                        onSuccess = {
-                            App.HANDLER.post {
-                                view.shimmerItems.visibility = View.GONE
-                                view.rvItems.visibility = View.VISIBLE
-                                adapter.submitList(it)
-                            }
-                        },
-                        onError = { App.HANDLER.post { view.shimmerItems.visibility = View.INVISIBLE } },
-                        showLoading = false
-                    )
-                }
                 b.vgGenres.addView(view.root)
+            }
+            async(Dispatchers.IO) {
+                Serie.allGenres(
+                    sort = mainViewModel.sort.value!!,
+                    direction = mainViewModel.direction.value!!,
+                    onSuccess = { serieGenres ->
+                        serieGenres.forEach { serieGenre ->
+                            App.HANDLER.post {
+                                val view = b.vgGenres.children.find { view -> view.tag == serieGenre.genreId }
+                                if (view != null) {
+                                    val bindingView = LayoutGenreBinding.bind(view)
+                                    bindingView.shimmerItems.visibility = View.GONE
+                                    bindingView.rvItems.visibility = View.VISIBLE
+                                    val adapter = AdapterRecyclerSerie()
+                                    bindingView.rvItems.adapter = adapter
+                                    adapter.submitList(serieGenre.series)
+                                }
+                            }
+                        }
+                    },
+                    showLoading = false
+                )
             }
         }
     }

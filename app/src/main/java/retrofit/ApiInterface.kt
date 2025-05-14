@@ -3,9 +3,11 @@ package retrofit
 import retrofit.models.Favorite
 import retrofit.models.Info
 import retrofit.models.MovieBrief
+import retrofit.models.MovieGenre
 import retrofit.models.Purchase
 import retrofit.models.ResponseWrapper
 import retrofit.models.SerieBrief
+import retrofit.models.SerieGenre
 import retrofit.models.Session
 import retrofit.models.Subscription
 import retrofit.models.User
@@ -56,6 +58,9 @@ interface ApiInterface {
     @GET("movie/recent")
     suspend fun movieRecent(): Response<ResponseWrapper<List<MovieBrief>>>
 
+    @GET("movie/genre")
+    suspend fun movieAllGenres(@Query("sort") sort: String, @Query("direction") direction: String): Response<ResponseWrapper<List<MovieGenre>>>
+
     @GET("movie/{genre_id}")
     suspend fun movieGenre(@Path("genre_id") genreId: String, @Query("page") page: Int, @Query("perPage") perPage: Int, @Query("sort") sort: String, @Query("direction") direction: String): Response<ResponseWrapper<List<MovieBrief>>>
 
@@ -81,6 +86,9 @@ interface ApiInterface {
     //region Serie
     @GET("serie/recent")
     suspend fun serieRecent(): Response<ResponseWrapper<List<SerieBrief>>>
+
+    @GET("serie/genre")
+    suspend fun serieAllGenres(@Query("sort") sort: String, @Query("direction") direction: String): Response<ResponseWrapper<List<SerieGenre>>>
 
     @GET("serie/{genre_id}")
     suspend fun serieGenre(@Path("genre_id") genreId: String, @Query("page") page: Int, @Query("perPage") perPage: Int, @Query("sort") sort: String, @Query("direction") direction: String): Response<ResponseWrapper<List<SerieBrief>>>

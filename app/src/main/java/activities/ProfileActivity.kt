@@ -233,7 +233,7 @@ class ProfileActivity : ActivityEnhanced() {
                     User.purchases(
                         {
                             b.purchases.rvPurchases.layoutManager = LinearLayoutManager(this@ProfileActivity, LinearLayoutManager.VERTICAL, false)
-                            b.purchases.rvPurchases.adapter = AdapterRecyclerPurchase(it.reversed())
+                            b.purchases.rvPurchases.adapter = AdapterRecyclerPurchase(it)
                         },
                         showLoading = true
                     )
@@ -260,7 +260,7 @@ class ProfileActivity : ActivityEnhanced() {
                     User.subscriptions(
                         {
                             b.subscriptions.rvSubscriptions.layoutManager = LinearLayoutManager(this@ProfileActivity, LinearLayoutManager.VERTICAL, false)
-                            b.subscriptions.rvSubscriptions.adapter = AdapterRecyclerSubscription(it.reversed())
+                            b.subscriptions.rvSubscriptions.adapter = AdapterRecyclerSubscription(it)
                         },
                         showLoading = true
                     )
