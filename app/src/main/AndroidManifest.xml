@@ -17,6 +17,7 @@
         tools:replace="android:allowBackup"
         tools:targetApi="31">
         <activity android:name="activities.AuthActivity" />
+        <activity android:name="activities.GenreActivity" />
         <activity android:name="activities.MainActivity" />
         <activity android:name="activities.MovieActivity" />
         <activity android:name="activities.PlayActivity" />

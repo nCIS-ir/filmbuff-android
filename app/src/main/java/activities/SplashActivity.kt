@@ -21,7 +21,7 @@ import database.models.Pack
 import database.models.Plan
 import database.models.Quality
 import database.models.Role
-import helpers.KeyString
+import helpers.KeyHelper
 import ir.ncis.filmbuff.ActivityEnhanced
 import ir.ncis.filmbuff.App
 import ir.ncis.filmbuff.R.string.permission_action
@@ -99,7 +99,7 @@ class SplashActivity : ActivityEnhanced() {
                             App.HANDLER.post { b.pbLoading.progress++ }
                             App.DB.roleDao().insert(*Role.from(info.roles).toTypedArray())
                             App.HANDLER.post { b.pbLoading.progress++ }
-                            if (!Hawk.contains(KeyString.TOKEN)) {
+                            if (!Hawk.contains(KeyHelper.TOKEN)) {
                                 runActivity(AuthActivity::class.java, shouldFinish = true)
                             } else {
                                 Auth.info(

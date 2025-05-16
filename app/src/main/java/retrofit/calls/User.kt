@@ -3,7 +3,7 @@ package retrofit.calls
 import androidx.lifecycle.lifecycleScope
 import com.orhanobut.hawk.Hawk
 import dialogs.LoadingDialog
-import helpers.KeyString
+import helpers.KeyHelper
 import ir.ncis.filmbuff.App
 import ir.ncis.filmbuff.R
 import kotlinx.coroutines.launch
@@ -37,8 +37,8 @@ object User {
                 if (response.code() == 401) {
                     refresh(
                         {
-                            Hawk.put(KeyString.TOKEN, it.token)
-                            Hawk.put(KeyString.REFRESH, it.refresh)
+                            Hawk.put(KeyHelper.TOKEN, it.token)
+                            Hawk.put(KeyHelper.REFRESH, it.refresh)
                             App.ACTIVITY.lifecycleScope.launch { purchases(onSuccess, onError, showLoading) }
                         },
                         {
@@ -78,8 +78,8 @@ object User {
                 if (response.code() == 401) {
                     refresh(
                         {
-                            Hawk.put(KeyString.TOKEN, it.token)
-                            Hawk.put(KeyString.REFRESH, it.refresh)
+                            Hawk.put(KeyHelper.TOKEN, it.token)
+                            Hawk.put(KeyHelper.REFRESH, it.refresh)
                             App.ACTIVITY.lifecycleScope.launch { subscriptions(onSuccess, onError, showLoading) }
                         },
                         {

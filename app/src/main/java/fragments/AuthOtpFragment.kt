@@ -13,7 +13,7 @@ import com.goodiebag.pinview.Pinview
 import com.goodiebag.pinview.Pinview.PinViewEventListener
 import com.orhanobut.hawk.Hawk
 import helpers.ContextHelper
-import helpers.KeyString
+import helpers.KeyHelper
 import ir.ncis.filmbuff.App
 import ir.ncis.filmbuff.R
 import ir.ncis.filmbuff.databinding.FragmentAuthOtpBinding
@@ -70,8 +70,8 @@ class AuthOtpFragment(private val username: String, private val email: String) :
                 Auth.verify(
                     username, otp,
                     {
-                        Hawk.put(KeyString.TOKEN, it.token)
-                        Hawk.put(KeyString.REFRESH, it.refresh)
+                        Hawk.put(KeyHelper.TOKEN, it.token)
+                        Hawk.put(KeyHelper.REFRESH, it.refresh)
                         lifecycleScope.launch {
                             Auth.info({ user ->
                                 App.USER = user

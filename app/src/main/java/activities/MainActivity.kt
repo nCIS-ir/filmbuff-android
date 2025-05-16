@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
+import androidx.core.os.bundleOf
 import androidx.core.view.children
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -15,6 +16,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import dialogs.SortingDialog
 import enums.Mode
+import helpers.KeyHelper
 import ir.ncis.filmbuff.ActivityEnhanced
 import ir.ncis.filmbuff.App
 import ir.ncis.filmbuff.databinding.ActivityMainBinding
@@ -99,9 +101,7 @@ class MainActivity : ActivityEnhanced() {
                                     App.HANDLER.post {
                                         b.shimmerRecent.visibility = View.GONE
                                         b.rvRecents.visibility = View.VISIBLE
-                                        val adapter = AdapterRecyclerMovie()
-                                        b.rvRecents.adapter = adapter
-                                        adapter.submitList(movies)
+                                        b.rvRecents.adapter = AdapterRecyclerMovie().apply { submitList(movies) }
                                     }
                                 },
                                 { App.HANDLER.post { b.shimmerRecent.visibility = View.GONE } },
@@ -139,9 +139,7 @@ class MainActivity : ActivityEnhanced() {
                                     App.HANDLER.post {
                                         b.shimmerRecent.visibility = View.GONE
                                         b.rvRecents.visibility = View.VISIBLE
-                                        val adapter = AdapterRecyclerSerie()
-                                        b.rvRecents.adapter = adapter
-                                        adapter.submitList(series)
+                                        b.rvRecents.adapter = AdapterRecyclerSerie().apply { submitList(series) }
                                     }
                                 },
                                 { App.HANDLER.post { b.shimmerRecent.visibility = View.GONE } },
@@ -171,6 +169,7 @@ class MainActivity : ActivityEnhanced() {
                 val view = LayoutGenreBinding.inflate(layoutInflater)
                 view.root.tag = genre.id
                 view.tvTitle.text = genre.title
+                view.cvMore.setOnClickListener { runActivity(GenreActivity::class.java, bundleOf(Pair(KeyHelper.GENRE_ID, genre.id), Pair(KeyHelper.MODE, Mode.MOVIE.value))) }
                 view.rvItems.layoutManager = LinearLayoutManager(App.ACTIVITY, LinearLayoutManager.HORIZONTAL, false)
                 b.vgGenres.addView(view.root)
             }
@@ -186,9 +185,7 @@ class MainActivity : ActivityEnhanced() {
                                     val bindingView = LayoutGenreBinding.bind(view)
                                     bindingView.shimmerItems.visibility = View.GONE
                                     bindingView.rvItems.visibility = View.VISIBLE
-                                    val adapter = AdapterRecyclerMovie()
-                                    bindingView.rvItems.adapter = adapter
-                                    adapter.submitList(movieGenre.movies)
+                                    bindingView.rvItems.adapter = AdapterRecyclerMovie().apply { submitList(movieGenre.movies) }
                                 }
                             }
                         }
@@ -206,6 +203,7 @@ class MainActivity : ActivityEnhanced() {
                 val view = LayoutGenreBinding.inflate(layoutInflater)
                 view.root.tag = genre.id
                 view.tvTitle.text = genre.title
+                view.cvMore.setOnClickListener { runActivity(GenreActivity::class.java, bundleOf(Pair(KeyHelper.GENRE_ID, genre.id), Pair(KeyHelper.MODE, Mode.SERIE.value))) }
                 view.rvItems.layoutManager = LinearLayoutManager(App.ACTIVITY, LinearLayoutManager.HORIZONTAL, false)
                 b.vgGenres.addView(view.root)
             }
@@ -221,9 +219,7 @@ class MainActivity : ActivityEnhanced() {
                                     val bindingView = LayoutGenreBinding.bind(view)
                                     bindingView.shimmerItems.visibility = View.GONE
                                     bindingView.rvItems.visibility = View.VISIBLE
-                                    val adapter = AdapterRecyclerSerie()
-                                    bindingView.rvItems.adapter = adapter
-                                    adapter.submitList(serieGenre.series)
+                                    bindingView.rvItems.adapter = AdapterRecyclerSerie().apply { submitList(serieGenre.series) }
                                 }
                             }
                         }

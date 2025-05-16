@@ -2,7 +2,7 @@ package retrofit
 
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.orhanobut.hawk.Hawk
-import helpers.KeyString
+import helpers.KeyHelper
 import ir.ncis.filmbuff.App
 import okhttp3.Headers
 import okhttp3.Interceptor
@@ -30,8 +30,8 @@ object ApiClient {
                                 .headers(
                                     Headers.Builder()
                                         .add("Accept", "application/json")
-                                        .add("Accept-Language", Hawk.get(KeyString.LOCALE, "en"))
-                                        .add("Authorization", "Bearer ${Hawk.get(KeyString.TOKEN, "")}")
+                                        .add("Accept-Language", Hawk.get(KeyHelper.LOCALE, "en"))
+                                        .add("Authorization", "Bearer ${Hawk.get(KeyHelper.TOKEN, "")}")
                                         .build()
                                 )
                                 .build()
