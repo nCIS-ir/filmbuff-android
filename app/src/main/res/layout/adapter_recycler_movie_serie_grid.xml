@@ -2,10 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="128dp"
-    android:layout_height="214dp"
-    android:layout_marginStart="8dp"
-    android:layout_marginEnd="8dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="4dp"
+    android:layout_marginEnd="4dp"
+    android:layout_marginBottom="16dp"
     tools:background="@color/blue_dark_300"
     tools:ignore="SmallSp">
 
@@ -14,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:cardBackgroundColor="@color/transparent"
-        app:cardCornerRadius="16dp"
+        app:cardCornerRadius="8dp"
         app:cardElevation="0dp"
         app:layout_constraintDimensionRatio="2:3"
         app:layout_constraintTop_toTopOf="parent">
@@ -29,8 +30,8 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="0dp"
-        android:layout_height="24dp"
-        android:layout_margin="6dp"
+        android:layout_height="16dp"
+        android:layout_margin="4dp"
         app:cardBackgroundColor="@color/blue_dark_400"
         app:cardCornerRadius="1000dp"
         app:cardElevation="0dp"
@@ -50,26 +51,26 @@
                 android:layout_width="16dp"
                 android:layout_height="16dp"
                 android:layout_marginEnd="2dp"
-                android:padding="2dp"
+                android:padding="4dp"
                 android:src="@drawable/ic_eye_open"
                 app:tint="@color/blue_400" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvVisits"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="12dp"
                 android:fontFamily="@font/bold"
                 android:gravity="center"
                 android:text="@string/sample_5_digits"
                 android:textColor="@color/blue_400"
-                android:textSize="10sp" />
+                android:textSize="8sp" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:layout_width="0dp"
-        android:layout_height="24dp"
-        android:layout_margin="6dp"
+        android:layout_height="16dp"
+        android:layout_margin="4dp"
         app:cardBackgroundColor="@color/orange_300"
         app:cardCornerRadius="1000dp"
         app:cardElevation="0dp"
@@ -82,8 +83,8 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="horizontal"
-            android:paddingStart="4dp"
-            android:paddingEnd="4dp">
+            android:paddingStart="2dp"
+            android:paddingEnd="2dp">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
@@ -92,7 +93,7 @@
                 android:fontFamily="@font/regular"
                 android:text="@string/imdb"
                 android:textColor="@color/blue_800"
-                android:textSize="10sp" />
+                android:textSize="8sp" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvRating"
@@ -102,7 +103,7 @@
                 android:gravity="center"
                 android:text="@string/sample_rating"
                 android:textColor="@color/blue_800"
-                android:textSize="10sp" />
+                android:textSize="8sp" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

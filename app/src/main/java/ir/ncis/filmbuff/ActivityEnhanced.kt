@@ -6,12 +6,12 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.orhanobut.hawk.Hawk
 import dialogs.ConfirmDialog
-import helpers.KeyString
+import helpers.KeyHelper
 import helpers.LocaleHelper
 
 open class ActivityEnhanced : AppCompatActivity() {
     override fun attachBaseContext(newBase: Context) {
-        super.attachBaseContext(LocaleHelper.setLocale(newBase, Hawk.get(KeyString.LOCALE, "")))
+        super.attachBaseContext(LocaleHelper.setLocale(newBase, Hawk.get(KeyHelper.LOCALE, "")))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

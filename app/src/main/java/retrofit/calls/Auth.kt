@@ -3,7 +3,7 @@ package retrofit.calls
 import androidx.lifecycle.lifecycleScope
 import com.orhanobut.hawk.Hawk
 import dialogs.LoadingDialog
-import helpers.KeyString
+import helpers.KeyHelper
 import ir.ncis.filmbuff.App
 import ir.ncis.filmbuff.R
 import kotlinx.coroutines.launch
@@ -37,8 +37,8 @@ object Auth {
                 if (response.code() == 401) {
                     refresh(
                         {
-                            Hawk.put(KeyString.TOKEN, it.token)
-                            Hawk.put(KeyString.REFRESH, it.refresh)
+                            Hawk.put(KeyHelper.TOKEN, it.token)
+                            Hawk.put(KeyHelper.REFRESH, it.refresh)
                             App.ACTIVITY.lifecycleScope.launch { info(onSuccess, onError, showLoading) }
                         },
                         {
@@ -98,8 +98,8 @@ object Auth {
                 if (response.code() == 401) {
                     refresh(
                         {
-                            Hawk.put(KeyString.TOKEN, it.token)
-                            Hawk.put(KeyString.REFRESH, it.refresh)
+                            Hawk.put(KeyHelper.TOKEN, it.token)
+                            Hawk.put(KeyHelper.REFRESH, it.refresh)
                             App.ACTIVITY.lifecycleScope.launch { logout(onSuccess, onError, showLoading) }
                         },
                         {
@@ -116,7 +116,7 @@ object Auth {
     }
 
     suspend fun refresh(onSuccess: (Session) -> Unit, onError: ((Exception) -> Unit)? = null, showLoading: Boolean = true) {
-        Hawk.put(KeyString.TOKEN, Hawk.get(KeyString.REFRESH, ""))
+        Hawk.put(KeyHelper.TOKEN, Hawk.get(KeyHelper.REFRESH, ""))
         var loadingDialog: LoadingDialog? = null
         if (showLoading) {
             loadingDialog = LoadingDialog(App.ACTIVITY, App.ACTIVITY.getString(R.string.api_auth_refresh))

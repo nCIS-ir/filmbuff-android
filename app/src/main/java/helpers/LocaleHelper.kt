@@ -12,7 +12,7 @@ object LocaleHelper {
     const val FA = "fa"
 
     fun changeLocale(context: Context, language: String) {
-        Hawk.put(KeyString.LOCALE, language)
+        Hawk.put(KeyHelper.LOCALE, language)
         val intent = Intent(context, SplashActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
         setLocale(context, language)
@@ -26,9 +26,9 @@ object LocaleHelper {
         val config = context.resources.configuration
         config.setLocale(locale)
         config.setLayoutDirection(locale)
-        Hawk.put(KeyString.LOCALE, language)
+        Hawk.put(KeyHelper.LOCALE, language)
         return context.createConfigurationContext(config)
     }
 
-    fun getCurrentLocale(): String = Hawk.get(KeyString.LOCALE, Locale.getDefault().language)
+    fun getCurrentLocale(): String = Hawk.get(KeyHelper.LOCALE, Locale.getDefault().language)
 }

@@ -1,6 +1,6 @@
 package enums
 
-enum class Mode {
-    MOVIE,
-    SERIE,
+enum class Mode(val value: String) {
+    MOVIE("movie"),
+    SERIE("serie"),
 }

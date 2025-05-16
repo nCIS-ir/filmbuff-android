@@ -183,13 +183,11 @@ class ProfileActivity : ActivityEnhanced() {
                 b.favorites.rvSeries.visibility = View.GONE
                 lifecycleScope.launch {
                     Movie.favorite(
-                        {
+                        { movies ->
                             b.favorites.shimmerMovies.visibility = View.GONE
                             b.favorites.rvMovies.visibility = View.VISIBLE
                             b.favorites.rvMovies.layoutManager = LinearLayoutManager(this@ProfileActivity, LinearLayoutManager.HORIZONTAL, false)
-                            val adapter = AdapterRecyclerMovie()
-                            adapter.submitList(it)
-                            b.favorites.rvMovies.adapter = adapter
+                            b.favorites.rvMovies.adapter = AdapterRecyclerMovie().apply { submitList(movies) }
                         },
                         {
                             b.favorites.shimmerMovies.visibility = View.INVISIBLE
@@ -197,13 +195,11 @@ class ProfileActivity : ActivityEnhanced() {
                         showLoading = false
                     )
                     Serie.favorite(
-                        {
+                        { series ->
                             b.favorites.shimmerSeries.visibility = View.GONE
                             b.favorites.rvSeries.visibility = View.VISIBLE
                             b.favorites.rvSeries.layoutManager = LinearLayoutManager(this@ProfileActivity, LinearLayoutManager.HORIZONTAL, false)
-                            val adapter = AdapterRecyclerSerie()
-                            adapter.submitList(it)
-                            b.favorites.rvSeries.adapter = adapter
+                            b.favorites.rvSeries.adapter = AdapterRecyclerSerie().apply { submitList(series) }
                         },
                         {
                             b.favorites.shimmerSeries.visibility = View.INVISIBLE

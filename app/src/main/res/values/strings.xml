@@ -56,6 +56,7 @@
     <string name="login">Login</string>
     <string name="logout">Logout</string>
     <string name="message_password_changed">Password has been changed successfully.</string>
+    <string name="more">More</string>
     <string name="movie_name">The Game of Thrones</string>
     <string name="movies">Movies</string>
     <string name="new_password">New Password</string>
