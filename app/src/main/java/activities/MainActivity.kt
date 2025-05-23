@@ -10,13 +10,12 @@ import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.core.os.bundleOf
 import androidx.core.view.children
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import dialogs.SortingDialog
 import enums.Mode
 import helpers.KeyHelper
+import helpers.ViewHelper
 import ir.ncis.filmbuff.ActivityEnhanced
 import ir.ncis.filmbuff.App
 import ir.ncis.filmbuff.databinding.ActivityMainBinding
@@ -60,6 +59,11 @@ class MainActivity : ActivityEnhanced() {
 
         b.ivLogo.setOnClickListener { runActivity(PlayActivity::class.java) }
 
+        b.srReload.setOnRefreshListener {
+            loadData()
+            b.srReload.isRefreshing = false
+        }
+
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 checkedExit()
@@ -71,85 +75,7 @@ class MainActivity : ActivityEnhanced() {
     private fun observe() {
         mainViewModel.sort.observe(this) { mainViewModel.setShouldReload(true) }
         mainViewModel.direction.observe(this) { mainViewModel.setShouldReload(true) }
-        mainViewModel.mode.observe(this) { mode ->
-            mainViewModel.setShouldReload(true)
-            if (mode == Mode.MOVIE) {
-                b.btMovie.showBackground = true
-                b.btSerie.showBackground = false
-                lifecycleScope.launch {
-                    repeatOnLifecycle(Lifecycle.State.STARTED) {
-                        b.shimmerSlider.visibility = View.VISIBLE
-                        b.vpSlider.visibility = View.GONE
-                        b.shimmerRecent.visibility = View.VISIBLE
-                        b.rvRecents.visibility = View.GONE
-                        async(Dispatchers.IO) {
-                            Movie.slider(
-                                { movies ->
-                                    App.HANDLER.post {
-                                        b.shimmerSlider.visibility = View.GONE
-                                        b.vpSlider.visibility = View.VISIBLE
-                                        b.vpSlider.adapter = AdapterPagerMovieSlider(this@MainActivity, movies)
-                                    }
-                                },
-                                { App.HANDLER.post { b.shimmerSlider.visibility = View.GONE } },
-                                showLoading = false
-                            )
-                        }
-                        async(Dispatchers.IO) {
-                            Movie.recent(
-                                { movies ->
-                                    App.HANDLER.post {
-                                        b.shimmerRecent.visibility = View.GONE
-                                        b.rvRecents.visibility = View.VISIBLE
-                                        b.rvRecents.adapter = AdapterRecyclerMovie().apply { submitList(movies) }
-                                    }
-                                },
-                                { App.HANDLER.post { b.shimmerRecent.visibility = View.GONE } },
-                                showLoading = false
-                            )
-                        }
-                    }
-                }
-            } else {
-                mainViewModel.setShouldReload(true)
-                b.btMovie.showBackground = false
-                b.btSerie.showBackground = true
-                lifecycleScope.launch {
-                    repeatOnLifecycle(Lifecycle.State.STARTED) {
-                        b.shimmerSlider.visibility = View.VISIBLE
-                        b.vpSlider.visibility = View.GONE
-                        b.shimmerRecent.visibility = View.VISIBLE
-                        b.rvRecents.visibility = View.GONE
-                        async(Dispatchers.IO) {
-                            Serie.slider(
-                                { series ->
-                                    App.HANDLER.post {
-                                        b.shimmerSlider.visibility = View.GONE
-                                        b.vpSlider.visibility = View.VISIBLE
-                                        b.vpSlider.adapter = AdapterPagerSerieSlider(this@MainActivity, series)
-                                    }
-                                },
-                                { App.HANDLER.post { b.shimmerSlider.visibility = View.GONE } },
-                                showLoading = false
-                            )
-                        }
-                        async(Dispatchers.IO) {
-                            Serie.recent(
-                                { series ->
-                                    App.HANDLER.post {
-                                        b.shimmerRecent.visibility = View.GONE
-                                        b.rvRecents.visibility = View.VISIBLE
-                                        b.rvRecents.adapter = AdapterRecyclerSerie().apply { submitList(series) }
-                                    }
-                                },
-                                { App.HANDLER.post { b.shimmerRecent.visibility = View.GONE } },
-                                showLoading = false
-                            )
-                        }
-                    }
-                }
-            }
-        }
+        mainViewModel.mode.observe(this) { loadData() }
         mainViewModel.shouldReload.observe(this) { shouldReload ->
             if (shouldReload) {
                 if (mainViewModel.mode.value == Mode.MOVIE) {
@@ -158,6 +84,85 @@ class MainActivity : ActivityEnhanced() {
                     loadSerieGenres()
                 }
                 mainViewModel.setShouldReload(false)
+            }
+        }
+    }
+
+    private fun loadData() {
+        mainViewModel.setShouldReload(true)
+        ViewHelper.stopAutoScroll(b.vpSlider)
+        if (mainViewModel.mode.value == Mode.MOVIE) {
+            b.btMovie.showBackground = true
+            b.btSerie.showBackground = false
+            lifecycleScope.launch {
+                b.shimmerSlider.visibility = View.VISIBLE
+                b.vpSlider.visibility = View.GONE
+                b.shimmerRecent.visibility = View.VISIBLE
+                b.rvRecents.visibility = View.GONE
+                async(Dispatchers.IO) {
+                    Movie.slider(
+                        { movies ->
+                            App.HANDLER.post {
+                                b.shimmerSlider.visibility = View.GONE
+                                b.vpSlider.visibility = View.VISIBLE
+                                b.vpSlider.adapter = AdapterPagerMovieSlider(this@MainActivity, movies)
+                                ViewHelper.startAutoScroll(b.vpSlider)
+                            }
+                        },
+                        { App.HANDLER.post { b.shimmerSlider.visibility = View.GONE } },
+                        showLoading = false
+                    )
+                }
+                async(Dispatchers.IO) {
+                    Movie.recent(
+                        { movies ->
+                            App.HANDLER.post {
+                                b.shimmerRecent.visibility = View.GONE
+                                b.rvRecents.visibility = View.VISIBLE
+                                b.rvRecents.adapter = AdapterRecyclerMovie().apply { submitList(movies) }
+                            }
+                        },
+                        { App.HANDLER.post { b.shimmerRecent.visibility = View.GONE } },
+                        showLoading = false
+                    )
+                }
+            }
+        } else {
+            mainViewModel.setShouldReload(true)
+            b.btMovie.showBackground = false
+            b.btSerie.showBackground = true
+            lifecycleScope.launch {
+                b.shimmerSlider.visibility = View.VISIBLE
+                b.vpSlider.visibility = View.GONE
+                b.shimmerRecent.visibility = View.VISIBLE
+                b.rvRecents.visibility = View.GONE
+                async(Dispatchers.IO) {
+                    Serie.slider(
+                        { series ->
+                            App.HANDLER.post {
+                                b.shimmerSlider.visibility = View.GONE
+                                b.vpSlider.visibility = View.VISIBLE
+                                b.vpSlider.adapter = AdapterPagerSerieSlider(this@MainActivity, series)
+                                ViewHelper.startAutoScroll(b.vpSlider)
+                            }
+                        },
+                        { App.HANDLER.post { b.shimmerSlider.visibility = View.GONE } },
+                        showLoading = false
+                    )
+                }
+                async(Dispatchers.IO) {
+                    Serie.recent(
+                        { series ->
+                            App.HANDLER.post {
+                                b.shimmerRecent.visibility = View.GONE
+                                b.rvRecents.visibility = View.VISIBLE
+                                b.rvRecents.adapter = AdapterRecyclerSerie().apply { submitList(series) }
+                            }
+                        },
+                        { App.HANDLER.post { b.shimmerRecent.visibility = View.GONE } },
+                        showLoading = false
+                    )
+                }
             }
         }
     }

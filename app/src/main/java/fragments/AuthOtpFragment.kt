@@ -14,6 +14,7 @@ import com.goodiebag.pinview.Pinview.PinViewEventListener
 import com.orhanobut.hawk.Hawk
 import helpers.ContextHelper
 import helpers.KeyHelper
+import helpers.ViewHelper
 import ir.ncis.filmbuff.App
 import ir.ncis.filmbuff.R
 import ir.ncis.filmbuff.databinding.FragmentAuthOtpBinding
@@ -63,7 +64,7 @@ class AuthOtpFragment(private val username: String, private val email: String) :
         })
 
         b.btVerify.setOnClickListener {
-            ContextHelper.hideKeyboard(b.otpView)
+            ViewHelper.hideKeyboard(b.otpView)
             b.tvError.visibility = View.INVISIBLE
             otp = b.otpView.value.toInt()
             lifecycleScope.launch {

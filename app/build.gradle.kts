@@ -52,6 +52,7 @@ dependencies {
     implementation(libs.androidx.recyclerview.selection)
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.swiperefreshlayout)
     implementation(libs.androidx.viewpager2)
     implementation(libs.converter.gson)
     implementation(libs.hawk)

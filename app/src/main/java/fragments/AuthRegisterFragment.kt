@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import helpers.ContextHelper
+import helpers.ViewHelper
 import ir.ncis.filmbuff.App
 import ir.ncis.filmbuff.R
 import ir.ncis.filmbuff.databinding.FragmentAuthRegisterBinding
@@ -33,6 +33,9 @@ class AuthRegisterFragment() : Fragment() {
         }
 
         b.btRegister.setOnClickListener {
+            ViewHelper.hideKeyboard(b.etUsername)
+            ViewHelper.hideKeyboard(b.etPassword)
+            ViewHelper.hideKeyboard(b.etEmail)
             b.tvError.visibility = View.INVISIBLE
             val username = b.etUsername.editableText.toString()
             val password = b.etPassword.editableText.toString()
@@ -55,6 +58,6 @@ class AuthRegisterFragment() : Fragment() {
             }
         }
 
-        ContextHelper.togglePassword(b.ivTogglePassword, b.etPassword)
+        ViewHelper.togglePasswordVisibility(b.ivTogglePassword, b.etPassword)
     }
 }

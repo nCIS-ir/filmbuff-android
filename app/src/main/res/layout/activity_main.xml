@@ -92,7 +92,8 @@
             app:srcCompat="@drawable/ic_user" />
     </com.google.android.material.card.MaterialCardView>
 
-    <ScrollView
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/srReload"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
@@ -100,72 +101,78 @@
         app:layout_constraintBottom_toTopOf="@+id/cvMoviesSeries"
         app:layout_constraintTop_toBottomOf="@+id/ivLogo">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cvSlider"
-                android:layout_width="match_parent"
-                android:layout_height="212dp"
-                android:layout_margin="8dp"
-                app:cardBackgroundColor="@color/transparent"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="0dp">
-
-                <com.facebook.shimmer.ShimmerFrameLayout
-                    android:id="@+id/shimmerSlider"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <include layout="@layout/shimmer_slider" />
-                </com.facebook.shimmer.ShimmerFrameLayout>
-
-                <androidx.viewpager2.widget.ViewPager2
-                    android:id="@+id/vpSlider"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:contentDescription="@string/app_name"
-                    android:visibility="invisible" />
-            </androidx.cardview.widget.CardView>
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvRecentlyViewed"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:fontFamily="@font/bold"
-                android:text="@string/recently_viewed"
-                android:textColor="@color/white"
-                android:textSize="16sp" />
-
-            <com.facebook.shimmer.ShimmerFrameLayout
-                android:id="@+id/shimmerRecent"
-                android:layout_width="match_parent"
-                android:layout_height="214dp">
-
-                <include layout="@layout/shimmer_movie_serie" />
-            </com.facebook.shimmer.ShimmerFrameLayout>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvRecents"
-                android:layout_width="match_parent"
-                android:layout_height="214dp"
-                android:contentDescription="@string/app_name"
-                android:orientation="horizontal"
-                android:visibility="gone"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/adapter_recycler_movie_serie" />
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toTopOf="@+id/cvMoviesSeries">
 
             <LinearLayout
-                android:id="@+id/vgGenres"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" />
-        </LinearLayout>
-    </ScrollView>
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cvSlider"
+                    android:layout_width="match_parent"
+                    android:layout_height="212dp"
+                    android:layout_margin="8dp"
+                    app:cardBackgroundColor="@color/transparent"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="0dp">
+
+                    <com.facebook.shimmer.ShimmerFrameLayout
+                        android:id="@+id/shimmerSlider"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <include layout="@layout/shimmer_slider" />
+                    </com.facebook.shimmer.ShimmerFrameLayout>
+
+                    <androidx.viewpager2.widget.ViewPager2
+                        android:id="@+id/vpSlider"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@string/app_name"
+                        android:visibility="invisible" />
+                </androidx.cardview.widget.CardView>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvRecentlyViewed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/bold"
+                    android:text="@string/recently_viewed"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/shimmerRecent"
+                    android:layout_width="match_parent"
+                    android:layout_height="214dp">
+
+                    <include layout="@layout/shimmer_movie_serie" />
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvRecents"
+                    android:layout_width="match_parent"
+                    android:layout_height="214dp"
+                    android:contentDescription="@string/app_name"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/adapter_recycler_movie_serie" />
+
+                <LinearLayout
+                    android:id="@+id/vgGenres"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+            </LinearLayout>
+        </ScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cvMoviesSeries"

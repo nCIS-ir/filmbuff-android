@@ -9,8 +9,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.orhanobut.hawk.Hawk
-import helpers.ContextHelper
 import helpers.KeyHelper
+import helpers.ViewHelper
 import ir.ncis.filmbuff.App
 import ir.ncis.filmbuff.R
 import ir.ncis.filmbuff.databinding.FragmentAuthLoginBinding
@@ -36,6 +36,8 @@ class AuthLoginFragment() : Fragment() {
         }
 
         b.btLogin.setOnClickListener {
+            ViewHelper.hideKeyboard(b.etUsername)
+            ViewHelper.hideKeyboard(b.etPassword)
             val username = b.etUsername.editableText.toString()
             val password = b.etPassword.editableText.toString()
             if (username.isEmpty() || password.isEmpty()) {
@@ -63,6 +65,6 @@ class AuthLoginFragment() : Fragment() {
             }
         }
 
-        ContextHelper.togglePassword(b.ivTogglePassword, b.etPassword)
+        ViewHelper.togglePasswordVisibility(b.ivTogglePassword, b.etPassword)
     }
 }

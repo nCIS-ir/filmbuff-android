@@ -12,8 +12,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.orhanobut.hawk.Hawk
 import dialogs.ConfirmDialog
-import helpers.ContextHelper
 import helpers.LocaleHelper
+import helpers.ViewHelper
 import ir.ncis.filmbuff.ActivityEnhanced
 import ir.ncis.filmbuff.App
 import ir.ncis.filmbuff.R
@@ -289,8 +289,8 @@ class ProfileActivity : ActivityEnhanced() {
             }
         }
 
-        ContextHelper.togglePassword(b.password.ivToggleOldPassword, b.password.etOldPassword)
-        ContextHelper.togglePassword(b.password.ivToggleNewPassword, b.password.etNewPassword)
-        ContextHelper.togglePassword(b.password.ivToggleRepeatNewPassword, b.password.etRepeatNewPassword)
+        ViewHelper.togglePasswordVisibility(b.password.ivToggleOldPassword, b.password.etOldPassword)
+        ViewHelper.togglePasswordVisibility(b.password.ivToggleNewPassword, b.password.etNewPassword)
+        ViewHelper.togglePasswordVisibility(b.password.ivToggleRepeatNewPassword, b.password.etRepeatNewPassword)
     }
 }
