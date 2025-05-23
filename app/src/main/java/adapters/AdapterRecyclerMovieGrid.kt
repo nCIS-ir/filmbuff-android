@@ -17,7 +17,7 @@ class AdapterRecyclerMovieGrid() : ListAdapter<MovieBrief, AdapterRecyclerMovieG
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val movie = getItem(position)
-        ImageHelper(movie.thumbnail, R.mipmap.logo).loadInto(holder.b.ivThumbnail)
+        ImageHelper(movie.thumbnail, R.mipmap.placeholder).loadInto(holder.b.ivThumbnail)
         holder.b.tvTitle.text = movie.title
         holder.b.tvTitle.isSelected = true
         holder.b.tvVisits.text = movie.visits.toString()

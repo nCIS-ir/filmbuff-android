@@ -34,7 +34,7 @@ class SerieSlideFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        ImageHelper(arguments?.getString(ARG_IMAGE)!!, R.mipmap.logo).loadInto(b.ivSlider)
+        ImageHelper(arguments?.getString(ARG_IMAGE)!!, R.mipmap.placeholder).loadInto(b.ivSlider)
         b.ivVip.visibility = if (arguments?.getBoolean(ARG_VIP)!!) View.VISIBLE else View.GONE
     }
 }

@@ -17,7 +17,7 @@ class AdapterRecyclerSerie() : ListAdapter<SerieBrief, AdapterRecyclerSerie.MyVi
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val serie = getItem(position)
-        ImageHelper(serie.thumbnail, R.mipmap.logo).loadInto(holder.b.ivThumbnail)
+        ImageHelper(serie.thumbnail, R.mipmap.placeholder).loadInto(holder.b.ivThumbnail)
         holder.b.tvTitle.text = serie.title
         holder.b.tvTitle.isSelected = true
         holder.b.tvVisits.text = serie.visits.toString()
