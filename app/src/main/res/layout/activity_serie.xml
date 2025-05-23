@@ -214,5 +214,5 @@
         android:layout_margin="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/vgLine"
-        tools:layout="@layout/fragment_serie_play" />
+        tools:layout="@layout/fragment_movie_serie_about" />
 </androidx.constraintlayout.widget.ConstraintLayout>

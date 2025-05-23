@@ -114,6 +114,7 @@
     <string name="tapsell_interstitial" translatable="false">67cb3efdfb36b54b43f2cb7c</string>
     <string name="tapsell_rewarded" translatable="false">67cb3edbc1914d5fb3eec60e</string>
     <string name="title">Title</string>
+    <string name="trailer">Trailer</string>
     <string name="unknown_error">Unknown Error</string>
     <string name="username">Username</string>
     <string name="username_already_taken">Username already taken!</string>
