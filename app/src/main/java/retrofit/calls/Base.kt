@@ -15,7 +15,6 @@ object Base {
         }
         try {
             val response = ApiClient.API.baseInfo()
-            loadingDialog?.dismiss()
             if (response.isSuccessful) {
                 val body = response.body()
                 if (body != null) {
@@ -33,6 +32,8 @@ object Base {
             }
         } catch (e: Exception) {
             onError?.invoke(e)
+        } finally {
+            loadingDialog?.dismiss()
         }
     }
 }

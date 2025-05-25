@@ -3,10 +3,12 @@ package retrofit
 import retrofit.models.Favorite
 import retrofit.models.Info
 import retrofit.models.MovieBrief
+import retrofit.models.MovieFull
 import retrofit.models.MovieGenre
 import retrofit.models.Purchase
 import retrofit.models.ResponseWrapper
 import retrofit.models.SerieBrief
+import retrofit.models.SerieFull
 import retrofit.models.SerieGenre
 import retrofit.models.Session
 import retrofit.models.Subscription
@@ -61,8 +63,15 @@ interface ApiInterface {
     @GET("movie/genre")
     suspend fun movieAllGenres(@Query("sort") sort: String, @Query("direction") direction: String): Response<ResponseWrapper<List<MovieGenre>>>
 
+    @GET("movie/details/{movie_id}")
+    suspend fun movieDetails(@Path("movie_id") movieId: String): Response<ResponseWrapper<MovieFull>>
+
     @GET("movie/{genre_id}")
     suspend fun movieGenre(@Path("genre_id") genreId: String, @Query("page") page: Int, @Query("perPage") perPage: Int, @Query("sort") sort: String, @Query("direction") direction: String): Response<ResponseWrapper<List<MovieBrief>>>
+
+    @POST("movie/search")
+    @FormUrlEncoded
+    suspend fun movieSearch(@Field("term") term: String, @Field("genre_ids") genreIds: String): Response<ResponseWrapper<List<MovieBrief>>>
 
     @GET("movie/slider")
     suspend fun movieSlider(): Response<ResponseWrapper<List<MovieBrief>>>
@@ -90,8 +99,15 @@ interface ApiInterface {
     @GET("serie/genre")
     suspend fun serieAllGenres(@Query("sort") sort: String, @Query("direction") direction: String): Response<ResponseWrapper<List<SerieGenre>>>
 
+    @GET("serie/details/{serie_id}")
+    suspend fun serieDetails(@Path("serie_id") serieId: String): Response<ResponseWrapper<SerieFull>>
+
     @GET("serie/{genre_id}")
     suspend fun serieGenre(@Path("genre_id") genreId: String, @Query("page") page: Int, @Query("perPage") perPage: Int, @Query("sort") sort: String, @Query("direction") direction: String): Response<ResponseWrapper<List<SerieBrief>>>
+
+    @POST("serie/search")
+    @FormUrlEncoded
+    suspend fun serieSearch(@Field("term") term: String, @Field("genre_ids") genreIds: String): Response<ResponseWrapper<List<SerieBrief>>>
 
     @GET("serie/slider")
     suspend fun serieSlider(): Response<ResponseWrapper<List<SerieBrief>>>

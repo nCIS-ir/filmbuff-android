@@ -23,6 +23,7 @@
         <activity android:name="activities.PlayActivity" />
         <activity android:name="activities.ProfileActivity" />
         <activity android:name="activities.SearchActivity" />
+        <activity android:name="activities.SerieActivity" />
         <activity
             android:name="activities.SplashActivity"
             android:exported="true">

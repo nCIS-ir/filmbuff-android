@@ -10,6 +10,9 @@
     <string name="api_auth_register">ثبت‌نام</string>
     <string name="api_auth_resend">ارسال مجدد کد</string>
     <string name="api_auth_verify">بررسی کد</string>
+    <string name="api_favorite_add">در حال ثبت علاقه‌مندی‌</string>
+    <string name="api_favorite_delete">در حال حذف علاقه‌مندی‌</string>
+    <string name="api_loading_data">در حال بارگذاری اطلاعات</string>
     <string name="api_user_password">تغییر رمز عبور</string>
     <string name="api_user_purchases">دریافت خریدهای کاربر</string>
     <string name="api_user_subscriptions">دریافت اشتراک‌های کاربر</string>
@@ -38,8 +41,6 @@
     <string name="error_repeat_password">تکرار رمز جدید باید با رمز جدید یکسان باشد!</string>
     <string name="exit_message">آیا مطمئن هستید که می‌خواهید\nاز خوره فیلم خارج شوید؟</string>
     <string name="fantasy">فانتزی</string>
-    <string name="favorite_add">در حال ثبت علاقه‌مندی‌</string>
-    <string name="favorite_delete">در حال حذف علاقه‌مندی‌</string>
     <string name="favorites">علاقه‌مندی‌ها</string>
     <string name="forgot_password">فراموشی رمز عبور</string>
     <string name="format_subscription_remaining">%d روز باقی‌مانده</string>

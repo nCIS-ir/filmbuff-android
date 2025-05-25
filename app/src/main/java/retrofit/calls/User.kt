@@ -13,6 +13,27 @@ import retrofit.models.Purchase
 import retrofit.models.Subscription
 
 object User {
+    suspend fun password(oldPass: String, newPass: String, repeatPass: String, onSuccess: () -> Unit, onError: ((Exception) -> Unit)? = null, showLoading: Boolean = true) {
+        var loadingDialog: LoadingDialog? = null
+        if (showLoading) {
+            loadingDialog = LoadingDialog(App.ACTIVITY, App.ACTIVITY.getString(R.string.api_user_password))
+            loadingDialog.show()
+        }
+        try {
+            val response = ApiClient.API.userPassword(oldPass, newPass, repeatPass)
+            if (response.isSuccessful) {
+                onSuccess.invoke()
+            } else {
+                val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.unknown_error)
+                onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
+            }
+        } catch (e: Exception) {
+            onError?.invoke(e)
+        } finally {
+            loadingDialog?.dismiss()
+        }
+    }
+
     suspend fun purchases(onSuccess: (List<Purchase>) -> Unit, onError: ((Exception) -> Unit)? = null, showLoading: Boolean = true) {
         var loadingDialog: LoadingDialog? = null
         if (showLoading) {
@@ -21,7 +42,6 @@ object User {
         }
         try {
             val response = ApiClient.API.userPurchases()
-            loadingDialog?.dismiss()
             if (response.isSuccessful) {
                 val body = response.body()
                 if (body != null) {
@@ -51,6 +71,8 @@ object User {
             }
         } catch (e: Exception) {
             onError?.invoke(e)
+        } finally {
+            loadingDialog?.dismiss()
         }
     }
 
@@ -62,7 +84,6 @@ object User {
         }
         try {
             val response = ApiClient.API.userSubscriptions()
-            loadingDialog?.dismiss()
             if (response.isSuccessful) {
                 val body = response.body()
                 if (body != null) {
@@ -92,26 +113,8 @@ object User {
             }
         } catch (e: Exception) {
             onError?.invoke(e)
-        }
-    }
-
-    suspend fun password(oldPass: String, newPass: String, repeatPass: String, onSuccess: () -> Unit, onError: ((Exception) -> Unit)? = null, showLoading: Boolean = true) {
-        var loadingDialog: LoadingDialog? = null
-        if (showLoading) {
-            loadingDialog = LoadingDialog(App.ACTIVITY, App.ACTIVITY.getString(R.string.api_user_password))
-            loadingDialog.show()
-        }
-        try {
-            val response = ApiClient.API.userPassword(oldPass,newPass,repeatPass)
+        } finally {
             loadingDialog?.dismiss()
-            if (response.isSuccessful) {
-                onSuccess?.invoke()
-            } else {
-                val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.unknown_error)
-                onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
-            }
-        }catch (e: Exception){
-            onError?.invoke(e)
         }
     }
 }

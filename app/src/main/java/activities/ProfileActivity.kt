@@ -135,10 +135,7 @@ class ProfileActivity : ActivityEnhanced() {
                             b.password.etNewPassword.text = null
                             b.password.etRepeatNewPassword.text = null
                         },
-                        {
-                            Toast.makeText(this@ProfileActivity, it.message, Toast.LENGTH_SHORT).show()
-                        },
-                        showLoading = true
+                        { Toast.makeText(this@ProfileActivity, it.message, Toast.LENGTH_SHORT).show() },
                     )
                 }
             }

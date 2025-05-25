@@ -110,7 +110,7 @@ class MainActivity : ActivityEnhanced() {
                             }
                         },
                         { App.HANDLER.post { b.shimmerSlider.visibility = View.GONE } },
-                        showLoading = false
+                        false
                     )
                 }
                 async(Dispatchers.IO) {
@@ -123,7 +123,7 @@ class MainActivity : ActivityEnhanced() {
                             }
                         },
                         { App.HANDLER.post { b.shimmerRecent.visibility = View.GONE } },
-                        showLoading = false
+                        false
                     )
                 }
             }
@@ -147,7 +147,7 @@ class MainActivity : ActivityEnhanced() {
                             }
                         },
                         { App.HANDLER.post { b.shimmerSlider.visibility = View.GONE } },
-                        showLoading = false
+                        false
                     )
                 }
                 async(Dispatchers.IO) {
@@ -160,7 +160,7 @@ class MainActivity : ActivityEnhanced() {
                             }
                         },
                         { App.HANDLER.post { b.shimmerRecent.visibility = View.GONE } },
-                        showLoading = false
+                        false
                     )
                 }
             }

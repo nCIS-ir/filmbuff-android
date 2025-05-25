@@ -9,6 +9,9 @@
     <string name="api_auth_register">Register</string>
     <string name="api_auth_resend">Resend Code</string>
     <string name="api_auth_verify">Verify OTP</string>
+    <string name="api_favorite_add">Adding Favorites</string>
+    <string name="api_favorite_delete">Deleting Favorites</string>
+    <string name="api_loading_data">Loading Data</string>
     <string name="api_user_password">Change Your Password</string>
     <string name="api_user_purchases">Get User Purchases</string>
     <string name="api_user_subscriptions">Get User Subscriptions</string>
@@ -37,8 +40,6 @@
     <string name="error_repeat_password">Repeat password must be the same as new password!</string>
     <string name="exit_message">Are you sure you want\nto exit Film-Buff?</string>
     <string name="fantasy">Fantasy</string>
-    <string name="favorite_add">Adding Favorites</string>
-    <string name="favorite_delete">Deleting Favorites</string>
     <string name="favorites">Favorites</string>
     <string name="forgot_password">Forgot Password</string>
     <string name="format_subscription_remaining">%d day(s) left</string>

@@ -21,7 +21,6 @@ object Auth {
         }
         try {
             val response = ApiClient.API.authInfo()
-            loadingDialog?.dismiss()
             if (response.isSuccessful) {
                 val body = response.body()
                 if (body != null) {
@@ -51,6 +50,8 @@ object Auth {
             }
         } catch (e: Exception) {
             onError?.invoke(e)
+        } finally {
+            loadingDialog?.dismiss()
         }
     }
 
@@ -62,7 +63,6 @@ object Auth {
         }
         try {
             val response = ApiClient.API.authLogin(username, password)
-            loadingDialog?.dismiss()
             if (response.isSuccessful) {
                 val body = response.body()
                 if (body != null) {
@@ -80,6 +80,8 @@ object Auth {
             }
         } catch (e: Exception) {
             onError?.invoke(e)
+        } finally {
+            loadingDialog?.dismiss()
         }
     }
 
@@ -91,7 +93,6 @@ object Auth {
         }
         try {
             val response = ApiClient.API.authLogout()
-            loadingDialog?.dismiss()
             if (response.isSuccessful) {
                 onSuccess()
             } else {
@@ -112,6 +113,8 @@ object Auth {
             }
         } catch (e: Exception) {
             onError?.invoke(e)
+        } finally {
+            loadingDialog?.dismiss()
         }
     }
 
@@ -124,7 +127,6 @@ object Auth {
         }
         try {
             val response = ApiClient.API.authRefresh()
-            loadingDialog?.dismiss()
             if (response.isSuccessful) {
                 val body = response.body()
                 if (body != null) {
@@ -142,6 +144,8 @@ object Auth {
             }
         } catch (e: Exception) {
             onError?.invoke(e)
+        } finally {
+            loadingDialog?.dismiss()
         }
     }
 
@@ -153,7 +157,6 @@ object Auth {
         }
         try {
             val response = ApiClient.API.authRegister(username, password, email)
-            loadingDialog?.dismiss()
             if (response.isSuccessful) {
                 onSuccess()
             } else {
@@ -162,6 +165,8 @@ object Auth {
             }
         } catch (e: Exception) {
             onError?.invoke(e)
+        } finally {
+            loadingDialog?.dismiss()
         }
     }
 
@@ -173,7 +178,6 @@ object Auth {
         }
         try {
             val response = ApiClient.API.authResend(username)
-            loadingDialog?.dismiss()
             if (response.isSuccessful) {
                 onSuccess()
             } else {
@@ -182,6 +186,8 @@ object Auth {
             }
         } catch (e: Exception) {
             onError?.invoke(e)
+        } finally {
+            loadingDialog?.dismiss()
         }
     }
 
@@ -193,7 +199,6 @@ object Auth {
         }
         try {
             val response = ApiClient.API.authVerify(username, otp)
-            loadingDialog?.dismiss()
             if (response.isSuccessful) {
                 val body = response.body()
                 if (body != null) {
@@ -211,6 +216,8 @@ object Auth {
             }
         } catch (e: Exception) {
             onError?.invoke(e)
+        } finally {
+            loadingDialog?.dismiss()
         }
     }
 }

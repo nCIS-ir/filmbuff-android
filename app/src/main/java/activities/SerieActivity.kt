@@ -4,19 +4,19 @@ import android.os.Bundle
 import androidx.core.view.updateLayoutParams
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import fragments.MovieAboutFragment
 import fragments.MoviePlayFragment
 import fragments.MovieReviewsFragment
+import fragments.SerieAboutFragment
 import helpers.ContextHelper
 import helpers.KeyHelper
 import ir.ncis.filmbuff.ActivityEnhanced
 import ir.ncis.filmbuff.R
-import ir.ncis.filmbuff.databinding.ActivityMovieBinding
+import ir.ncis.filmbuff.databinding.ActivitySerieBinding
 import kotlinx.coroutines.launch
-import retrofit.calls.Movie
+import retrofit.calls.Serie
 
-class MovieActivity : ActivityEnhanced() {
-    private lateinit var b: ActivityMovieBinding
+class SerieActivity : ActivityEnhanced() {
+    private lateinit var b: ActivitySerieBinding
     private val blue100 = ContextHelper.getColor(R.color.blue_100)
     private val blue400 = ContextHelper.getColor(R.color.blue_400)
     private val dp2 = ContextHelper.dpToPx(2)
@@ -24,20 +24,18 @@ class MovieActivity : ActivityEnhanced() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        b = ActivityMovieBinding.inflate(layoutInflater)
+        b = ActivitySerieBinding.inflate(layoutInflater)
         setContentView(b.root)
 
-        val movieId = intent.getStringExtra(KeyHelper.ID)
-        if (movieId == null) finish()
-
-        b.ivBack.setOnClickListener { finish() }
+        val serieId = intent.getStringExtra(KeyHelper.ID)
+        if (serieId == null) finish()
 
         lifecycleScope.launch {
-            Movie.details(
-                movieId!!,
-                { movie ->
-                    showFragment(MovieAboutFragment(movie))
-                    b.tvAbout.setOnClickListener { showFragment(MovieAboutFragment(movie)) }
+            Serie.details(
+                serieId!!,
+                { serie ->
+                    showFragment(SerieAboutFragment(serie))
+                    b.tvAbout.setOnClickListener { showFragment(SerieAboutFragment(serie)) }
                     b.tvReviews.setOnClickListener { showFragment(MovieReviewsFragment()) }
                     b.tvPlay.setOnClickListener { showFragment(MoviePlayFragment()) }
                 },
@@ -48,7 +46,7 @@ class MovieActivity : ActivityEnhanced() {
 
     fun showFragment(fragment: Fragment) {
         when (fragment) {
-            is MovieAboutFragment   -> {
+            is SerieAboutFragment   -> {
                 b.tvAbout.setTextColor(blue100)
                 b.tvReviews.setTextColor(blue400)
                 b.tvPlay.setTextColor(blue400)

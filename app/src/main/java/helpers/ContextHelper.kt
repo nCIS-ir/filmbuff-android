@@ -26,6 +26,8 @@ object ContextHelper {
         return outFile
     }
 
+    fun dpToPx(dp: Int) = (dp * App.CONTEXT.resources.displayMetrics.density).toInt()
+
     fun getColor(colorResId: Int): Int = ContextCompat.getColor(App.CONTEXT, colorResId)
 
     fun getHttpStatus(e: Throwable): Int? {
