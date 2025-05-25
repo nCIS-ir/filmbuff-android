@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory
 import android.graphics.drawable.BitmapDrawable
 import android.util.Base64
 import android.widget.ImageView
+import androidx.core.graphics.scale
 import com.squareup.picasso.Callback
 import com.squareup.picasso.MemoryPolicy
 import com.squareup.picasso.NetworkPolicy
@@ -104,7 +105,7 @@ class ImageHelper(private val url: String, private val placeHolder: Int) {
         if (drawable != null) {
             val bitmap = drawable.bitmap
             val stream = ByteArrayOutputStream()
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
+            resizeBitmapMaintainingAspectRatio(bitmap).compress(Bitmap.CompressFormat.JPEG, 75, stream)
             return Base64.encodeToString(stream.toByteArray(), Base64.NO_WRAP)
         }
         return null
@@ -113,6 +114,23 @@ class ImageHelper(private val url: String, private val placeHolder: Int) {
     private fun setImageViewFromBase64(base64: String, imageView: ImageView) {
         val imageAsBytes = Base64.decode(base64.toByteArray(), Base64.DEFAULT)
         imageView.setImageBitmap(BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.size))
+    }
+
+    private fun resizeBitmapMaintainingAspectRatio(bitmap: Bitmap, maxSize: Int = 512): Bitmap {
+        val width = bitmap.width
+        val height = bitmap.height
+        if (width <= maxSize && height <= maxSize) return bitmap
+        val aspectRatio: Float = width.toFloat() / height.toFloat()
+        val newWidth: Int
+        val newHeight: Int
+        if (aspectRatio > 1) {
+            newWidth = maxSize
+            newHeight = (maxSize / aspectRatio).toInt()
+        } else {
+            newHeight = maxSize
+            newWidth = (maxSize * aspectRatio).toInt()
+        }
+        return bitmap.scale(newWidth, newHeight)
     }
 
     interface ImageProcessListener {
