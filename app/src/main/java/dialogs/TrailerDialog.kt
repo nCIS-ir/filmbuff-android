@@ -19,6 +19,7 @@ class TrailerDialog(context: Context, private val title: String, private val pat
         b.tvTitle.text = title
         b.tvTitle.isSelected = true
 
+        b.pvTrailer.useController = true
         b.pvTrailer.player = ExoPlayer.Builder(context).build().also { exoPlayer ->
             val mediaItem = MediaItem.fromUri(path.toUri())
             exoPlayer.setMediaItem(mediaItem)
