@@ -1,6 +1,7 @@
 package fragments
 
 import android.os.Bundle
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,5 +22,6 @@ class MovieAboutFragment(private val movie: MovieFull) : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         b.cvTrailer.setOnClickListener { TrailerDialog(requireActivity(), movie.title, movie.trailer).show() }
+        b.tvStory.text = Html.fromHtml(movie.description, Html.FROM_HTML_MODE_COMPACT)
     }
 }

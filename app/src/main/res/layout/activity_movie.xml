@@ -13,7 +13,7 @@
         android:scaleType="centerCrop"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/cover" />
+        app:srcCompat="@mipmap/placeholder" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="match_parent"
@@ -48,92 +48,94 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvName"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="256dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="16dp"
+        android:ellipsize="marquee"
         android:fontFamily="@font/bold"
-        android:text="@string/movie_name"
+        android:gravity="center"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:singleLine="true"
         android:textColor="@color/white"
         android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/vgTimes" />
+
+    <LinearLayout
+        android:id="@+id/vgTimes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/ivFilm"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/ivCalendar"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="4dp"
-        android:padding="4dp"
-        android:tint="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvName"
-        app:srcCompat="@drawable/ic_calendar" />
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivCalendar"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:padding="4dp"
+            android:tint="@color/white"
+            app:srcCompat="@drawable/ic_calendar" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvCalendar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:fontFamily="@font/regular"
-        android:text="@string/sample_5_digits"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/ivCalendar"
-        app:layout_constraintStart_toEndOf="@+id/ivCalendar"
-        app:layout_constraintTop_toTopOf="@+id/ivCalendar" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCalendar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/regular"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/ivVideo"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="4dp"
-        android:padding="4dp"
-        android:tint="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/ivCalendar"
-        app:layout_constraintStart_toEndOf="@+id/tvCalendar"
-        app:layout_constraintTop_toTopOf="@+id/ivCalendar"
-        app:srcCompat="@drawable/ic_video" />
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivVideo"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="24dp"
+            android:padding="4dp"
+            android:tint="@color/white"
+            app:srcCompat="@drawable/ic_video" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvSeason"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:fontFamily="@font/regular"
-        android:text="@string/seasons"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/ivCalendar"
-        app:layout_constraintStart_toEndOf="@+id/ivVideo"
-        app:layout_constraintTop_toTopOf="@+id/ivCalendar" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvDuration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/regular"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+    </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivFilm"
         android:layout_width="32dp"
         android:layout_height="32dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
         android:padding="4dp"
         android:tint="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/tvGenre"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivCalendar"
         app:srcCompat="@drawable/ic_film" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvGenre"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="16dp"
+        android:ellipsize="marquee"
         android:fontFamily="@font/regular"
-        android:text="@string/genre"
+        android:gravity="center"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:singleLine="true"
         android:textColor="@color/white"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivFilm" />
+        app:layout_constraintBottom_toBottomOf="@+id/ivCover" />
 
     <LinearLayout
         android:id="@+id/vgTab"
@@ -152,6 +154,8 @@
             android:layout_weight="1"
             android:fontFamily="@font/bold"
             android:gravity="center"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
             android:text="@string/about"
             android:textColor="@color/blue_100"
             android:textSize="16sp" />
@@ -163,6 +167,8 @@
             android:layout_weight="1"
             android:fontFamily="@font/bold"
             android:gravity="center"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
             android:text="@string/reviews"
             android:textColor="@color/blue_400"
             android:textSize="16sp" />
@@ -174,6 +180,8 @@
             android:layout_weight="1"
             android:fontFamily="@font/bold"
             android:gravity="center"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
             android:text="@string/play"
             android:textColor="@color/blue_400"
             android:textSize="16sp" />
@@ -184,7 +192,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:gravity="center_vertical"
         app:layout_constraintTop_toBottomOf="@+id/vgTab">

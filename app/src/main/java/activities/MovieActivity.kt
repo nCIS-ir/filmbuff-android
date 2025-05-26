@@ -8,8 +8,11 @@ import fragments.MovieAboutFragment
 import fragments.MoviePlayFragment
 import fragments.MovieReviewsFragment
 import helpers.ContextHelper
+import helpers.DateTimeHelper
+import helpers.ImageHelper
 import helpers.KeyHelper
 import ir.ncis.filmbuff.ActivityEnhanced
+import ir.ncis.filmbuff.App
 import ir.ncis.filmbuff.R
 import ir.ncis.filmbuff.databinding.ActivityMovieBinding
 import kotlinx.coroutines.launch
@@ -36,6 +39,23 @@ class MovieActivity : ActivityEnhanced() {
             Movie.details(
                 movieId!!,
                 { movie ->
+                    if (movie.isFavorite) {
+                        b.ivFavorite.setImageResource(R.drawable.ic_favorite_full)
+                        b.ivFavorite.setColorFilter(ContextHelper.getColor(R.color.red_400))
+                    } else {
+                        b.ivFavorite.setImageResource(R.drawable.ic_favorite_empty)
+                        b.ivFavorite.setColorFilter(ContextHelper.getColor(R.color.white))
+                    }
+                    b.tvName.text = movie.title
+                    b.tvName.isSelected = true
+                    b.tvCalendar.text = movie.year.toString()
+                    b.tvDuration.text = DateTimeHelper.durationToHM(movie.duration)
+                    val genreDao = App.DB.genreDao()
+                    val genres = mutableListOf<String>()
+                    movie.genres.forEach { genreId -> genres += genreDao.one(genreId).title }
+                    b.tvGenre.text = genres.joinToString(" - ")
+                    b.tvGenre.isSelected = true
+                    ImageHelper(movie.cover, R.mipmap.placeholder).loadInto(b.ivCover)
                     showFragment(MovieAboutFragment(movie))
                     b.tvAbout.setOnClickListener { showFragment(MovieAboutFragment(movie)) }
                     b.tvReviews.setOnClickListener { showFragment(MovieReviewsFragment()) }
