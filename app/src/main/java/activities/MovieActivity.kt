@@ -8,7 +8,6 @@ import fragments.MovieAboutFragment
 import fragments.MoviePlayFragment
 import fragments.MovieReviewsFragment
 import helpers.ContextHelper
-import helpers.DateTimeHelper
 import helpers.ImageHelper
 import helpers.KeyHelper
 import ir.ncis.filmbuff.ActivityEnhanced
@@ -49,7 +48,7 @@ class MovieActivity : ActivityEnhanced() {
                     b.tvName.text = movie.title
                     b.tvName.isSelected = true
                     b.tvCalendar.text = movie.year.toString()
-                    b.tvDuration.text = DateTimeHelper.durationToHM(movie.duration)
+                    b.tvDuration.text = movie.duration
                     val genreDao = App.DB.genreDao()
                     val genres = mutableListOf<String>()
                     movie.genres.forEach { genreId -> genres += genreDao.one(genreId).title }
@@ -66,9 +65,9 @@ class MovieActivity : ActivityEnhanced() {
         }
     }
 
-    fun showFragment(fragment: Fragment) {
+    private fun showFragment(fragment: Fragment) {
         when (fragment) {
-            is MovieAboutFragment   -> {
+            is MovieAboutFragment -> {
                 b.tvAbout.setTextColor(blue100)
                 b.tvReviews.setTextColor(blue400)
                 b.tvPlay.setTextColor(blue400)
@@ -92,7 +91,7 @@ class MovieActivity : ActivityEnhanced() {
                 b.ivPlay.updateLayoutParams { height = dp2 }
             }
 
-            is MoviePlayFragment    -> {
+            is MoviePlayFragment -> {
                 b.tvAbout.setTextColor(blue400)
                 b.tvReviews.setTextColor(blue400)
                 b.tvPlay.setTextColor(blue100)
