@@ -9,7 +9,7 @@ data class MovieFull(
     val slug: String,
     val title: String,
     val description: String,
-    val duration: Int,
+    val duration: String,
     val year: Int,
     val rating: Float,
     val visits: Int,
