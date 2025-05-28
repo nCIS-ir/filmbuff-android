@@ -19,7 +19,7 @@ data class MovieFull(
     @SerializedName("added_at")
     val addedAt: String,
     val genres: List<String>,
-    val casts: List<MovieCast>,
+    val casts: List<Cast>,
     @SerializedName("is_vip")
     val isVip: Boolean,
     @SerializedName("is_favorite")

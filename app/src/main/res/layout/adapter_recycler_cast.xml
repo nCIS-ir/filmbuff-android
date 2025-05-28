@@ -7,6 +7,7 @@
     tools:background="@color/blue_dark_300">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cvPhoto"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="8dp"
@@ -16,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/ivcast"
+            android:id="@+id/ivPhoto"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="fitXY"
