@@ -16,5 +16,5 @@ data class Artist(
     val diedAt: String?,
     @SerializedName("full_name")
     val fullName: String,
-    val biograghy: String,
+    val biography: String,
 )

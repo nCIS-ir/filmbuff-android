@@ -19,7 +19,7 @@ class CastDetailsDialog(context: Context, private val cast: Cast) : DialogEnhanc
         ImageHelper(App.DB.countryDao().one(cast.artist.countryId).flag, R.mipmap.placeholder).loadInto(b.ivCountry)
         b.tvName.text = cast.artist.fullName
         b.tvRoleName.text = cast.name
-        b.tvBiography.text = cast.artist.biograghy
+        b.tvBiography.text = cast.artist.biography
         b.tvRoleDescription.text = cast.description
     }
 }

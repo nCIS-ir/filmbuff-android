@@ -27,7 +27,7 @@ class MovieAboutFragment(private val movie: MovieFull) : Fragment() {
 
         b.cvTrailer.setOnClickListener { TrailerDialog(requireActivity(), movie.title, movie.trailer).show() }
 
-        b.rvCasts.layoutManager = GridLayoutManager(requireActivity(), 6, GridLayoutManager.HORIZONTAL, false)
+        b.rvCasts.layoutManager = GridLayoutManager(requireActivity(), 6, GridLayoutManager.VERTICAL, false)
         b.rvCasts.adapter = AdapterRecyclerCast(movie.casts)
     }
 }
