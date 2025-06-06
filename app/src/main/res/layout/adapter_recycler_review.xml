@@ -3,8 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="8dp">
+    android:layout_height="wrap_content"
+    android:padding="8dp"
+    tools:background="@color/blue_dark_300">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cvReviews"
@@ -35,7 +36,20 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvBody"
+                android:id="@+id/tvPending"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="2dp"
+                android:text="@string/pending_review"
+                android:textColor="@color/red_400"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tvUsername"
+                app:layout_constraintStart_toEndOf="@+id/tvUsername"
+                app:layout_constraintTop_toTopOf="@+id/tvUsername" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvContent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
@@ -46,11 +60,10 @@
                 android:justificationMode="inter_word"
                 android:text="@string/reviews_description"
                 android:textColor="@color/blue_100"
-                android:textSize="10sp"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvUsername"
-                tools:ignore="SmallSp" />
+                app:layout_constraintTop_toBottomOf="@+id/tvUsername" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 
@@ -66,7 +79,7 @@
         app:strokeColor="@color/blue_800"
         app:strokeWidth="2dp">
 
-        <androidx.appcompat.widget.AppCompatRatingBar
+        <per.wsj.library.AndRatingBar
             android:id="@+id/rbRating"
             style="@style/Widget.AppCompat.RatingBar.Small"
             android:layout_width="wrap_content"
@@ -74,11 +87,13 @@
             android:layout_gravity="center"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
+            android:isIndicator="true"
             android:numStars="5"
-            android:progressBackgroundTint="@color/orange_900"
-            android:progressTint="@color/orange_300"
             android:rating="3"
-            android:secondaryProgressTint="@color/orange_300"
-            android:stepSize="1" />
+            android:stepSize="1"
+            app:bgColor="@color/orange_300"
+            app:bgDrawable="@drawable/ic_star_empty"
+            app:starColor="@color/orange_300"
+            app:starDrawable="@drawable/ic_star_full" />
     </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

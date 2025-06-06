@@ -49,18 +49,16 @@ class MovieActivity : ActivityEnhanced() {
                         b.ivFavorite.setColorFilter(ContextHelper.getColor(R.color.white))
                     }
                     b.tvName.text = movie.title
-                    b.tvName.isSelected = true
                     b.tvCalendar.text = movie.year.toString()
                     b.tvDuration.text = movie.duration
                     val genreDao = App.DB.genreDao()
                     val genres = mutableListOf<String>()
                     movie.genres.forEach { genreId -> genres += genreDao.one(genreId).title }
                     b.tvGenre.text = genres.joinToString(" - ")
-                    b.tvGenre.isSelected = true
                     ImageHelper(movie.cover, R.mipmap.placeholder).loadInto(b.ivCover)
                     showFragment(MovieAboutFragment(movie))
                     b.tvAbout.setOnClickListener { showFragment(MovieAboutFragment(movie)) }
-                    b.tvReviews.setOnClickListener { showFragment(MovieReviewsFragment()) }
+                    b.tvReviews.setOnClickListener { showFragment(MovieReviewsFragment(movie.id)) }
                     b.tvPlay.setOnClickListener { showFragment(MoviePlayFragment()) }
                 },
                 { finish() },

@@ -11,6 +11,7 @@ import ir.ncis.filmbuff.R
 import kotlinx.coroutines.launch
 import retrofit.ApiClient
 import retrofit.calls.Auth.refresh
+import retrofit.models.Review
 import retrofit.models.SerieBrief
 import retrofit.models.SerieFull
 import retrofit.models.SerieGenre
@@ -47,7 +48,7 @@ object Serie {
                             onError?.invoke(it)
                         })
                 } else {
-                    val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.unknown_error)
+                    val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.error_unknown)
                     onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
                 }
             }
@@ -69,7 +70,7 @@ object Serie {
             if (response.isSuccessful) {
                 onSuccess?.invoke()
             } else {
-                val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.unknown_error)
+                val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.error_unknown)
                 onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
             }
         } catch (e: Exception) {
@@ -110,7 +111,7 @@ object Serie {
                             onError?.invoke(it)
                         })
                 } else {
-                    val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.unknown_error)
+                    val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.error_unknown)
                     onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
                 }
             }
@@ -132,7 +133,7 @@ object Serie {
             if (response.isSuccessful) {
                 onSuccess?.invoke()
             } else {
-                val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.unknown_error)
+                val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.error_unknown)
                 onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
             }
         } catch (e: Exception) {
@@ -175,7 +176,7 @@ object Serie {
                             onError?.invoke(it)
                         })
                 } else {
-                    val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.unknown_error)
+                    val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.error_unknown)
                     onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
                 }
             }
@@ -208,7 +209,7 @@ object Serie {
                             onError?.invoke(it)
                         })
                 } else {
-                    val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.unknown_error)
+                    val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.error_unknown)
                     onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
                 }
             }
@@ -250,7 +251,7 @@ object Serie {
                             onError?.invoke(it)
                         })
                 } else {
-                    val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.unknown_error)
+                    val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.error_unknown)
                     onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
                 }
             }
@@ -292,7 +293,82 @@ object Serie {
                             onError?.invoke(it)
                         })
                 } else {
-                    val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.unknown_error)
+                    val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.error_unknown)
+                    onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
+                }
+            }
+        } catch (e: Exception) {
+            onError?.invoke(e)
+        } finally {
+            loadingDialog?.dismiss()
+        }
+    }
+
+    suspend fun reviewGet(serieId: String, onSuccess: (List<Review>) -> Unit, onError: ((Exception) -> Unit)? = null, showLoading: Boolean = true) {
+        var loadingDialog: LoadingDialog? = null
+        if (showLoading) {
+            loadingDialog = LoadingDialog(App.ACTIVITY, App.ACTIVITY.getString(R.string.api_review_get))
+            loadingDialog.show()
+        }
+        try {
+            val response = ApiClient.API.serieReviewGet(serieId)
+            if (response.isSuccessful) {
+                val body = response.body()
+                if (body != null) {
+                    if (body.result != null) {
+                        onSuccess(body.result)
+                    } else {
+                        onError?.invoke(Exception(body.message))
+                    }
+                } else {
+                    onError?.invoke(Exception(response.message()))
+                }
+            } else {
+                if (response.code() == 401) {
+                    refresh(
+                        {
+                            Hawk.put(KeyHelper.TOKEN, it.token)
+                            Hawk.put(KeyHelper.REFRESH, it.refresh)
+                            App.ACTIVITY.lifecycleScope.launch { reviewGet(serieId, onSuccess, onError, showLoading) }
+                        },
+                        {
+                            onError?.invoke(it)
+                        })
+                } else {
+                    val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.error_unknown)
+                    onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
+                }
+            }
+        } catch (e: Exception) {
+            onError?.invoke(e)
+        } finally {
+            loadingDialog?.dismiss()
+        }
+    }
+
+    suspend fun reviewSubmit(serieId: String, score: Int, content: String, onSuccess: () -> Unit, onError: ((Exception) -> Unit)? = null, showLoading: Boolean = true) {
+        var loadingDialog: LoadingDialog? = null
+        if (showLoading) {
+            loadingDialog = LoadingDialog(App.ACTIVITY, App.ACTIVITY.getString(R.string.api_review_submit))
+            loadingDialog.show()
+        }
+        try {
+            val response = ApiClient.API.serieReviewSubmit(serieId, score, content)
+            if (response.isSuccessful) {
+                onSuccess()
+            } else {
+                if (response.code() == 401) {
+                    refresh(
+                        {
+                            Hawk.put(KeyHelper.TOKEN, it.token)
+                            Hawk.put(KeyHelper.REFRESH, it.refresh)
+                            App.ACTIVITY.lifecycleScope.launch { reviewSubmit(serieId, score, content, onSuccess, onError, showLoading) }
+                        },
+                        {
+                            onError?.invoke(it)
+                        })
+                } else {
+                    val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.error_unknown)
                     onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
                 }
             }
@@ -334,7 +410,7 @@ object Serie {
                             onError?.invoke(it)
                         })
                 } else {
-                    val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.unknown_error)
+                    val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.error_unknown)
                     onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
                 }
             }
@@ -376,7 +452,7 @@ object Serie {
                             onError?.invoke(it)
                         })
                 } else {
-                    val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.unknown_error)
+                    val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.error_unknown)
                     onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
                 }
             }

@@ -27,7 +27,7 @@ object Base {
                     onError?.invoke(Exception(response.message()))
                 }
             } else {
-                val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.unknown_error)
+                val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.error_unknown)
                 onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
             }
         } catch (e: Exception) {

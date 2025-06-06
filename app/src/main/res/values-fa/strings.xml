@@ -13,6 +13,8 @@
     <string name="api_favorite_set">در حال ثبت علاقه‌مندی‌</string>
     <string name="api_favorite_delete">در حال حذف علاقه‌مندی‌</string>
     <string name="api_loading_data">در حال بارگذاری اطلاعات</string>
+    <string name="api_review_get">دریافت نظرات</string>
+    <string name="api_review_submit">ثبت نظر</string>
     <string name="api_user_password">تغییر رمز عبور</string>
     <string name="api_user_purchases">دریافت خریدهای کاربر</string>
     <string name="api_user_subscriptions">دریافت اشتراک‌های کاربر</string>
@@ -36,9 +38,11 @@
     <string name="end">پایان</string>
     <string name="enter">وارد شوید</string>
     <string name="enter_otp">رمز یکبار مصرف را وارد کنید</string>
+    <string name="error_empty_comment">لطفا متن نظر خود را وارد کنید!</string>
     <string name="error_new_password">رمز جدید باید حداقل 8 کاراکتر باشد!</string>
     <string name="error_old_password">رمز قبلی را وارد کنید!</string>
     <string name="error_repeat_password">تکرار رمز جدید باید با رمز جدید یکسان باشد!</string>
+    <string name="error_unknown">خطای ناشناخته!</string>
     <string name="exit_message">آیا مطمئن هستید که می‌خواهید\nاز خوره فیلم خارج شوید؟</string>
     <string name="fantasy">فانتزی</string>
     <string name="favorites">علاقه‌مندی‌ها</string>
@@ -63,6 +67,7 @@
     <string name="old_password">رمز قبلی</string>
     <string name="otp_sent">رمز یکبار مصرف ارسال شده است به:</string>
     <string name="password">رمز عبور</string>
+    <string name="pending_review">منتظر بررسی</string>
     <string name="permission_action">دریافت مجوز</string>
     <string name="permission_message">این برنامه به مجوز نمایش اعلان نیاز دارد.</string>
     <string name="play">پخش</string>
@@ -82,7 +87,6 @@
     <string name="sample_days">365 روز</string>
     <string name="sample_episode">قسمت 1</string>
     <string name="sample_episode_description">شاه رابرت از ند استارک می‌خواهد که دست راست پادشاه شود، در حالی که آن سوی دریا، دنریس تارگرین به خالدراگو داده می‌شود. در همین حین، تهدیدی فراطبیعی در آن سوی دیوار شکل می‌گیرد و برن استارک شاهد رازی تاریک می‌شود که نزدیک است جانش را از دست بدهد.</string>
-    <string name="sample_error_comment">لطفا متن نظر خود را\n وارد کنید!</string>
     <string name="sample_role">در سریال بازی تاج‌وتخت، امیلیا کلارک نقش دنریس تارگرین را ایفا می‌کند؛ شاهزاده‌ای تبعیدی از یک خاندان سرنگون‌شده که از هیچ به قدرتی عظیم می‌رسد و به یکی از مدعیان جدی تخت آهنین تبدیل می‌شود. او که در آغاز دختری خجالتی و فروخته‌شده به ازدواج است، به «مادر اژدهایان» تبدیل می‌شود، بردگان را آزاد می‌کند و ارتش‌های بزرگی را گرد خود جمع می‌آورد. مسیر او با آتش، خون و پیچیدگی‌های اخلاقی همراه است، چرا که رؤیای او برای شکستن چرخه استبداد در نهایت با بی‌رحمی فزاینده‌اش در تضاد قرار می‌گیرد. بازی درخشان کلارک ترکیبی از لطافت و اقتدار بود و دنریس را به یکی از نمادین‌ترین و بحث‌برانگیزترین شخصیت‌های سریال تبدیل کرد.</string>
     <string name="sample_season_description">در فصل اول بازی تاج‌وتخت، خاندان‌های اشرافی برای قدرت می‌جنگند، ادارد استارک خیانت می‌بیند، دنریس تارگرین اوج می‌گیرد و تهدیدهای تاریکی آن سوی دیوار به حرکت درمی‌آیند.</string>
     <string name="sample_season_title">فصل 01</string>
@@ -102,7 +106,6 @@
     <string name="subtitle">زیرنویس:</string>
     <string name="title">عنوان</string>
     <string name="trailer">پیش‌نمایش</string>
-    <string name="unknown_error">خطای ناشناخته</string>
     <string name="username">نام کاربری</string>
     <string name="username_already_taken">نام کاربری قبلا گرفته شده است!</string>
     <string name="verify">بررسی</string>

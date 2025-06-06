@@ -1,5 +1,6 @@
 package retrofit
 
+import retrofit.models.Review
 import retrofit.models.Favorite
 import retrofit.models.Info
 import retrofit.models.MovieBrief
@@ -57,9 +58,6 @@ interface ApiInterface {
     //endregion
 
     //region Movie
-    @GET("movie/recent")
-    suspend fun movieRecent(): Response<ResponseWrapper<List<MovieBrief>>>
-
     @GET("movie/genre")
     suspend fun movieAllGenres(@Query("sort") sort: String, @Query("direction") direction: String): Response<ResponseWrapper<List<MovieGenre>>>
 
@@ -74,6 +72,16 @@ interface ApiInterface {
 
     @GET("movie/{genre_id}")
     suspend fun movieGenre(@Path("genre_id") genreId: String, @Query("page") page: Int, @Query("perPage") perPage: Int, @Query("sort") sort: String, @Query("direction") direction: String): Response<ResponseWrapper<List<MovieBrief>>>
+
+    @GET("movie/recent")
+    suspend fun movieRecent(): Response<ResponseWrapper<List<MovieBrief>>>
+
+    @GET("movie/comment/{movie_id}")
+    suspend fun movieReviewGet(@Path("movie_id") movieId: String): Response<ResponseWrapper<List<Review>>>
+
+    @POST("movie/comment/{movie_id}")
+    @FormUrlEncoded
+    suspend fun movieReviewSubmit(@Path("movie_id") movieId: String, @Field("score") score: Int, @Field("content") content: String): Response<Void>
 
     @POST("movie/search")
     @FormUrlEncoded
@@ -90,9 +98,6 @@ interface ApiInterface {
     //endregion
 
     //region Serie
-    @GET("serie/recent")
-    suspend fun serieRecent(): Response<ResponseWrapper<List<SerieBrief>>>
-
     @GET("serie/genre")
     suspend fun serieAllGenres(@Query("sort") sort: String, @Query("direction") direction: String): Response<ResponseWrapper<List<SerieGenre>>>
 
@@ -101,6 +106,16 @@ interface ApiInterface {
 
     @GET("serie/{genre_id}")
     suspend fun serieGenre(@Path("genre_id") genreId: String, @Query("page") page: Int, @Query("perPage") perPage: Int, @Query("sort") sort: String, @Query("direction") direction: String): Response<ResponseWrapper<List<SerieBrief>>>
+
+    @GET("serie/recent")
+    suspend fun serieRecent(): Response<ResponseWrapper<List<SerieBrief>>>
+
+    @GET("serie/comment/{movie_id}")
+    suspend fun serieReviewGet(@Path("serie_id") serieId: String): Response<ResponseWrapper<List<Review>>>
+
+    @POST("serie/comment/{movie_id}")
+    @FormUrlEncoded
+    suspend fun serieReviewSubmit(@Path("serie_id") serieId: String, @Field("score") score: Int, @Field("content") content: String): Response<Void>
 
     @POST("serie/search")
     @FormUrlEncoded

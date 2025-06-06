@@ -57,8 +57,6 @@ class MainActivity : ActivityEnhanced() {
         b.cvSort.setOnClickListener { SortingDialog(this, mainViewModel).show() }
         b.cvSearch.setOnClickListener { runActivity(SearchActivity::class.java) }
 
-        b.ivLogo.setOnClickListener { runActivity(PlayActivity::class.java) }
-
         b.srReload.setOnRefreshListener {
             loadData()
             b.srReload.isRefreshing = false
