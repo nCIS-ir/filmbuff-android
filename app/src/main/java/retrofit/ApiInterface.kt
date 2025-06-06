@@ -66,6 +66,12 @@ interface ApiInterface {
     @GET("movie/details/{movie_id}")
     suspend fun movieDetails(@Path("movie_id") movieId: String): Response<ResponseWrapper<MovieFull>>
 
+    @GET("movie/favorite")
+    suspend fun movieFavoriteGet(): Response<ResponseWrapper<List<Favorite>>>
+
+    @POST("movie/favorite/{movie_id}")
+    suspend fun movieFavoriteSet(@Path("movie_id") movieId: String): Response<Void>
+
     @GET("movie/{genre_id}")
     suspend fun movieGenre(@Path("genre_id") genreId: String, @Query("page") page: Int, @Query("perPage") perPage: Int, @Query("sort") sort: String, @Query("direction") direction: String): Response<ResponseWrapper<List<MovieBrief>>>
 
@@ -75,15 +81,6 @@ interface ApiInterface {
 
     @GET("movie/slider")
     suspend fun movieSlider(): Response<ResponseWrapper<List<MovieBrief>>>
-
-    @GET("movie/favorite")
-    suspend fun movieFavorite(): Response<ResponseWrapper<List<Favorite>>>
-
-    @POST("movie/favorite/{movie_id}")
-    suspend fun addFavoriteMovie(@Path("movie_id") movieId: String): Response<Void>
-
-    @DELETE("movie/favorite/{movie_id}")
-    suspend fun deleteFavoriteMovie(@Path("movie_id") movieId: String): Response<Void>
 
     @POST("movie/visit/{movie_file_id}")
     suspend fun editVisitMovie(@Path("movie_file_id") movieFileId: String): Response<Void>
@@ -113,13 +110,10 @@ interface ApiInterface {
     suspend fun serieSlider(): Response<ResponseWrapper<List<SerieBrief>>>
 
     @GET("serie/favorite")
-    suspend fun serieFavorite(): Response<ResponseWrapper<List<Favorite>>>
+    suspend fun serieFavoriteGet(): Response<ResponseWrapper<List<Favorite>>>
 
     @POST("serie/favorite/{serie_id}")
-    suspend fun addFavoriteSerie(@Path("serie_id") serieId: String): Response<Void>
-
-    @DELETE("serie/favorite/{serie_id}")
-    suspend fun deleteFavoriteSerie(@Path("serie_id") serieId: String): Response<Void>
+    suspend fun serieFavoriteSet(@Path("serie_id") serieId: String): Response<Void>
 
     @POST("serie/visit/{episode_file_id}")
     suspend fun editVisitSerie(@Path("episode_file_id") episodeFileId: String): Response<Void>

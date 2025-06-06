@@ -16,6 +16,7 @@ import ir.ncis.filmbuff.R
 import ir.ncis.filmbuff.databinding.ActivityMovieBinding
 import kotlinx.coroutines.launch
 import retrofit.calls.Movie
+import retrofit.models.MovieFull
 
 class MovieActivity : ActivityEnhanced() {
     private lateinit var b: ActivityMovieBinding
@@ -23,6 +24,7 @@ class MovieActivity : ActivityEnhanced() {
     private val blue400 = ContextHelper.getColor(R.color.blue_400)
     private val dp2 = ContextHelper.dpToPx(2)
     private val dp4 = ContextHelper.dpToPx(4)
+    private lateinit var movie: MovieFull
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +40,7 @@ class MovieActivity : ActivityEnhanced() {
             Movie.details(
                 movieId!!,
                 { movie ->
+                    this@MovieActivity.movie = movie
                     if (movie.isFavorite) {
                         b.ivFavorite.setImageResource(R.drawable.ic_favorite_full)
                         b.ivFavorite.setColorFilter(ContextHelper.getColor(R.color.red_400))
@@ -62,6 +65,24 @@ class MovieActivity : ActivityEnhanced() {
                 },
                 { finish() },
             )
+        }
+
+        b.ivFavorite.setOnClickListener {
+            lifecycleScope.launch {
+                Movie.favoriteSet(
+                    movie,
+                    {
+                        movie.isFavorite = !movie.isFavorite
+                        if (movie.isFavorite) {
+                            b.ivFavorite.setImageResource(R.drawable.ic_favorite_full)
+                            b.ivFavorite.setColorFilter(ContextHelper.getColor(R.color.red_400))
+                        } else {
+                            b.ivFavorite.setImageResource(R.drawable.ic_favorite_empty)
+                            b.ivFavorite.setColorFilter(ContextHelper.getColor(R.color.white))
+                        }
+                    }
+                )
+            }
         }
     }
 

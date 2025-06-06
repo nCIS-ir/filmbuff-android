@@ -105,7 +105,7 @@ class ImageHelper(private val url: String, private val placeHolder: Int) {
         if (drawable != null) {
             val bitmap = drawable.bitmap
             val stream = ByteArrayOutputStream()
-            resizeBitmapMaintainingAspectRatio(bitmap).compress(Bitmap.CompressFormat.JPEG, 75, stream)
+            resizeBitmapMaintainingAspectRatio(bitmap).compress(Bitmap.CompressFormat.PNG, 75, stream)
             return Base64.encodeToString(stream.toByteArray(), Base64.NO_WRAP)
         }
         return null

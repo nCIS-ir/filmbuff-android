@@ -23,5 +23,5 @@ data class MovieFull(
     @SerializedName("is_vip")
     val isVip: Boolean,
     @SerializedName("is_favorite")
-    val isFavorite: Boolean,
+    var isFavorite: Boolean,
 )

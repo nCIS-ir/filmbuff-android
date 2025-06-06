@@ -10,7 +10,7 @@
     <string name="api_auth_register">ثبت‌نام</string>
     <string name="api_auth_resend">ارسال مجدد کد</string>
     <string name="api_auth_verify">بررسی کد</string>
-    <string name="api_favorite_add">در حال ثبت علاقه‌مندی‌</string>
+    <string name="api_favorite_set">در حال ثبت علاقه‌مندی‌</string>
     <string name="api_favorite_delete">در حال حذف علاقه‌مندی‌</string>
     <string name="api_loading_data">در حال بارگذاری اطلاعات</string>
     <string name="api_user_password">تغییر رمز عبور</string>

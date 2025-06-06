@@ -9,8 +9,8 @@
     <string name="api_auth_register">Register</string>
     <string name="api_auth_resend">Resend Code</string>
     <string name="api_auth_verify">Verify OTP</string>
-    <string name="api_favorite_add">Adding Favorites</string>
-    <string name="api_favorite_delete">Deleting Favorites</string>
+    <string name="api_favorite_set">Setting Favorite</string>
+    <string name="api_favorite_delete">Removing Favorite</string>
     <string name="api_loading_data">Loading Data</string>
     <string name="api_user_password">Change Your Password</string>
     <string name="api_user_purchases">Get User Purchases</string>
