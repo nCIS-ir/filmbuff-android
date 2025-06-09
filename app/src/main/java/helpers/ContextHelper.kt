@@ -1,11 +1,5 @@
 package helpers
 
-import android.content.Context
-import android.text.method.PasswordTransformationMethod
-import android.view.View
-import android.view.inputmethod.InputMethodManager
-import android.widget.EditText
-import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import com.google.gson.GsonBuilder
 import ir.ncis.filmbuff.App
@@ -31,12 +25,12 @@ object ContextHelper {
     fun getColor(colorResId: Int): Int = ContextCompat.getColor(App.CONTEXT, colorResId)
 
     fun getHttpStatus(e: Throwable): Int? {
-        val errorMessage = e.localizedMessage ?: App.CONTEXT.getString(R.string.unknown_error)
+        val errorMessage = e.localizedMessage ?: App.CONTEXT.getString(R.string.error_unknown)
         return errorMessage.substringAfter("HTTP ").substringBefore(":").toIntOrNull()
     }
 
     fun getHttpMessage(e: Throwable): String? {
-        val errorMessage = e.localizedMessage ?: App.CONTEXT.getString(R.string.unknown_error)
+        val errorMessage = e.localizedMessage ?: App.CONTEXT.getString(R.string.error_unknown)
         return GsonBuilder().create().fromJson(errorMessage.substringAfter(": "), ResponseWrapper::class.java).message
     }
 

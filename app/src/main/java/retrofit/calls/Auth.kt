@@ -44,7 +44,7 @@ object Auth {
                             onError?.invoke(it)
                         })
                 } else {
-                    val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.unknown_error)
+                    val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.error_unknown)
                     onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
                 }
             }
@@ -75,7 +75,7 @@ object Auth {
                     onError?.invoke(Exception(response.message()))
                 }
             } else {
-                val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.unknown_error)
+                val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.error_unknown)
                 onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
             }
         } catch (e: Exception) {
@@ -107,7 +107,7 @@ object Auth {
                             onError?.invoke(it)
                         })
                 } else {
-                    val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.unknown_error)
+                    val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.error_unknown)
                     onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
                 }
             }
@@ -139,7 +139,7 @@ object Auth {
                     onError?.invoke(Exception(response.message()))
                 }
             } else {
-                val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.unknown_error)
+                val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.error_unknown)
                 onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
             }
         } catch (e: Exception) {
@@ -160,7 +160,7 @@ object Auth {
             if (response.isSuccessful) {
                 onSuccess()
             } else {
-                val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.unknown_error)
+                val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.error_unknown)
                 onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
             }
         } catch (e: Exception) {
@@ -181,7 +181,7 @@ object Auth {
             if (response.isSuccessful) {
                 onSuccess()
             } else {
-                val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.unknown_error)
+                val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.error_unknown)
                 onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
             }
         } catch (e: Exception) {
@@ -211,7 +211,7 @@ object Auth {
                     onError?.invoke(Exception(response.message()))
                 }
             } else {
-                val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.unknown_error)
+                val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.error_unknown)
                 onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
             }
         } catch (e: Exception) {

@@ -39,6 +39,7 @@ android {
 dependencies {
     annotationProcessor(libs.androidx.room.compiler)
     debugImplementation(libs.chucker)
+    implementation(libs.andratingbar)
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.core.ktx)
@@ -60,7 +61,7 @@ dependencies {
     implementation(libs.picasso)
     implementation(libs.pinview)
     implementation(libs.retrofit)
-    implementation (libs.shimmer)
+    implementation(libs.shimmer)
     implementation(libs.tapsell.plus.sdk.android)
     ksp(libs.androidx.room.compiler)
     releaseImplementation(libs.chucker.no.op)

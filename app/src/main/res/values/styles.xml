@@ -24,10 +24,4 @@
         <item name="cornerSizeBottomLeft">0dp</item>
         <item name="cornerSizeBottomRight">24dp</item>
     </style>
-
-    <style name="RatingBar" parent="Widget.AppCompat.RatingBar">
-        <item name="android:progressDrawable">@drawable/rating_bar</item>
-        <item name="android:progressTint">@color/orange_300</item>
-        <item name="android:progressBackgroundTint">@color/orange_300</item>
-    </style>
 </resources>

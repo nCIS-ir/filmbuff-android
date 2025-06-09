@@ -36,7 +36,7 @@ class SerieActivity : ActivityEnhanced() {
                 { serie ->
                     showFragment(SerieAboutFragment(serie))
                     b.tvAbout.setOnClickListener { showFragment(SerieAboutFragment(serie)) }
-                    b.tvReviews.setOnClickListener { showFragment(MovieReviewsFragment()) }
+                    b.tvReviews.setOnClickListener { showFragment(MovieReviewsFragment(serie.id)) }
                     b.tvPlay.setOnClickListener { showFragment(MoviePlayFragment()) }
                 },
                 { finish() },

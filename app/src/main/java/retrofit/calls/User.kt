@@ -24,7 +24,7 @@ object User {
             if (response.isSuccessful) {
                 onSuccess.invoke()
             } else {
-                val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.unknown_error)
+                val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.error_unknown)
                 onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
             }
         } catch (e: Exception) {
@@ -65,7 +65,7 @@ object User {
                             onError?.invoke(it)
                         })
                 } else {
-                    val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.unknown_error)
+                    val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.error_unknown)
                     onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
                 }
             }
@@ -107,7 +107,7 @@ object User {
                             onError?.invoke(it)
                         })
                 } else {
-                    val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.unknown_error)
+                    val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.error_unknown)
                     onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
                 }
             }

@@ -14,29 +14,9 @@ import retrofit.calls.Auth.refresh
 import retrofit.models.MovieBrief
 import retrofit.models.MovieFull
 import retrofit.models.MovieGenre
+import retrofit.models.Review
 
 object Movie {
-    suspend fun addFavorite(movieId: String, onSuccess: (() -> Unit)? = null, onError: ((Exception) -> Unit)? = null, showLoading: Boolean = true) {
-        var loadingDialog: LoadingDialog? = null
-        if (showLoading) {
-            loadingDialog = LoadingDialog(App.ACTIVITY, App.ACTIVITY.getString(R.string.api_favorite_add))
-            loadingDialog.show()
-        }
-        try {
-            val response = ApiClient.API.addFavoriteMovie(movieId)
-            if (response.isSuccessful) {
-                onSuccess?.invoke()
-            } else {
-                val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.unknown_error)
-                onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
-            }
-        } catch (e: Exception) {
-            onError?.invoke(e)
-        } finally {
-            loadingDialog?.dismiss()
-        }
-    }
-
     suspend fun allGenres(sort: Sort = Sort.POPULARITY, direction: Direction = Direction.DESCENDING, onSuccess: (List<MovieGenre>) -> Unit, onError: ((Exception) -> Unit)? = null, showLoading: Boolean = true) {
         var loadingDialog: LoadingDialog? = null
         if (showLoading) {
@@ -68,30 +48,9 @@ object Movie {
                             onError?.invoke(it)
                         })
                 } else {
-                    val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.unknown_error)
+                    val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.error_unknown)
                     onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
                 }
-            }
-        } catch (e: Exception) {
-            onError?.invoke(e)
-        } finally {
-            loadingDialog?.dismiss()
-        }
-    }
-
-    suspend fun deleteFavorite(movieId: String, onSuccess: (() -> Unit)? = null, onError: ((Exception) -> Unit)? = null, showLoading: Boolean = true) {
-        var loadingDialog: LoadingDialog? = null
-        if (showLoading) {
-            loadingDialog = LoadingDialog(App.ACTIVITY, App.ACTIVITY.getString(R.string.api_favorite_delete))
-            loadingDialog.show()
-        }
-        try {
-            val response = ApiClient.API.deleteFavoriteMovie(movieId)
-            if (response.isSuccessful) {
-                onSuccess?.invoke()
-            } else {
-                val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.unknown_error)
-                onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
             }
         } catch (e: Exception) {
             onError?.invoke(e)
@@ -111,7 +70,7 @@ object Movie {
             if (response.isSuccessful) {
                 onSuccess?.invoke()
             } else {
-                val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.unknown_error)
+                val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.error_unknown)
                 onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
             }
         } catch (e: Exception) {
@@ -152,7 +111,7 @@ object Movie {
                             onError?.invoke(it)
                         })
                 } else {
-                    val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.unknown_error)
+                    val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.error_unknown)
                     onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
                 }
             }
@@ -174,7 +133,7 @@ object Movie {
             if (response.isSuccessful) {
                 onSuccess?.invoke()
             } else {
-                val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.unknown_error)
+                val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.error_unknown)
                 onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
             }
         } catch (e: Exception) {
@@ -184,14 +143,14 @@ object Movie {
         }
     }
 
-    suspend fun favorite(onSuccess: (List<MovieBrief>) -> Unit, onError: ((Exception) -> Unit)? = null, showLoading: Boolean = true) {
+    suspend fun favoriteGet(onSuccess: (List<MovieBrief>) -> Unit, onError: ((Exception) -> Unit)? = null, showLoading: Boolean = true) {
         var loadingDialog: LoadingDialog? = null
         if (showLoading) {
             loadingDialog = LoadingDialog(App.ACTIVITY, App.ACTIVITY.getString(R.string.api_loading_data))
             loadingDialog.show()
         }
         try {
-            val response = ApiClient.API.movieFavorite()
+            val response = ApiClient.API.movieFavoriteGet()
             if (response.isSuccessful) {
                 val body = response.body()
                 if (body != null) {
@@ -211,13 +170,46 @@ object Movie {
                         {
                             Hawk.put(KeyHelper.TOKEN, it.token)
                             Hawk.put(KeyHelper.REFRESH, it.refresh)
-                            App.ACTIVITY.lifecycleScope.launch { favorite(onSuccess, onError, showLoading) }
+                            App.ACTIVITY.lifecycleScope.launch { favoriteGet(onSuccess, onError, showLoading) }
                         },
                         {
                             onError?.invoke(it)
                         })
                 } else {
-                    val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.unknown_error)
+                    val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.error_unknown)
+                    onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
+                }
+            }
+        } catch (e: Exception) {
+            onError?.invoke(e)
+        } finally {
+            loadingDialog?.dismiss()
+        }
+    }
+
+    suspend fun favoriteSet(movie: MovieFull, onSuccess: () -> Unit, onError: ((Exception) -> Unit)? = null, showLoading: Boolean = true) {
+        var loadingDialog: LoadingDialog? = null
+        if (showLoading) {
+            loadingDialog = LoadingDialog(App.ACTIVITY, App.ACTIVITY.getString(if (movie.isFavorite) R.string.api_favorite_delete else R.string.api_favorite_set))
+            loadingDialog.show()
+        }
+        try {
+            val response = ApiClient.API.movieFavoriteSet(movie.id)
+            if (response.isSuccessful) {
+                onSuccess()
+            } else {
+                if (response.code() == 401) {
+                    refresh(
+                        {
+                            Hawk.put(KeyHelper.TOKEN, it.token)
+                            Hawk.put(KeyHelper.REFRESH, it.refresh)
+                            App.ACTIVITY.lifecycleScope.launch { favoriteSet(movie, onSuccess, onError, showLoading) }
+                        },
+                        {
+                            onError?.invoke(it)
+                        })
+                } else {
+                    val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.error_unknown)
                     onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
                 }
             }
@@ -259,7 +251,7 @@ object Movie {
                             onError?.invoke(it)
                         })
                 } else {
-                    val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.unknown_error)
+                    val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.error_unknown)
                     onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
                 }
             }
@@ -301,7 +293,82 @@ object Movie {
                             onError?.invoke(it)
                         })
                 } else {
-                    val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.unknown_error)
+                    val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.error_unknown)
+                    onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
+                }
+            }
+        } catch (e: Exception) {
+            onError?.invoke(e)
+        } finally {
+            loadingDialog?.dismiss()
+        }
+    }
+
+    suspend fun reviewGet(movieId: String, onSuccess: (List<Review>) -> Unit, onError: ((Exception) -> Unit)? = null, showLoading: Boolean = true) {
+        var loadingDialog: LoadingDialog? = null
+        if (showLoading) {
+            loadingDialog = LoadingDialog(App.ACTIVITY, App.ACTIVITY.getString(R.string.api_review_get))
+            loadingDialog.show()
+        }
+        try {
+            val response = ApiClient.API.movieReviewGet(movieId)
+            if (response.isSuccessful) {
+                val body = response.body()
+                if (body != null) {
+                    if (body.result != null) {
+                        onSuccess(body.result)
+                    } else {
+                        onError?.invoke(Exception(body.message))
+                    }
+                } else {
+                    onError?.invoke(Exception(response.message()))
+                }
+            } else {
+                if (response.code() == 401) {
+                    refresh(
+                        {
+                            Hawk.put(KeyHelper.TOKEN, it.token)
+                            Hawk.put(KeyHelper.REFRESH, it.refresh)
+                            App.ACTIVITY.lifecycleScope.launch { reviewGet(movieId, onSuccess, onError, showLoading) }
+                        },
+                        {
+                            onError?.invoke(it)
+                        })
+                } else {
+                    val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.error_unknown)
+                    onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
+                }
+            }
+        } catch (e: Exception) {
+            onError?.invoke(e)
+        } finally {
+            loadingDialog?.dismiss()
+        }
+    }
+
+    suspend fun reviewSubmit(movieId: String, score: Int, content: String, onSuccess: () -> Unit, onError: ((Exception) -> Unit)? = null, showLoading: Boolean = true) {
+        var loadingDialog: LoadingDialog? = null
+        if (showLoading) {
+            loadingDialog = LoadingDialog(App.ACTIVITY, App.ACTIVITY.getString(R.string.api_review_submit))
+            loadingDialog.show()
+        }
+        try {
+            val response = ApiClient.API.movieReviewSubmit(movieId, score, content)
+            if (response.isSuccessful) {
+                onSuccess()
+            } else {
+                if (response.code() == 401) {
+                    refresh(
+                        {
+                            Hawk.put(KeyHelper.TOKEN, it.token)
+                            Hawk.put(KeyHelper.REFRESH, it.refresh)
+                            App.ACTIVITY.lifecycleScope.launch { reviewSubmit(movieId, score, content, onSuccess, onError, showLoading) }
+                        },
+                        {
+                            onError?.invoke(it)
+                        })
+                } else {
+                    val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.error_unknown)
                     onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
                 }
             }
@@ -343,7 +410,7 @@ object Movie {
                             onError?.invoke(it)
                         })
                 } else {
-                    val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.unknown_error)
+                    val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.error_unknown)
                     onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
                 }
             }
@@ -386,7 +453,7 @@ object Movie {
                             onError?.invoke(it)
                         })
                 } else {
-                    val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.unknown_error)
+                    val errorMessage = response.errorBody()?.string() ?: App.ACTIVITY.getString(R.string.error_unknown)
                     onError?.invoke(Exception("HTTP ${response.code()}: $errorMessage"))
                 }
             }

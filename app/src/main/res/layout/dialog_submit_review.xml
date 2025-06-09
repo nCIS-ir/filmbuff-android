@@ -48,27 +48,29 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cvStar"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_margin="16dp"
                 app:cardBackgroundColor="@color/blue_dark_400"
-                app:cardCornerRadius="24dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:cardCornerRadius="1000dp"
+                app:contentPadding="8dp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:strokeColor="@color/blue_800"
                 app:strokeWidth="2dp">
 
-                <androidx.appcompat.widget.AppCompatRatingBar
+                <per.wsj.library.AndRatingBar
                     android:id="@+id/rbRating"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center"
+                    android:isIndicator="false"
                     android:numStars="5"
-                    android:progressBackgroundTint="@color/orange_900"
-                    android:progressTint="@color/orange_300"
                     android:rating="3"
-                    android:secondaryProgressTint="@color/orange_300"
-                    android:stepSize="1" />
+                    android:stepSize="1"
+                    app:bgColor="@color/orange_300"
+                    app:bgDrawable="@drawable/ic_star_empty"
+                    app:starColor="@color/orange_300"
+                    app:starDrawable="@drawable/ic_star_full" />
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
@@ -78,17 +80,19 @@
                 android:layout_margin="16dp"
                 app:cardBackgroundColor="@color/blue_dark_400"
                 app:cardCornerRadius="12dp"
+                app:contentPadding="4dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cvStar"
                 app:strokeColor="@color/blue_800"
                 app:strokeWidth="2dp">
 
                 <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/etComment"
+                    android:id="@+id/etContent"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:fontFamily="@font/regular"
                     android:gravity="start"
+                    android:inputType="text"
                     android:text="@string/comment"
                     android:textColor="@color/blue_400"
                     android:textSize="12sp" />
@@ -123,7 +127,6 @@
                 android:layout_margin="8dp"
                 android:fontFamily="@font/bold"
                 android:gravity="center"
-                android:text="@string/sample_error_comment"
                 android:textColor="@color/red_400"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@+id/cvReject"

@@ -179,7 +179,7 @@ class ProfileActivity : ActivityEnhanced() {
                 b.favorites.shimmerSeries.visibility = View.VISIBLE
                 b.favorites.rvSeries.visibility = View.GONE
                 lifecycleScope.launch {
-                    Movie.favorite(
+                    Movie.favoriteGet(
                         { movies ->
                             b.favorites.shimmerMovies.visibility = View.GONE
                             b.favorites.rvMovies.visibility = View.VISIBLE
@@ -191,7 +191,7 @@ class ProfileActivity : ActivityEnhanced() {
                         },
                         showLoading = false
                     )
-                    Serie.favorite(
+                    Serie.favoriteGet(
                         { series ->
                             b.favorites.shimmerSeries.visibility = View.GONE
                             b.favorites.rvSeries.visibility = View.VISIBLE

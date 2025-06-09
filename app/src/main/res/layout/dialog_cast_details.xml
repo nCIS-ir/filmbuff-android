@@ -13,6 +13,7 @@
         android:layout_marginStart="32dp"
         app:cardBackgroundColor="@color/blue_dark_300"
         app:cardElevation="0dp"
+        app:contentPadding="-6dp"
         app:layout_constraintBottom_toBottomOf="@+id/cvLogo"
         app:layout_constraintTop_toTopOf="@+id/cvLogo"
         app:shapeAppearance="@style/EndCornersRoundedCard24"
@@ -30,30 +31,34 @@
                 android:layout_gravity="center"
                 android:fontFamily="@font/bold"
                 android:text="@string/emilia_clarke"
-                android:textColor="@color/blue_400"
+                android:textColor="@color/blue_100"
                 android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/tvRoleName"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvNickName"
+                android:id="@+id/tvRoleName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="-4dp"
                 android:fontFamily="@font/regular"
                 android:text="@string/daenerys_targaryen"
                 android:textColor="@color/blue_400"
-                android:textSize="10sp"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvName" />
 
             <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivCountry"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_margin="4dp"
                 android:adjustViewBounds="true"
+                android:translationX="6dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@mipmap/english" />
@@ -81,7 +86,7 @@
             android:orientation="vertical">
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvBio"
+                android:id="@+id/tvBiography"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -95,7 +100,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvRole"
+                android:id="@+id/tvRoleDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -124,6 +129,7 @@
         app:strokeWidth="2dp">
 
         <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivArtist"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"

@@ -13,8 +13,8 @@ data class Artist(
     @SerializedName("born_at")
     val bornAt: String,
     @SerializedName("died_at")
-    val diedAt: String,
+    val diedAt: String?,
     @SerializedName("full_name")
     val fullName: String,
-    val biograghy: String,
+    val biography: String,
 )

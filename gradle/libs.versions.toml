@@ -22,6 +22,7 @@ tapsellPlusSdkAndroid = "2.3.2"
 viewpager2 = "1.1.0"
 
 [libraries]
+andratingbar = { module = "com.github.wdsqjq:AndRatingBar", version.ref = "andratingbar" }
 androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activityKtx" }
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
