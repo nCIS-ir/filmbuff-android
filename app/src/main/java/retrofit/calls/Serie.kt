@@ -382,7 +382,7 @@ object Serie {
     suspend fun search(term: String, genreIds: List<String> = listOf(), onSuccess: (List<SerieBrief>) -> Unit, onError: ((Exception) -> Unit)? = null, showLoading: Boolean = true) {
         var loadingDialog: LoadingDialog? = null
         if (showLoading) {
-            loadingDialog = LoadingDialog(App.ACTIVITY, App.ACTIVITY.getString(R.string.api_loading_data))
+            loadingDialog = LoadingDialog(App.ACTIVITY, App.ACTIVITY.getString(R.string.api_search))
             loadingDialog.show()
         }
         try {

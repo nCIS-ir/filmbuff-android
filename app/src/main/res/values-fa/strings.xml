@@ -15,6 +15,7 @@
     <string name="api_loading_data">در حال بارگذاری اطلاعات</string>
     <string name="api_review_get">دریافت نظرات</string>
     <string name="api_review_submit">ثبت نظر</string>
+    <string name="api_search">جستجو</string>
     <string name="api_user_password">تغییر رمز عبور</string>
     <string name="api_user_purchases">دریافت خریدهای کاربر</string>
     <string name="api_user_subscriptions">دریافت اشتراک‌های کاربر</string>

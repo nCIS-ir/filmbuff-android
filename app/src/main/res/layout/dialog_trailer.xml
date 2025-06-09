@@ -49,12 +49,20 @@
         app:strokeColor="@color/blue_800"
         app:strokeWidth="2dp">
 
-        <androidx.media3.ui.PlayerView
-            android:id="@+id/pvTrailer"
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:auto_show="true"
-            app:show_buffering="when_playing" />
+            android:layout_margin="8dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp">
+
+            <androidx.media3.ui.PlayerView
+                android:id="@+id/pvTrailer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:auto_show="true"
+                app:show_buffering="when_playing" />
+        </androidx.cardview.widget.CardView>
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView

@@ -14,6 +14,7 @@
     <string name="api_loading_data">Loading Data</string>
     <string name="api_review_get">Get Reviews</string>
     <string name="api_review_submit">Submit Review</string>
+    <string name="api_search">Search</string>
     <string name="api_user_password">Change Your Password</string>
     <string name="api_user_purchases">Get User Purchases</string>
     <string name="api_user_subscriptions">Get User Subscriptions</string>

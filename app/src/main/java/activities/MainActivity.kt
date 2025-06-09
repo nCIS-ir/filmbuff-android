@@ -55,7 +55,7 @@ class MainActivity : ActivityEnhanced() {
 
         b.cvProfile.setOnClickListener { runActivity(ProfileActivity::class.java) }
         b.cvSort.setOnClickListener { SortingDialog(this, mainViewModel).show() }
-        b.cvSearch.setOnClickListener { runActivity(SearchActivity::class.java) }
+        b.cvSearch.setOnClickListener { runActivity(SearchActivity::class.java, bundleOf(Pair(KeyHelper.MODE, mainViewModel.mode.value))) }
 
         b.srReload.setOnRefreshListener {
             loadData()
