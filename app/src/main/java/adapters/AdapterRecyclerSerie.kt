@@ -1,6 +1,6 @@
 package adapters
 
-import activities.MovieActivity
+import activities.SerieActivity
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
@@ -26,7 +26,7 @@ class AdapterRecyclerSerie() : ListAdapter<SerieBrief, AdapterRecyclerSerie.MyVi
         holder.b.tvTitle.isSelected = true
         holder.b.tvVisits.text = serie.visits.toString()
         holder.b.tvRating.text = serie.rating.toString()
-        holder.b.vgRoot.setOnClickListener { App.ACTIVITY.runActivity(MovieActivity::class.java, bundleOf(Pair(KeyHelper.ID, serie.id))) }
+        holder.b.vgRoot.setOnClickListener { App.ACTIVITY.runActivity(SerieActivity::class.java, bundleOf(Pair(KeyHelper.ID, serie.id))) }
     }
 
     inner class MyViewHolder(val b: AdapterRecyclerMovieSerieBinding) : RecyclerView.ViewHolder(b.root)

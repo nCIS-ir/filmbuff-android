@@ -1,6 +1,7 @@
 package database.models
 
 import androidx.room.Entity
+import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import retrofit.models.Genre as WebGenre
 
@@ -11,6 +12,9 @@ data class Genre(
     val slug: String,
     val title: String,
 ) {
+    @Ignore
+    var isSelected: Boolean = false
+
     companion object {
         fun from(item: WebGenre): Genre {
             return Genre(
