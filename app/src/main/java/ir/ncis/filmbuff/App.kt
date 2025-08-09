@@ -40,10 +40,8 @@ class App : Application() {
         Hawk.init(CONTEXT).build()
         DB = Room.databaseBuilder(applicationContext, AppDatabase::class.java, "filmbuff.sqlite").allowMainThreadQueries().build()
 
-        var storedLocale = Hawk.get(KeyHelper.LOCALE, "")
-        var defaultLocale = if (storedLocale.isNotEmpty()) {
-            storedLocale
-        } else {
+        val storedLocale = Hawk.get(KeyHelper.LOCALE, "")
+        val defaultLocale = storedLocale.ifEmpty {
             if (LocaleHelper.getCurrentLocale() == "fa") "fa" else "en"
         }
         LocaleHelper.setLocale(this, defaultLocale)
